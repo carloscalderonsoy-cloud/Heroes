@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Héroes Invisibles — El archivo de los mexicanos que cambiaron la historia</title>
+<meta name="description" content="Las historias de los mexicanos que cambiaron México. Un archivo nuevo cada mes.">
+<meta property="og:title" content="Héroes Invisibles">
+<meta property="og:description" content="Las historias de los mexicanos que cambiaron México. Un archivo nuevo cada mes.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:#ece5d6;color:#1b1d24;font-family:'Inter',system-ui,sans-serif;font-size:18px;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:var(--text-accent);color:#1b1d24;}
+  a{color:inherit;text-decoration:none;}
+
+  :root{
+    --text-accent:#F5A000;
+    --texture-opacity:0;
+    --bg-hero:#1b1d24;
+    --bg-proposito:#1a1208;
+    --bg-cards:#f3eee2;
+    --bg-timeline:#1b1d24;
+    --bg-heroe-mes:#ece5d6;
+    --bg-newsletter:#c8bba6;
+    --gris-claro:#d4d0c8;
+    --gris-rata:#9e9a94;
+    --gris-elefante:#6b6760;
+    --amber:#D4A843;
+    --lino:#dfd5c0;
+  }
+
+  @keyframes hsk-kenburns{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.07) translate(-1.5%,-1.5%);}}
+  @keyframes hsk-pulse{0%,100%{opacity:.35;transform:translateY(0);}50%{opacity:.85;transform:translateY(5px);}}
+  @keyframes hsk-grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  :focus-visible{outline:2px solid var(--text-accent);outline-offset:3px;}
+  @media(prefers-reduced-motion:reduce){*{animation:none !important;}}
+
+  /* Propósito section */
+  .blue-section-base{position:absolute;inset:0;background:var(--bg-proposito,#1a1208);transition:background .35s;}
+  .blue-section-glow{position:absolute;inset:0;background:radial-gradient(75% 80% at 30% 35%,rgba(92,58,10,.55) 0%,transparent 72%);pointer-events:none;}
+
+  /* Tweaks button */
+  #tweaks-btn{
+    position:fixed;bottom:24px;right:24px;z-index:9999;
+    background:#1b1d24;border:1px solid var(--text-accent);
+    color:var(--text-accent);width:48px;height:48px;border-radius:50%;
+    font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.4);transition:background .2s,color .2s;
+  }
+  #tweaks-btn:hover{background:var(--text-accent);color:#1b1d24;}
+
+  /* Tweaks panel */
+  #tweaks-panel{
+    display:none;position:fixed;bottom:80px;right:24px;z-index:9999;
+    background:#1b1d24;border:1px solid rgba(245,160,0,.35);
+    padding:16px;width:256px;
+    box-shadow:0 8px 32px rgba(0,0,0,.5);
+    max-height:82vh;overflow-y:auto;
+  }
+  .tweak-section-div{height:1px;background:rgba(245,160,0,.15);margin:12px 0 10px;}
+  .tweak-label{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.5);margin:12px 0 4px;}
+  .tweak-label:first-child{margin-top:0;}
+  .tweak-sublabel{font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:6px 0 4px;}
+  .tweak-swatches{display:flex;gap:7px;flex-wrap:wrap;}
+  .tweak-swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .2s;}
+  .tweak-swatch.active{border-color:#fff;}
+  #texture-toggle{
+    background:rgba(255,255,255,.07);border:1px solid rgba(245,160,0,.3);
+    color:rgba(243,238,226,.55);font-size:.62rem;letter-spacing:1.5px;
+    text-transform:uppercase;padding:5px 10px;cursor:pointer;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  #texture-toggle.on{background:rgba(245,160,0,.15);color:var(--text-accent);border-color:var(--text-accent);}
+
+  /* Vertical timeline */
+  .vtl-wrap{position:relative;padding-left:44px;max-width:640px;}
+  .vtl-wrap::before{content:'';position:absolute;left:6px;top:6px;bottom:20px;width:2px;background:linear-gradient(to bottom,var(--text-accent) 0%,rgba(245,160,0,.1) 100%);}
+  .vtl-era{position:relative;margin-bottom:clamp(26px,3.5vw,42px);}
+  .vtl-era::before{content:'';position:absolute;left:-38px;top:5px;width:10px;height:10px;border-radius:50%;background:#1b1d24;border:2px solid var(--text-accent);}
+  .vtl-epoch{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:#6b7280;margin-bottom:2px;}
+  .vtl-range{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text-accent);font-weight:600;line-height:1.1;margin-bottom:4px;}
+  .vtl-heroes{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(243,238,226,.6);font-style:italic;}
+
+  /* Cristiada mini card hover */
+  .cristiada-mini-cta{transition:background .25s,color .25s;}
+  .cristiada-mini-cta:hover{background:#c9a84c !important;color:#120a05 !important;}
+
+  /* Section pagination */
+  .sec-num{position:absolute;bottom:18px;right:24px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:3px;color:rgba(245,160,0,.38);user-select:none;pointer-events:none;z-index:2;}
+
+  /* Audio button */
+  #audio-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(245,160,0,.5);color:rgba(243,238,226,.85);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;padding:10px 22px;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s;}
+  #audio-btn:hover{background:rgba(245,160,0,.15);border-color:var(--text-accent);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="background:#1b1d24;border-bottom:1px solid rgba(245,160,0,.35);">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+    <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
+      <a href="#" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Inicio</a>
+      <a href="#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Propósito</a>
+      <a href="#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
+      <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
+      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.5);padding:4px 12px;border-radius:2px;white-space:nowrap;">Conmemoración especial</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="sec-hero" style="position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg-hero,#1b1d24);">
+  <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 25%,#2c2f3a 0%,#1b1d24 55%,#131419 100%);"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;opacity:.08;background-image:repeating-linear-gradient(115deg,#F5A000 0 1px,transparent 1px 7px);"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;opacity:.45;background:radial-gradient(80% 60% at 68% 38%,rgba(245,160,0,.22),transparent 60%);"></div>
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;" aria-hidden="true">
+    <source src="assets/H8.mp4" type="video/mp4">
+  </video>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(27,29,36,.15) 0%,rgba(27,29,36,.05) 35%,rgba(27,29,36,.7) 78%,rgba(27,29,36,.94) 100%);"></div>
+
+  <div style="position:relative;width:100%;max-width:1180px;margin:0 auto;padding:0 24px 84px;z-index:3;">
+    <div>
+      <div data-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
+      <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#f6f2e8;line-height:.98;letter-spacing:.5px;font-size:clamp(3.4rem,11vw,8rem);text-wrap:balance;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></h1>
+      <button id="audio-btn" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon">♪</span> Encender música</button>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:1px;height:46px;background:linear-gradient(var(--text-accent),transparent);animation:hsk-pulse 3.4s ease-in-out infinite;"></div>
+  <span class="sec-num">01</span>
+</header>
+<audio id="bg-audio" loop>
+  <source src="assets/WagnerTann.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CONMEMORACIÓN ESPECIAL — header permanente de la plataforma Héroes Invisibles -->
+<div style="background:#1b1d24;border-top:1px solid rgba(245,160,0,.28);border-bottom:1px solid rgba(245,160,0,.15);position:relative;">
+  <div style="max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,68px) 24px;text-align:center;">
+    <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(2.6rem,7vw,4.4rem);letter-spacing:3px;text-transform:uppercase;color:#c9a84c;line-height:1.2;">Conmemoración especial</div>
+  </div>
+  <span class="sec-num">02</span>
+</div>
+
+<!-- BANNER CRISTIADA — intercambiable por cualquier futura conmemoración -->
+<a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" aria-label="Centenario de la Guerra Cristera — conocer la historia completa" style="display:block;text-decoration:none;background:#120a05;border-bottom:1px solid rgba(201,168,76,.22);position:relative;overflow:hidden;">
+  <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(65% 90% at 50% 50%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:relative;max-width:780px;margin:0 auto;padding:clamp(36px,5vw,56px) 24px clamp(28px,4vw,44px);text-align:center;">
+    <div style="font-family:'Cinzel',serif;font-weight:700;font-size:clamp(1.5rem,3.5vw,2.6rem);color:#c9a84c;letter-spacing:2px;line-height:1.1;margin-bottom:clamp(6px,1vw,10px);white-space:nowrap;">2026 Centenario de la Cristiada</div>
+    <div style="font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1.4rem,3.2vw,2.4rem);color:rgba(201,168,76,.75);letter-spacing:1.5px;line-height:1.15;margin-bottom:clamp(14px,2vw,22px);">Semillero de héroes</div>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,1.7vw,1.25rem);color:rgba(242,232,213,.82);line-height:1.7;max-width:520px;margin:0 auto clamp(20px,3vw,30px);">A cien años de un conflicto que transformó a México. Explora las batallas, los testimonios y el legado de quienes alzaron la voz por la libertad de conciencia.</p>
+    <div class="cristiada-mini-cta" style="display:inline-flex;align-items:center;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.5);padding:11px 24px;border-radius:2px;transition:background .3s,color .3s;">Abrir su historia</div>
+  </div>
+  <span class="sec-num">03</span>
+</a>
+
+<!-- PROPÓSITO — warm dark section, no texture by default -->
+<section id="proposito" style="position:relative;overflow:hidden;color:#f3eee2;border-top:2px solid var(--text-accent);">
+  <div class="blue-section-base" id="blue-bg-el"></div>
+  <div class="blue-section-glow"></div>
+  <div aria-hidden="true" id="texture-layer" style="position:absolute;inset:0;opacity:0;background-image:repeating-linear-gradient(118deg,#F5A000 0 1px,transparent 1px 7px);pointer-events:none;transition:opacity .4s;"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,14,16,.12) 0%,rgba(20,14,16,.5) 70%,rgba(20,14,16,.88) 100%);pointer-events:none;"></div>
+
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(56px,9vw,104px) 24px clamp(48px,7vw,72px);">
+    <div data-reveal style="height:2px;width:clamp(90px,18vw,200px);background:linear-gradient(90deg,var(--text-accent),rgba(245,160,0,.1));transform-origin:left;animation:hsk-grow 1000ms ease-out;margin-bottom:16px;"></div>
+    <div data-reveal style="font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:clamp(28px,5vw,44px);">Propósito</div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);align-items:flex-start;">
+      <div style="flex:1 1 560px;min-width:min(100%,300px);">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);align-items:flex-end;">
+          <h2 data-reveal style="flex:1 1 320px;font-family:'Cormorant Garamond',serif;font-weight:600;line-height:.92;letter-spacing:.5px;font-size:clamp(3rem,7.5vw,6rem);color:#f6efe2;text-wrap:balance;"><span style="display:block;padding-bottom:.14em;">¿Por qué</span>héroes <em style="font-style:italic;color:var(--text-accent);">invisibles?</em></h2>
+          <div style="flex:1 1 280px;">
+            <p data-reveal style="font-size:clamp(1.5rem,2.8vw,2rem);line-height:1.34;color:#f4ece0;font-weight:400;text-wrap:pretty;">México recuerda a sus héroes de bronce — los de los billetes y las avenidas.<br><br>Además de cada nombre famoso hay decenas <em style="color:var(--text-accent);">de quienes poco se sabe.</em></p>
+            <p data-reveal style="font-size:1.15rem;line-height:2;color:rgba(244,236,224,.82);margin-top:18px;text-wrap:pretty;">La espía fusilada.<br>El senador que enfrentó un dictador.<br>La primera médica.<br>La sufragista borrada.<br><br>Este proyecto recupera esas historias y vuelve a abrir el expediente que el tiempo guardó.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="flex:0 0 auto;display:flex;flex-direction:column;gap:clamp(14px,2vw,22px);margin:0 auto;">
+        <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;">
+          <img src="assets/SorJuanaInes.png" alt="Sor Juana Inés de la Cruz" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);">
+          <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
+        </div>
+        <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;margin-left:clamp(23px,3.75vw,50px);">
+          <img src="assets/Belisario%20Main.png" alt="Belisario Domínguez" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);">
+          <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
+        </div>
+        <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;">
+          <img src="assets/AliciaMatiasTeodoro.png" alt="Alicia Matías Teodoro" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);">
+          <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
+        </div>
+        <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;margin-left:clamp(23px,3.75vw,50px);">
+          <img src="assets/HomeroGomezMain.png" alt="Homero Gómez González" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);">
+          <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:clamp(24px,3vw,40px);margin-top:clamp(48px,7vw,80px);border-top:1px solid rgba(245,160,0,.32);padding-top:clamp(32px,4vw,44px);">
+      <div data-reveal>
+        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;"><div style="width:11px;height:11px;flex-shrink:0;background:var(--text-accent);margin-top:.35em;"></div><h3 style="font-size:1.45rem;font-weight:600;color:#f6efe2;line-height:1.1;">Recuperar la memoria</h3></div>
+        <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Devolver el nombre a quienes el tiempo guardó en silencio.</p>
+      </div>
+      <div data-reveal>
+        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;"><div style="width:11px;height:11px;flex-shrink:0;background:var(--text-accent);margin-top:.35em;"></div><h3 style="font-size:1.45rem;font-weight:600;color:#f6efe2;line-height:1.1;">Rigor sobre archivo</h3></div>
+        <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Fuentes verificables — Archivo General de la Nación (AGN), Instituto Nacional de Antropología e Historia (INAH), Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara. Sólo lo que los documentos confirman.</p>
+      </div>
+      <div data-reveal>
+        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;"><div style="width:11px;height:11px;flex-shrink:0;background:var(--text-accent);margin-top:.35em;"></div><h3 style="font-size:1.45rem;font-weight:600;color:#f6efe2;line-height:1.1;">Belleza que emociona</h3></div>
+        <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Cada vida contada como una historia recuperada, con nombre, con voz, con memoria.</p>
+      </div>
+      <div data-reveal>
+        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;"><div style="width:11px;height:11px;flex-shrink:0;background:var(--text-accent);margin-top:.35em;"></div><h3 style="font-size:1.45rem;font-weight:600;color:#f6efe2;line-height:1.1;">Un documento vivo</h3></div>
+        <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Crece mes con mes y queda abierto para todos.</p>
+      </div>
+    </div>
+  </div>
+  <span class="sec-num">04</span>
+</section>
+
+<!-- FRASE DESTACADA -->
+<div style="background:#1b1d24;border-top:1px solid rgba(245,160,0,.18);border-bottom:1px solid rgba(245,160,0,.18);padding:clamp(32px,5vw,52px) 24px;text-align:center;">
+  <blockquote style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(243,238,226,.82);max-width:680px;margin:0 auto;line-height:1.55;"><span style="color:var(--text-accent);">"</span>Además de cada nombre, hay decenas de quienes poco se sabe.<span style="color:var(--text-accent);">"</span></blockquote>
+</div>
+
+<!-- ÍNDICE DE HÉROES CARDS -->
+<section id="sec-cards" style="background:var(--bg-cards,#f3eee2);padding:clamp(64px,11vw,120px) 24px;border-top:1px solid var(--text-accent);position:relative;">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:clamp(34px,6vw,58px);">
+      <div>
+        <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:600;line-height:1.04;color:#1b1d24;">Los que cambiaron el país. <em style="color:var(--text-accent);">He aquí sus nombres.</em></h2>
+      </div>
+      <a data-reveal href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:11px 22px;border:1px solid var(--text-accent);white-space:nowrap;display:inline-flex;align-items:center;gap:8px;border-radius:2px;font-weight:500;">Explorar los héroes <span>→</span></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:clamp(18px,2.5vw,28px);">
+
+      <a data-reveal href="expedientes/expediente-belisario.html" data-card style="display:block;background:#ece5d6;border:1px solid #DFC070;transition:transform .5s ease,box-shadow .5s ease;">
+        <div data-pf style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#1b1d24;filter:saturate(.55);transition:filter 1.1s ease;">
+          <img src="assets/Belisario%20Main.png" alt="Belisario Domínguez" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;">
+        </div>
+        <div style="padding:18px 18px 22px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Revolución</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Belisario Domínguez</h3>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">1863 – 1913</div>
+          <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Enfrentó al dictador Victoriano Huerta desde la tribuna del Senado.</p>
+        </div>
+      </a>
+
+      <a data-reveal href="expedientes/expediente-homero.html" data-card style="display:block;background:#ece5d6;border:1px solid #DFC070;transition:transform .5s ease,box-shadow .5s ease;position:relative;">
+        <div data-pf style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#1b1d24;filter:saturate(.55);transition:filter 1.1s ease;">
+          <img src="assets/HomeroGomezMain.png" alt="Homero Gómez González" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;">
+          <div style="position:absolute;top:12px;right:12px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.85);border:1px solid rgba(245,160,0,.6);padding:3px 8px;background:rgba(22,23,28,.6);">Próximamente</div>
+        </div>
+        <div style="padding:18px 18px 22px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Contemporáneo</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Homero Gómez González</h3>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">1970 – 2020</div>
+          <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Guardián del santuario de la Mariposa Monarca en Michoacán.</p>
+        </div>
+      </a>
+
+      <a data-reveal href="expedientes/expediente-sorjuana.html" data-card style="display:block;background:#ece5d6;border:1px solid #DFC070;transition:transform .5s ease,box-shadow .5s ease;position:relative;">
+        <div data-pf style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#1b1d24;filter:saturate(.55);transition:filter 1.1s ease;">
+          <img src="assets/SorJuanaInes.png" alt="Sor Juana Inés de la Cruz" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;">
+          <div style="position:absolute;top:12px;right:12px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.85);border:1px solid rgba(245,160,0,.6);padding:3px 8px;background:rgba(22,23,28,.6);">Próximamente</div>
+        </div>
+        <div style="padding:18px 18px 22px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Virreinato</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Sor Juana Inés de la Cruz</h3>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">1648 – 1695</div>
+          <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Poetisa y filósofa del siglo XVII, primera gran escritora de las Américas.</p>
+        </div>
+      </a>
+
+      <a data-reveal href="expedientes/expediente-alicia.html" data-card style="display:block;background:#ece5d6;border:1px solid #DFC070;transition:transform .5s ease,box-shadow .5s ease;position:relative;">
+        <div data-pf style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#1b1d24;filter:saturate(.55);transition:filter 1.1s ease;">
+          <img src="assets/AliciaMatiasTeodoro.png" alt="Alicia Matías Teodoro" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;">
+          <div style="position:absolute;top:12px;right:12px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.85);border:1px solid rgba(245,160,0,.6);padding:3px 8px;background:rgba(22,23,28,.6);">Próximamente</div>
+        </div>
+        <div style="padding:18px 18px 22px;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Contemporáneo</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Alicia Matías Teodoro</h3>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">1976 – 2025</div>
+          <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Arriesgó su vida para salvar a su nieta durante la explosión en el Puente de la Concordia, Ciudad de México.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+  <span class="sec-num">05</span>
+</section>
+
+<!-- LÍNEA DE TIEMPO — VERTICAL -->
+<section id="sec-timeline" style="background:var(--bg-timeline,#1b1d24);color:#f3eee2;padding:clamp(64px,11vw,120px) 24px;position:relative;">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div data-reveal style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:10px;">Línea de tiempo de México</div>
+    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:600;line-height:1.06;margin-bottom:clamp(48px,7vw,80px);max-width:22ch;">Cada héroe, en la época que lo reclama.</h2>
+
+    <div data-reveal class="vtl-wrap">
+      <div class="vtl-era">
+        <div class="vtl-epoch">Virreinato</div>
+        <div class="vtl-range">1535 – 1821</div>
+      </div>
+      <div class="vtl-era">
+        <div class="vtl-epoch">Independencia</div>
+        <div class="vtl-range">1810 – 1821</div>
+      </div>
+      <div class="vtl-era">
+        <div class="vtl-epoch">La Reforma</div>
+        <div class="vtl-range">1855 – 1876</div>
+      </div>
+      <div class="vtl-era">
+        <div class="vtl-epoch">Porfiriato</div>
+        <div class="vtl-range">1876 – 1911</div>
+      </div>
+      <div class="vtl-era">
+        <div class="vtl-epoch">Revolución Mexicana</div>
+        <div class="vtl-range">1910 – 1920</div>
+      </div>
+      <div class="vtl-era">
+        <div class="vtl-epoch">La Cristiada</div>
+        <div class="vtl-range">1926 – 1929</div>
+      </div>
+      <div class="vtl-era">
+        <div class="vtl-epoch">Siglo XX</div>
+        <div class="vtl-range">1930 – 2000</div>
+      </div>
+      <div class="vtl-era" style="margin-bottom:0;">
+        <div class="vtl-epoch">Contemporáneo</div>
+        <div class="vtl-range">2001 – presente</div>
+      </div>
+    </div>
+  </div>
+  <span class="sec-num">06</span>
+</section>
+
+<!-- HÉROE DEL MES — moved to end, larger fonts -->
+<section id="heroe-del-mes" style="background:var(--bg-heroe-mes,#ece5d6);padding:clamp(64px,11vw,128px) 24px;position:relative;">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div data-reveal style="font-size:14px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;">Nuestro héroe del mes</div>
+    <div data-reveal style="height:2px;width:64px;background:var(--text-accent);transform-origin:left;animation:hsk-grow 900ms ease-out;margin-bottom:clamp(36px,6vw,64px);"></div>
+    <div style="display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center;">
+      <div data-reveal style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#1b1d24;border:1px solid var(--text-accent);box-shadow:0 1px 0 var(--text-accent);">
+        <img src="assets/Belisario%20Main.png" alt="Belisario Domínguez, c. 1910" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(.2) contrast(1.06) sepia(.12);animation:hsk-kenburns 20s ease-in-out infinite alternate;">
+        <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(22,23,28,0) 50%,rgba(22,23,28,.75) 100%);"></div>
+        <div style="position:absolute;left:0;bottom:0;width:100%;padding:14px 16px 12px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(243,238,226,.66);">Belisario Domínguez, c. 1910</div>
+      </div>
+      <div>
+        <div data-reveal style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;margin-bottom:20px;border-bottom:1px solid var(--text-accent);padding-bottom:16px;">
+          <span>Expediente 001</span><span style="color:var(--text-accent);">·</span><span>Época: Revolución</span><span style="color:var(--text-accent);">·</span><span style="color:#c9a84c;">Estado: recuperado</span>
+        </div>
+        <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:600;line-height:1.02;color:#1b1d24;">Belisario Domínguez</h2>
+        <div data-reveal style="font-size:1.05rem;letter-spacing:1.5px;color:#c9a84c;margin-top:8px;">1863 – 1913</div>
+        <p data-reveal style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,2.8vw,2rem);color:#c9a84c;line-height:1.34;margin-top:16px;max-width:28ch;">El senador por Chiapas, médico chiapaneco, se levantó en el senado a decir en voz alta lo que nadie más se atrevía.</p>
+        <p data-reveal style="font-size:1.1rem;line-height:1.9;color:#3a3b42;margin-top:18px;max-width:52ch;text-wrap:pretty;">En 1913, mientras Victoriano Huerta gobernaba tras el asesinato del presidente Madero, un senador, médico chiapaneco se levantó en el Senado a decir en voz alta lo que nadie se atrevía. Hoy la medalla más alta del Senado lleva su nombre — y esta es su historia.</p>
+        <a data-reveal href="expedientes/expediente-belisario.html" style="display:inline-flex;align-items:center;gap:10px;margin-top:30px;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:15px 28px;border-radius:2px;font-weight:500;min-height:48px;">Abrir su historia <span style="font-size:18px;">→</span></a>
+      </div>
+    </div>
+  </div>
+  <span class="sec-num">07</span>
+</section>
+
+<!-- CONTACTO / INVITACIÓN -->
+<section style="background:#1b1d24;padding:clamp(48px,8vw,88px) 24px;border-top:1px solid rgba(245,160,0,.25);position:relative;">
+  <div style="max-width:720px;margin:0 auto;text-align:center;">
+    <div data-reveal style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:18px;">¿Conoces a un héroe?</div>
+    <p data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.8vw,1.9rem);color:rgba(243,238,226,.88);line-height:1.6;margin-bottom:22px;">Conoce la historia de algún héroe contemporáneo o histórico. Envíanos un correo, lo analizamos y podemos subirlo.</p>
+    <a data-reveal href="mailto:carloscalderonsoy@gmail.com" style="display:inline-flex;align-items:center;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:13px 28px;border-radius:2px;font-weight:600;">Enviar historia</a>
+  </div>
+  <span class="sec-num">08</span>
+</section>
+
+<!-- NEWSLETTER — darker background -->
+<section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(72px,12vw,140px) 24px;border-top:1px solid #a89880;position:relative;">
+  <div style="max-width:680px;margin:0 auto;text-align:center;">
+    <div aria-hidden="true" data-reveal style="height:2px;width:64px;background:var(--text-accent);margin:0 auto 30px;transform-origin:center;animation:hsk-grow 900ms ease-out;"></div>
+    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Recibe un héroe cada mes<br><em style="color:var(--text-accent);">en tu correo.</em></h2>
+    <p data-reveal style="font-size:1.1rem;color:#5a4830;margin-top:18px;line-height:1.7;max-width:46ch;margin-left:auto;margin-right:auto;">Un expediente nuevo cada mes. Sin ruido, sin prisa — solo las historias que México guarda.</p>
+    <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px;">
+      <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
+      <input id="hsk-email" type="email" required placeholder="tu@correo.com" autocomplete="email" style="flex:1;min-width:240px;font-size:16px;padding:15px 18px;background:#f3eee2;border:1px solid #a89880;color:#1b1d24;border-radius:2px;min-height:52px;">
+      <button type="submit" style="font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);border:none;padding:15px 32px;border-radius:2px;font-weight:500;cursor:pointer;min-height:52px;">Suscribirme</button>
+    </form>
+    <p data-reveal style="font-size:.86rem;color:#5a4830;margin-top:16px;letter-spacing:.5px;">#HéroesInvisibles</p>
+  </div>
+  <span class="sec-num" style="color:rgba(90,72,48,.4);">09</span>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#1b1d24;color:rgba(243,238,226,.72);padding:clamp(56px,9vw,96px) 24px 56px;border-top:2px solid var(--text-accent);">
+  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:40px;">
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></div>
+      <p style="font-size:.96rem;line-height:1.7;margin-top:12px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un expediente que volvemos a abrir.</p>
+    </div>
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Navegación</div>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:.98rem;">
+        <a href="/" style="color:rgba(243,238,226,.78);">Inicio</a>
+        <a href="indice.html" style="color:rgba(243,238,226,.78);">Explorar los héroes</a>
+        <a href="expedientes/expediente-belisario.html" style="color:rgba(243,238,226,.78);">Nuestro héroe del mes</a>
+        <a href="#newsletter" style="color:rgba(243,238,226,.78);">Suscribirme</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Fuentes de archivo</div>
+      <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
+    </div>
+  </div>
+  <div style="max-width:1180px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(205,191,159,.22);display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:.86rem;letter-spacing:.5px;">
+    <span>El archivo de los mexicanos que cambiaron la historia.</span>
+    <span style="color:rgba(243,238,226,.5);">#HéroesInvisibles · 2026</span>
+  </div>
+</footer>
+
+<!-- TWEAKS BUTTON -->
+<button id="tweaks-btn" aria-label="Personalizar colores" title="Personalizar colores">⚙</button>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel" role="dialog" aria-label="Personalización">
+  <div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-accent);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(245,160,0,.2);">Personalizar</div>
+
+  <div class="tweak-label">Acento global</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-accent="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch" data-accent="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="tweak-swatch" data-accent="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="tweak-swatch" data-accent="#FF6B3D" style="background:#FF6B3D;" title="Naranja vivo"></button>
+    <button class="tweak-swatch" data-accent="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+    <button class="tweak-swatch" data-accent="#B39DDB" style="background:#B39DDB;" title="Lavanda"></button>
+  </div>
+
+  <div class="tweak-section-div"></div>
+  <div style="font-size:.56rem;letter-spacing:2px;text-transform:uppercase;color:rgba(243,238,226,.35);margin-bottom:10px;">Fondo · Acento por sección</div>
+
+  <!-- HERO -->
+  <div class="tweak-label">Hero</div>
+  <div class="tweak-sublabel">Fondo</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-bg-hero="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
+    <button class="tweak-swatch" data-bg-hero="#04111f" style="background:#04111f;" title="Medianoche"></button>
+    <button class="tweak-swatch" data-bg-hero="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
+    <button class="tweak-swatch" data-bg-hero="#2d1500" style="background:#2d1500;" title="Ámbar tostado"></button>
+    <button class="tweak-swatch" data-bg-hero="#6b6760" style="background:#6b6760;" title="Gris elefante"></button>
+    <button class="tweak-swatch" data-bg-hero="#d4d0c8" style="background:#d4d0c8;" title="Gris claro"></button>
+  </div>
+  <div class="tweak-sublabel">Acento</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-accent-hero="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch" data-accent-hero="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="tweak-swatch" data-accent-hero="#FF6B3D" style="background:#FF6B3D;" title="Naranja"></button>
+    <button class="tweak-swatch" data-accent-hero="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent-hero="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent-hero="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+
+  <!-- PROPÓSITO -->
+  <div class="tweak-label">Propósito</div>
+  <div class="tweak-sublabel">Fondo</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-bg-proposito="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
+    <button class="tweak-swatch" data-bg-proposito="#241508" style="background:#241508;" title="Tostado"></button>
+    <button class="tweak-swatch" data-bg-proposito="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
+    <button class="tweak-swatch" data-bg-proposito="#1c0d10" style="background:#1c0d10;" title="Granate"></button>
+    <button class="tweak-swatch" data-bg-proposito="#6b6760" style="background:#6b6760;" title="Gris elefante"></button>
+    <button class="tweak-swatch" data-bg-proposito="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+  <div class="tweak-sublabel">Acento</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-accent-proposito="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch" data-accent-proposito="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="tweak-swatch" data-accent-proposito="#FF6B3D" style="background:#FF6B3D;" title="Naranja"></button>
+    <button class="tweak-swatch" data-accent-proposito="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent-proposito="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent-proposito="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+
+  <!-- LOS QUE CAMBIARON EL PAÍS -->
+  <div class="tweak-label">Los que cambiaron el país</div>
+  <div class="tweak-sublabel">Fondo</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-bg-cards="#f3eee2" style="background:#f3eee2;" title="Crema"></button>
+    <button class="tweak-swatch" data-bg-cards="#ece5d6" style="background:#ece5d6;" title="Pergamino"></button>
+    <button class="tweak-swatch" data-bg-cards="#e8e0cc" style="background:#e8e0cc;" title="Arena"></button>
+    <button class="tweak-swatch" data-bg-cards="#f5f0e8" style="background:#f5f0e8;" title="Blanco cálido"></button>
+    <button class="tweak-swatch" data-bg-cards="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-bg-cards="#e4ddd2" style="background:#e4ddd2;" title="Humo"></button>
+  </div>
+  <div class="tweak-sublabel">Acento</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-accent-cards="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch" data-accent-cards="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="tweak-swatch" data-accent-cards="#FF6B3D" style="background:#FF6B3D;" title="Naranja"></button>
+    <button class="tweak-swatch" data-accent-cards="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent-cards="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent-cards="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+
+  <!-- LÍNEA DE TIEMPO -->
+  <div class="tweak-label">Línea de tiempo</div>
+  <div class="tweak-sublabel">Fondo</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-bg-timeline="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
+    <button class="tweak-swatch" data-bg-timeline="#04111f" style="background:#04111f;" title="Medianoche"></button>
+    <button class="tweak-swatch" data-bg-timeline="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
+    <button class="tweak-swatch" data-bg-timeline="#1c0d10" style="background:#1c0d10;" title="Granate"></button>
+    <button class="tweak-swatch" data-bg-timeline="#6b6760" style="background:#6b6760;" title="Gris elefante"></button>
+    <button class="tweak-swatch" data-bg-timeline="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+  <div class="tweak-sublabel">Acento</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-accent-timeline="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch" data-accent-timeline="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="tweak-swatch" data-accent-timeline="#FF6B3D" style="background:#FF6B3D;" title="Naranja"></button>
+    <button class="tweak-swatch" data-accent-timeline="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent-timeline="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent-timeline="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+
+  <!-- HÉROE DEL MES -->
+  <div class="tweak-label">Héroe del mes</div>
+  <div class="tweak-sublabel">Fondo</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-bg-hm="#ece5d6" style="background:#ece5d6;" title="Pergamino"></button>
+    <button class="tweak-swatch" data-bg-hm="#f3eee2" style="background:#f3eee2;" title="Crema"></button>
+    <button class="tweak-swatch" data-bg-hm="#e8dfc8" style="background:#e8dfc8;" title="Ocre suave"></button>
+    <button class="tweak-swatch" data-bg-hm="#f5f0e8" style="background:#f5f0e8;" title="Blanco cálido"></button>
+    <button class="tweak-swatch" data-bg-hm="#e0d5be" style="background:#e0d5be;" title="Parchment"></button>
+    <button class="tweak-swatch" data-bg-hm="#d8cbb0" style="background:#d8cbb0;" title="Arena oscura"></button>
+  </div>
+  <div class="tweak-sublabel">Acento</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-accent-hm="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch" data-accent-hm="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="tweak-swatch" data-accent-hm="#FF6B3D" style="background:#FF6B3D;" title="Naranja"></button>
+    <button class="tweak-swatch" data-accent-hm="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent-hm="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent-hm="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="tweak-label">Newsletter</div>
+  <div class="tweak-sublabel">Fondo</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-bg-news="#c8bba6" style="background:#c8bba6;" title="Taupe"></button>
+    <button class="tweak-swatch" data-bg-news="#b8a890" style="background:#b8a890;" title="Taupe oscuro"></button>
+    <button class="tweak-swatch" data-bg-news="#d4c8b0" style="background:#d4c8b0;" title="Lino"></button>
+    <button class="tweak-swatch" data-bg-news="#c0b090" style="background:#c0b090;" title="Camel"></button>
+    <button class="tweak-swatch" data-bg-news="#d0c8b8" style="background:#d0c8b8;" title="Arena media"></button>
+    <button class="tweak-swatch" data-bg-news="#bab0a0" style="background:#bab0a0;" title="Piedra"></button>
+  </div>
+  <div class="tweak-sublabel">Acento</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-accent-news="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch" data-accent-news="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="tweak-swatch" data-accent-news="#FF6B3D" style="background:#FF6B3D;" title="Naranja"></button>
+    <button class="tweak-swatch" data-accent-news="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent-news="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent-news="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+
+  <div class="tweak-section-div"></div>
+  <div class="tweak-label" style="margin-bottom:8px;">Textura diagonal (Propósito)</div>
+  <button id="texture-toggle">Sin textura</button>
+</div>
+
+<script>
+function toggleAudio() {
+  var audio = document.getElementById('bg-audio');
+  var btn = document.getElementById('audio-btn');
+  var icon = document.getElementById('audio-icon');
+  if (audio.paused) {
+    audio.volume = 0.35;
+    audio.play();
+    icon.textContent = '◼';
+    btn.style.borderColor = 'var(--text-accent)';
+    btn.style.background = 'rgba(245,160,0,.15)';
+  } else {
+    audio.pause();
+    icon.textContent = '♪';
+    btn.style.borderColor = 'rgba(245,160,0,.5)';
+    btn.style.background = 'rgba(27,29,36,.6)';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = Array.from(document.querySelectorAll('[data-reveal]'));
+  if (!reduce && 'IntersectionObserver' in window) {
+    els.forEach(function(el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity 760ms ease-out, transform 760ms ease-out';
+    });
+    var reveal = function(el) {
+      var sibs = el.parentElement ? Array.from(el.parentElement.querySelectorAll('[data-reveal]')) : [el];
+      var idx = Math.max(0, sibs.indexOf(el));
+      el.style.transitionDelay = (idx % 5 * 90) + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    };
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el) { io.observe(el); });
+    setTimeout(function() { els.forEach(function(el) { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }); }, 1800);
+  }
+
+  document.querySelectorAll('[data-card]').forEach(function(card) {
+    var pf = card.querySelector('[data-pf]');
+    card.addEventListener('mouseenter', function() {
+      card.style.transform = 'translateY(-5px)';
+      card.style.boxShadow = '0 14px 30px rgba(27,29,36,.12)';
+      card.style.borderColor = '#F5A000';
+      if (pf) pf.style.filter = 'saturate(1)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = 'translateY(0)';
+      card.style.boxShadow = 'none';
+      card.style.borderColor = '#DFC070';
+      if (pf) pf.style.filter = 'saturate(.55)';
+    });
+  });
+
+  /* Tweaks panel */
+  var tweaksBtn = document.getElementById('tweaks-btn');
+  var tweaksPanel = document.getElementById('tweaks-panel');
+  tweaksBtn.addEventListener('click', function() {
+    tweaksPanel.style.display = tweaksPanel.style.display === 'block' ? 'none' : 'block';
+  });
+  document.addEventListener('click', function(e) {
+    if (!tweaksPanel.contains(e.target) && e.target !== tweaksBtn) {
+      tweaksPanel.style.display = 'none';
+    }
+  });
+
+  /* Accent color swatches */
+  document.querySelectorAll('[data-accent]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var val = this.dataset.accent;
+      document.documentElement.style.setProperty('--text-accent', val);
+      document.querySelectorAll('[data-accent]').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+    });
+  });
+
+  /* Per-section background swatches */
+  var sectionSwatches = [
+    { attr: 'bg-hero',      cssVar: '--bg-hero',        targetId: 'sec-hero' },
+    { attr: 'bg-proposito', cssVar: '--bg-proposito',    targetId: 'blue-bg-el' },
+    { attr: 'bg-cards',     cssVar: '--bg-cards',        targetId: 'sec-cards' },
+    { attr: 'bg-timeline',  cssVar: '--bg-timeline',     targetId: 'sec-timeline' },
+    { attr: 'bg-hm',        cssVar: '--bg-heroe-mes',    targetId: 'heroe-del-mes' },
+    { attr: 'bg-news',      cssVar: '--bg-newsletter',   targetId: 'newsletter' },
+  ];
+  sectionSwatches.forEach(function(cfg) {
+    document.querySelectorAll('[data-' + cfg.attr + ']').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var val = this.getAttribute('data-' + cfg.attr);
+        document.documentElement.style.setProperty(cfg.cssVar, val);
+        var el = document.getElementById(cfg.targetId);
+        if (el) el.style.background = val;
+        document.querySelectorAll('[data-' + cfg.attr + ']').forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+  });
+
+  /* Per-section accent swatches — override --text-accent scoped to the section element */
+  var accentSwatches = [
+    { attr: 'accent-hero',      targetId: 'sec-hero' },
+    { attr: 'accent-proposito', targetId: 'proposito' },
+    { attr: 'accent-cards',     targetId: 'sec-cards' },
+    { attr: 'accent-timeline',  targetId: 'sec-timeline' },
+    { attr: 'accent-hm',        targetId: 'heroe-del-mes' },
+    { attr: 'accent-news',      targetId: 'newsletter' },
+  ];
+  accentSwatches.forEach(function(cfg) {
+    document.querySelectorAll('[data-' + cfg.attr + ']').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var val = this.getAttribute('data-' + cfg.attr);
+        var el = document.getElementById(cfg.targetId);
+        if (el) el.style.setProperty('--text-accent', val);
+        document.querySelectorAll('[data-' + cfg.attr + ']').forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+  });
+
+  /* Texture toggle */
+  var textureOn = false;
+  var textureToggle = document.getElementById('texture-toggle');
+  var textureLayer = document.getElementById('texture-layer');
+  textureToggle.addEventListener('click', function() {
+    textureOn = !textureOn;
+    textureLayer.style.opacity = textureOn ? '.08' : '0';
+    textureToggle.textContent = textureOn ? 'Con textura' : 'Sin textura';
+    textureToggle.classList.toggle('on', textureOn);
+  });
+});
+</script>
+</body>
+</html>
