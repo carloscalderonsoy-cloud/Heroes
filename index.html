@@ -43,7 +43,7 @@
 
   /* Propósito section */
   .blue-section-base{position:absolute;inset:0;background:var(--bg-proposito,#14301f);transition:background .35s;}
-  .blue-section-glow{position:absolute;inset:0;background:radial-gradient(75% 80% at 30% 35%,rgba(92,58,10,.55) 0%,transparent 72%);pointer-events:none;}
+  .blue-section-glow{position:absolute;inset:0;background:radial-gradient(75% 80% at 30% 35%,rgba(18,54,32,.5) 0%,transparent 72%);pointer-events:none;}
 
   /* Tweaks button */
   #tweaks-btn{
@@ -95,7 +95,7 @@
   .sec-num{position:absolute;bottom:18px;right:24px;font-family:'Cinzel',serif;font-size:1.95rem;letter-spacing:3px;color:rgba(245,160,0,.65);user-select:none;pointer-events:none;z-index:2;}
 
   /* Audio button */
-  #audio-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(245,160,0,.5);color:rgba(243,238,226,.85);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;padding:10px 22px;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s;}
+  #audio-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(245,160,0,.5);color:rgba(243,238,226,.85);font-size:clamp(11px,1.6vw,13px);letter-spacing:2.5px;text-transform:uppercase;padding:clamp(12px,2.2vw,15px) clamp(22px,4vw,30px);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .25s ease,box-shadow .25s ease;}
   #audio-btn:hover{background:rgba(245,160,0,.15);border-color:var(--text-accent);}
 
   /* CTA pill buttons — bigger, rounded, with a subtle attention glow */
@@ -136,7 +136,7 @@
     <div>
       <div data-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
       <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#f6f2e8;line-height:.98;letter-spacing:.5px;font-size:clamp(3.4rem,11vw,8rem);text-wrap:balance;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></h1>
-      <button id="audio-btn" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon">♪</span> Encender música</button>
+      <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon">♪</span> Encender música</button>
     </div>
   </div>
   <div aria-hidden="true" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:1px;height:46px;background:linear-gradient(var(--text-accent),transparent);animation:hsk-pulse 3.4s ease-in-out infinite;"></div>
@@ -191,12 +191,10 @@
           <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
         </div>
         <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;">
-          <img src="assets/AliciaMural.png" alt="Alicia Matías Teodoro" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);">
-          <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
+          <img src="assets/Alicia33.png" alt="Alicia Matías Teodoro" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;">
         </div>
         <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;margin-left:clamp(23px,3.75vw,50px);">
-          <img src="assets/HomeroGomezMain.png" alt="Homero Gómez González" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);">
-          <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
+          <img src="assets/HomeroGomezMain.png" alt="Homero Gómez González" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;">
         </div>
       </div>
     </div>
@@ -296,7 +294,7 @@
 </section>
 
 <!-- LÍNEA DE TIEMPO — VERTICAL -->
-<section id="sec-timeline" style="background:var(--bg-timeline,#14301f);color:#f3eee2;padding:clamp(64px,11vw,120px) 24px;position:relative;--text-accent:#E8C96A;">
+<section id="sec-timeline" style="background:var(--bg-timeline,#14301f);color:#f3eee2;padding:clamp(64px,11vw,120px) 24px;position:relative;border-top:2px solid var(--text-accent);--text-accent:#E8C96A;">
   <div style="max-width:1180px;margin:0 auto;">
     <div data-reveal style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:10px;">Línea de tiempo de México</div>
     <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:600;line-height:1.06;margin-bottom:clamp(48px,7vw,80px);max-width:22ch;">Cada héroe, en la época que lo reclama.</h2>
@@ -340,7 +338,7 @@
 </section>
 
 <!-- HÉROE DEL MES — moved to end, larger fonts -->
-<section id="heroe-del-mes" style="background:var(--bg-heroe-mes,#ece5d6);padding:clamp(64px,11vw,128px) 24px;position:relative;">
+<section id="heroe-del-mes" style="background:var(--bg-heroe-mes,#ece5d6);padding:clamp(64px,11vw,128px) 24px;position:relative;border-top:2px solid var(--text-accent);">
   <div style="max-width:1180px;margin:0 auto;">
     <div data-reveal style="font-size:14px;letter-spacing:4px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;">Nuestro héroe del mes</div>
     <div data-reveal style="height:2px;width:64px;background:var(--text-accent);transform-origin:left;animation:hsk-grow 900ms ease-out;margin-bottom:clamp(36px,6vw,64px);"></div>
@@ -384,7 +382,7 @@
     <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px;">
       <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
       <input id="hsk-email" type="email" required placeholder="su@correo.com" autocomplete="email" style="flex:1;min-width:240px;font-size:16px;padding:15px 18px;background:#f3eee2;border:1px solid #a89880;color:#1b1d24;border-radius:2px;min-height:52px;">
-      <button type="submit" style="font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);border:none;padding:15px 32px;border-radius:2px;font-weight:500;cursor:pointer;min-height:52px;">Suscribirme</button>
+      <button type="submit" class="btn-pill btn-glow" style="font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);border:none;padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:500;cursor:pointer;min-height:52px;">Suscribirme</button>
     </form>
     <p data-reveal style="font-size:.86rem;color:#5a4830;margin-top:16px;letter-spacing:.5px;">#HéroesInvisibles</p>
   </div>
@@ -468,7 +466,9 @@
   <div class="tweak-label">Propósito</div>
   <div class="tweak-sublabel">Fondo</div>
   <div class="tweak-swatches">
+    <button class="tweak-swatch" data-bg-proposito="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
     <button class="tweak-swatch active" data-bg-proposito="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-bg-proposito="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
     <button class="tweak-swatch" data-bg-proposito="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
     <button class="tweak-swatch" data-bg-proposito="#241508" style="background:#241508;" title="Tostado"></button>
     <button class="tweak-swatch" data-bg-proposito="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
@@ -523,7 +523,9 @@
   <div class="tweak-label">Línea de tiempo</div>
   <div class="tweak-sublabel">Fondo</div>
   <div class="tweak-swatches">
+    <button class="tweak-swatch" data-bg-timeline="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
     <button class="tweak-swatch active" data-bg-timeline="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-bg-timeline="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
     <button class="tweak-swatch" data-bg-timeline="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
     <button class="tweak-swatch" data-bg-timeline="#04111f" style="background:#04111f;" title="Medianoche"></button>
     <button class="tweak-swatch" data-bg-timeline="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
