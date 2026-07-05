@@ -79,11 +79,11 @@
   }
   #texture-toggle.on{background:rgba(232,201,106,.15);color:var(--text-accent);border-color:var(--text-accent);}
 
-  /* Vertical timeline — centered, with connecting line and dots down the middle */
-  .vtl-wrap{position:relative;max-width:520px;margin:0 auto;text-align:center;}
-  .vtl-wrap::before{content:'';position:absolute;left:50%;top:6px;bottom:20px;width:2px;transform:translateX(-50%);background:linear-gradient(to bottom,var(--text-accent) 0%,rgba(232,201,106,.1) 100%);}
-  .vtl-era{position:relative;margin-bottom:clamp(26px,3.5vw,42px);}
-  .vtl-era::before{content:'';position:relative;display:block;width:9px;height:9px;border-radius:50%;background:#1b1d24;border:2px solid var(--text-accent);margin:0 auto 10px;z-index:1;}
+  /* Vertical timeline — original left-of-text line/dot format, block centered on the page */
+  .vtl-wrap{position:relative;padding-left:44px;max-width:460px;margin:0 auto;text-align:left;}
+  .vtl-wrap::before{content:'';position:absolute;left:6px;top:6px;bottom:20px;width:2px;background:linear-gradient(to bottom,var(--text-accent) 0%,rgba(232,201,106,.1) 100%);}
+  .vtl-era{position:relative;margin-bottom:clamp(26px,3.5vw,42px);text-align:left;}
+  .vtl-era::before{content:'';position:absolute;left:-38px;top:5px;width:10px;height:10px;border-radius:50%;background:#1b1d24;border:2px solid var(--text-accent);}
   .vtl-epoch{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:#6b7280;margin-bottom:2px;}
   .vtl-range{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text-accent);font-weight:600;line-height:1.1;margin-bottom:4px;}
   .vtl-heroes{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(243,238,226,.6);font-style:italic;}
@@ -100,7 +100,7 @@
   #audio-btn:hover{background:rgba(232,201,106,.15);border-color:var(--text-accent);}
 
   /* CTA pill buttons — bigger, rounded, with a subtle attention glow */
-  @keyframes hsk-glow-amber{0%,100%{box-shadow:0 0 0 0 rgba(232,201,106,.4);}50%{box-shadow:0 0 24px 5px rgba(232,201,106,.55);}}
+  @keyframes hsk-glow-amber{0%,100%{box-shadow:0 4px 14px rgba(27,29,36,.2),0 0 0 0 rgba(232,201,106,.5);}50%{box-shadow:0 10px 28px rgba(27,29,36,.32),0 0 26px 6px rgba(232,201,106,.7);}}
   @keyframes hsk-glow-gold{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4);}50%{box-shadow:0 0 38px 9px rgba(201,168,76,.7);}}
   .btn-pill{border-radius:999px;box-sizing:border-box;max-width:100%;text-align:center;justify-content:center;transition:transform .25s ease,box-shadow .25s ease;}
   .btn-glow{animation:hsk-glow-amber 2.6s ease-in-out infinite;}
@@ -464,24 +464,11 @@
   <div class="tweak-label">Propósito</div>
   <div class="tweak-sublabel">Fondo</div>
   <div class="tweak-swatches">
+    <button class="tweak-swatch" data-bg-proposito="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
     <button class="tweak-swatch" data-bg-proposito="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
     <button class="tweak-swatch active" data-bg-proposito="#14301f" style="background:#14301f;" title="Verde bosque"></button>
     <button class="tweak-swatch" data-bg-proposito="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
-    <button class="tweak-swatch" data-bg-proposito="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
-    <button class="tweak-swatch" data-bg-proposito="#241508" style="background:#241508;" title="Tostado"></button>
-    <button class="tweak-swatch" data-bg-proposito="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
-    <button class="tweak-swatch" data-bg-proposito="#1c0d10" style="background:#1c0d10;" title="Granate"></button>
-    <button class="tweak-swatch" data-bg-proposito="#6b6760" style="background:#6b6760;" title="Gris elefante"></button>
-    <button class="tweak-swatch" data-bg-proposito="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
-    <button class="tweak-swatch" data-bg-proposito="#f5e6c8" style="background:#f5e6c8;" title="Crema dorada"></button>
-    <button class="tweak-swatch" data-bg-proposito="#f0d090" style="background:#f0d090;" title="Ámbar pálido"></button>
-    <button class="tweak-swatch" data-bg-proposito="#e8d4a8" style="background:#e8d4a8;" title="Lino dorado"></button>
-    <button class="tweak-swatch" data-bg-proposito="#f6f2e6" style="background:#f6f2e6;" title="Claro"></button>
-    <button class="tweak-swatch" data-bg-proposito="#4f7a5c" style="background:#4f7a5c;" title="Verde"></button>
-    <button class="tweak-swatch" data-bg-proposito="#7fb2d1" style="background:#7fb2d1;" title="Azul celeste"></button>
-    <button class="tweak-swatch" data-bg-proposito="#5c1f2e" style="background:#5c1f2e;" title="Vino"></button>
-    <button class="tweak-swatch" data-bg-proposito="#006341" style="background:#006341;" title="Verde bandera"></button>
-    <button class="tweak-swatch" data-bg-proposito="#2e0a13" style="background:#2e0a13;" title="Vino oscuro"></button>
+    <button class="tweak-swatch" data-bg-proposito="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -522,18 +509,11 @@
   <div class="tweak-label">Línea de tiempo</div>
   <div class="tweak-sublabel">Fondo</div>
   <div class="tweak-swatches">
+    <button class="tweak-swatch" data-bg-timeline="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
     <button class="tweak-swatch" data-bg-timeline="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
     <button class="tweak-swatch active" data-bg-timeline="#14301f" style="background:#14301f;" title="Verde bosque"></button>
     <button class="tweak-swatch" data-bg-timeline="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
-    <button class="tweak-swatch" data-bg-timeline="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
-    <button class="tweak-swatch" data-bg-timeline="#04111f" style="background:#04111f;" title="Medianoche"></button>
-    <button class="tweak-swatch" data-bg-timeline="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
-    <button class="tweak-swatch" data-bg-timeline="#1c0d10" style="background:#1c0d10;" title="Granate"></button>
-    <button class="tweak-swatch" data-bg-timeline="#6b6760" style="background:#6b6760;" title="Gris elefante"></button>
-    <button class="tweak-swatch" data-bg-timeline="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
-    <button class="tweak-swatch" data-bg-timeline="#f5e6c8" style="background:#f5e6c8;" title="Crema dorada"></button>
-    <button class="tweak-swatch" data-bg-timeline="#f0d090" style="background:#f0d090;" title="Ámbar pálido"></button>
-    <button class="tweak-swatch" data-bg-timeline="#e8d4a8" style="background:#e8d4a8;" title="Lino dorado"></button>
+    <button class="tweak-swatch" data-bg-timeline="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
