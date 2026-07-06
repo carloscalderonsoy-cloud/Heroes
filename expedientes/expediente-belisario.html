@@ -21,7 +21,7 @@
   body{background:#ece5d6;color:#1b1d24;font-family:'Inter',system-ui,sans-serif;font-size:18px;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   ::selection{background:var(--text-accent);color:#1b1d24;}
   a{color:inherit;text-decoration:none;}
-  :root{--text-accent:#F5A000;--bg-header:#1b1d24;--bg-highlight:#1b1d24;--bg-footer:#1b1d24;}
+  :root{--text-accent:#F5A000;--bg-header:#1b1d24;--bg-highlight:#1b1d24;--bg-footer:#1b1d24;--bg-quote:#ece5d6;}
   @keyframes hsk-kenburns{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.06) translate(-1.5%,-2%);}}
   @keyframes hsk-grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
   :focus-visible{outline:2px solid var(--text-accent);outline-offset:3px;}
@@ -94,7 +94,7 @@
       <p style="font-size:1.15rem;line-height:1.95;color:#2c2d34;text-wrap:pretty;">Belisario Domínguez Palencia nació en 1863 en Comitán, Chiapas, en la frontera sur del país. Estudió medicina en París y pudo quedarse en Europa; volvió a su pueblo a curar a quien no podía pagar. De ahí salió, ya maduro, hacia la tribuna más alta de la República: el Senado, en la Ciudad de México. Entre la botica de Comitán y el salón del Congreso cabe entera la distancia que recorrió para llegar a su única, definitiva desobediencia.</p>
     </section>
 
-    <figure id="exp-quote" data-reveal style="margin:clamp(48px,7vw,72px) 0;text-align:center;">
+    <figure id="exp-quote" data-reveal style="margin:clamp(48px,7vw,72px) 0;padding:clamp(28px,4.5vw,40px) 24px;background:var(--bg-quote,#ece5d6);text-align:center;">
       <div aria-hidden="true" style="height:2px;width:56px;background:var(--text-accent);margin:0 auto 28px;transform-origin:center;animation:hsk-grow 900ms ease-out;"></div>
       <blockquote style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.28;color:#6e2433;font-weight:500;text-wrap:balance;">«La representación nacional tiene el deber de deponer al usurpador, aunque el precio sea la vida de quien lo diga.»</blockquote>
       <figcaption style="font-size:.9rem;letter-spacing:1.5px;text-transform:uppercase;color:#6b5a42;margin-top:24px;">Del espíritu de su discurso ante el Senado · octubre de 1913</figcaption>
@@ -212,43 +212,95 @@
     <button class="exp-tweak-swatch active" data-exp-accent="#F5A000" style="background:#F5A000;" title="Dorado"></button>
     <button class="exp-tweak-swatch" data-exp-accent="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
     <button class="exp-tweak-swatch" data-exp-accent="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="exp-tweak-swatch" data-exp-accent="#FF6B3D" style="background:#FF6B3D;" title="Naranja vivo"></button>
     <button class="exp-tweak-swatch" data-exp-accent="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="exp-tweak-swatch" data-exp-accent="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
     <button class="exp-tweak-swatch" data-exp-accent="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
   </div>
 
   <div class="exp-tweak-div"></div>
   <div class="exp-tweak-label">Encabezado / Epígrafe</div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:6px 0 4px;">Fondo</div>
   <div class="exp-tweak-swatches">
     <button class="exp-tweak-swatch active" data-exp-bg-header="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
     <button class="exp-tweak-swatch" data-exp-bg-header="#04111f" style="background:#04111f;" title="Medianoche"></button>
     <button class="exp-tweak-swatch" data-exp-bg-header="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
     <button class="exp-tweak-swatch" data-exp-bg-header="#2d1500" style="background:#2d1500;" title="Ámbar tostado"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-header="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-header="#0a1f13" style="background:#0a1f13;" title="Verde bosque bajo"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-header="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-header="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+  </div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:8px 0 4px;">Acento</div>
+  <div class="exp-tweak-swatches">
+    <button class="exp-tweak-swatch active" data-exp-accent-header="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-header="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-header="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-header="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-header="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-header="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
   </div>
 
   <div class="exp-tweak-div"></div>
   <div class="exp-tweak-label">Cita destacada</div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:6px 0 4px;">Fondo</div>
+  <div class="exp-tweak-swatches">
+    <button class="exp-tweak-swatch active" data-exp-bg-quote="#ece5d6" style="background:#ece5d6;" title="Pergamino"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-quote="#f3eee2" style="background:#f3eee2;" title="Crema"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-quote="#e8e0cc" style="background:#e8e0cc;" title="Arena"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-quote="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-quote="#f5e6c8" style="background:#f5e6c8;" title="Crema dorada"></button>
+  </div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:8px 0 4px;">Acento</div>
   <div class="exp-tweak-swatches">
     <button class="exp-tweak-swatch active" data-exp-accent-quote="#F5A000" style="background:#F5A000;" title="Dorado"></button>
     <button class="exp-tweak-swatch" data-exp-accent-quote="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-quote="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
     <button class="exp-tweak-swatch" data-exp-accent-quote="#6e2433" style="background:#6e2433;" title="Vino"></button>
     <button class="exp-tweak-swatch" data-exp-accent-quote="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
   </div>
 
   <div class="exp-tweak-div"></div>
   <div class="exp-tweak-label">"Por qué nadie lo conoce"</div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:6px 0 4px;">Fondo</div>
   <div class="exp-tweak-swatches">
     <button class="exp-tweak-swatch active" data-exp-bg-highlight="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
-    <button class="exp-tweak-swatch" data-exp-bg-highlight="#14301f" style="background:#14301f;" title="Verde bosque"></button>
     <button class="exp-tweak-swatch" data-exp-bg-highlight="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
     <button class="exp-tweak-swatch" data-exp-bg-highlight="#6e2433" style="background:#6e2433;" title="Vino oscuro"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-highlight="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-highlight="#0a1f13" style="background:#0a1f13;" title="Verde bosque bajo"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-highlight="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-highlight="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+  </div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:8px 0 4px;">Acento</div>
+  <div class="exp-tweak-swatches">
+    <button class="exp-tweak-swatch active" data-exp-accent-highlight="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-highlight="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-highlight="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-highlight="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-highlight="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-highlight="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
   </div>
 
   <div class="exp-tweak-div"></div>
   <div class="exp-tweak-label">Pie de página</div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:6px 0 4px;">Fondo</div>
   <div class="exp-tweak-swatches">
     <button class="exp-tweak-swatch active" data-exp-bg-footer="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
     <button class="exp-tweak-swatch" data-exp-bg-footer="#04111f" style="background:#04111f;" title="Medianoche"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-footer="#1a1208" style="background:#1a1208;" title="Ámbar oscuro"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-footer="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="exp-tweak-swatch" data-exp-bg-footer="#0a1f13" style="background:#0a1f13;" title="Verde bosque bajo"></button>
     <button class="exp-tweak-swatch" data-exp-bg-footer="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+  </div>
+  <div class="exp-tweak-sublabel" style="font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.28);margin:8px 0 4px;">Acento</div>
+  <div class="exp-tweak-swatches">
+    <button class="exp-tweak-swatch active" data-exp-accent-footer="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-footer="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-footer="#D4A843" style="background:#D4A843;" title="Ámbar"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-footer="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-footer="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="exp-tweak-swatch" data-exp-accent-footer="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
   </div>
 </div>
 
@@ -300,10 +352,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var expScoped = [
-      { attr: 'exp-bg-header',    targetId: 'exp-header',    cssVar: '--bg-header' },
-      { attr: 'exp-bg-highlight', targetId: 'exp-highlight', cssVar: '--bg-highlight' },
-      { attr: 'exp-bg-footer',    targetId: 'exp-footer',    cssVar: '--bg-footer' },
-      { attr: 'exp-accent-quote', targetId: 'exp-quote',     cssVar: '--text-accent' },
+      { attr: 'exp-bg-header',        targetId: 'exp-header',    cssVar: '--bg-header' },
+      { attr: 'exp-accent-header',    targetId: 'exp-header',    cssVar: '--text-accent' },
+      { attr: 'exp-bg-quote',         targetId: 'exp-quote',     cssVar: '--bg-quote' },
+      { attr: 'exp-accent-quote',     targetId: 'exp-quote',     cssVar: '--text-accent' },
+      { attr: 'exp-bg-highlight',     targetId: 'exp-highlight', cssVar: '--bg-highlight' },
+      { attr: 'exp-accent-highlight', targetId: 'exp-highlight', cssVar: '--text-accent' },
+      { attr: 'exp-bg-footer',        targetId: 'exp-footer',    cssVar: '--bg-footer' },
+      { attr: 'exp-accent-footer',    targetId: 'exp-footer',    cssVar: '--text-accent' },
     ];
     expScoped.forEach(function(cfg) {
       document.querySelectorAll('[data-' + cfg.attr + ']').forEach(function(btn) {
