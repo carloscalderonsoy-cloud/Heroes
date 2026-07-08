@@ -24,6 +24,8 @@
   @keyframes hsk-grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
   :focus-visible{outline:2px solid #F5A000;outline-offset:3px;}
   @media (prefers-reduced-motion: reduce){*{animation:none !important;}}
+
+  @media print{nav,footer,#exp-tweaks-btn,#exp-tweaks-panel,[data-print-hide]{display:none !important;}}
 </style>
 </head>
 <body>
@@ -34,7 +36,8 @@
     <a href="../index.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Inicio</a>
     <a href="../index.html#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Propósito</a>
     <a href="../index.html#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Héroe del mes</a>
-    <a href="../indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;" style="white-space:nowrap;">Explorar los héroes</a>
+    <a href="../indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
+    <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Conmemoración especial</a>
     </div>
   </div>
 </nav>
@@ -43,12 +46,12 @@
   <div style="max-width:920px;margin:0 auto;">
     <a href="../indice.html" style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.6);display:inline-flex;align-items:center;gap:8px;margin-bottom:34px;">← Explorar los héroes</a>
     <div style="display:flex;flex-wrap:wrap;gap:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F5A000;border-bottom:1px solid rgba(245,160,0,0.4);padding-bottom:18px;">
-      <span>Expediente Nº 009</span><span style="color:rgba(243,238,226,0.3);">·</span><span>Época: Revolución</span><span style="color:rgba(243,238,226,0.3);">·</span><span>Lugar: Guadalajara, Jalisco</span><span style="color:rgba(243,238,226,0.3);">·</span><span style="color:#c98a96;">Estado: héroe invisible</span>
+      <span>Expediente Nº 009</span><span style="color:rgba(243,238,226,0.3);">·</span><span>Época: Revolución</span><span style="color:rgba(243,238,226,0.3);">·</span><span>Lugar: Guadalajara, Jalisco</span><span style="color:rgba(243,238,226,0.3);">·</span><span style="color:#F5A000;">Estado: héroe invisible</span>
     </div>
     <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,5.6rem);font-weight:600;line-height:1;letter-spacing:.5px;margin-top:34px;">David Galván Bermúdez</h1>
     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,3vw,1.9rem);color:rgba(243,238,226,0.82);margin-top:14px;line-height:1.3;max-width:30ch;">El soldado que eligió morir antes que renunciar a su fe.</p>
     <div style="display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:24px;font-size:.92rem;color:rgba(243,238,226,0.6);">
-      <span>1881, Guadalajara, Jalisco</span><span style="color:#F5A000;">—</span><span>30 de enero de 1915, Guadalajara, Jalisco</span>
+      <span>n. 1881, Guadalajara, Jalisco</span><span style="color:#F5A000;">—</span><span>m. 30 de enero de 1915, Guadalajara, Jalisco</span>
     </div>
   </div>
 </header>
@@ -127,6 +130,8 @@
         <a data-share="whatsapp" href="#" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">WhatsApp</a>
         <a data-share="facebook" href="#" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">Facebook</a>
         <a data-share="copy" href="#" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">Copiar enlace</a>
+        <a data-share="pdf" href="#" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">Descargar PDF</a>
+        <a data-share="more" href="#" style="display:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;align-items:center;">Más opciones</a>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid #DFC070;padding-top:26px;">
@@ -190,6 +195,20 @@ document.addEventListener('DOMContentLoaded', function() {
     cp.textContent = 'Enlace copiado';
     setTimeout(function() { cp.textContent = prev; }, 1600);
   });
+  var pdf = document.querySelector('[data-share="pdf"]');
+  if (pdf) pdf.addEventListener('click', function(ev) { ev.preventDefault(); window.print(); });
+  var more = document.querySelector('[data-share="more"]');
+  if (more) {
+    if (navigator.share) {
+      more.style.display = 'flex';
+      more.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        navigator.share({ title: document.title, text: text, url: url }).catch(function() {});
+      });
+    } else {
+      more.remove();
+    }
+  }
 });
 </script>
 </body>
