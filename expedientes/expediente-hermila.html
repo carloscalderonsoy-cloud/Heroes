@@ -26,6 +26,10 @@
   @media (prefers-reduced-motion: reduce){*{animation:none !important;}}
 
   @media print{nav,footer,#exp-tweaks-btn,#exp-tweaks-panel,[data-print-hide]{display:none !important;}}
+
+  @keyframes hsk-glow-gold{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4);}50%{box-shadow:0 0 38px 9px rgba(201,168,76,.7);}}
+  .nav-glow{animation:hsk-glow-gold 2.6s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease;}
+  .nav-glow:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused;}
 </style>
 </head>
 <body>
@@ -37,7 +41,7 @@
     <a href="../index.html#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Propósito</a>
     <a href="../index.html#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Héroe del mes</a>
     <a href="../indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
-    <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Conmemoración especial</a>
+    <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Conmemoración especial</a>
     </div>
   </div>
 </nav>

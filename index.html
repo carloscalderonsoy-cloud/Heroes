@@ -28,6 +28,7 @@
     --bg-timeline:#14301f;
     --bg-heroe-mes:#ece5d6;
     --bg-newsletter:#c8bba6;
+    --bg-contacto:#1b1d24;
     --gris-claro:#d4d0c8;
     --gris-rata:#9e9a94;
     --gris-elefante:#6b6760;
@@ -223,11 +224,9 @@
         <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;"><div style="width:11px;height:11px;flex-shrink:0;background:var(--text-accent);margin-top:.35em;"></div><h3 style="font-size:1.45rem;font-weight:600;color:#f6efe2;line-height:1.1;">Un documento vivo</h3></div>
         <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Crece mes con mes y queda abierto para todos.</p>
       </div>
-      <div data-reveal>
-        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;"><div style="width:11px;height:11px;flex-shrink:0;background:var(--text-accent);margin-top:.35em;"></div><h3 style="font-size:1.45rem;font-weight:600;color:#f6efe2;line-height:1.1;">Ayúdenos a que se sepa</h3></div>
-        <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Estas historias vuelven a existir cuando alguien las comparte. Si una le toca, envíesela a quien crea que la necesita — eso vale más que cualquier suscripción.</p>
-      </div>
     </div>
+
+    <p data-reveal style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);color:var(--text-accent);margin-top:clamp(40px,6vw,60px);">Compártalo — es la mejor forma de ayudarnos.</p>
   </div>
   <span class="sec-num">03</span>
 </section>
@@ -383,18 +382,11 @@
 </section>
 
 <!-- CONTACTO / INVITACIÓN -->
-<section style="background:#1b1d24;padding:clamp(28px,4.5vw,44px) 24px clamp(44px,6.5vw,64px);border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
+<section id="sec-contacto" style="background:var(--bg-contacto,#1b1d24);padding:clamp(28px,4.5vw,44px) 24px clamp(44px,6.5vw,64px);border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-    <div data-reveal style="font-family:'Inter',system-ui,sans-serif;font-size:clamp(2.6rem,7.7vw,5.8rem);font-weight:700;letter-spacing:clamp(2px,.5vw,6px);text-transform:uppercase;color:var(--text-accent);line-height:1;margin-bottom:clamp(12px,2vw,22px);">Participe</div>
-    <div data-reveal aria-hidden="true" title="Paleta del archivo" style="display:flex;gap:8px;justify-content:center;margin-bottom:clamp(16px,2.4vw,26px);">
-      <span style="width:14px;height:14px;border-radius:50%;background:#E8C96A;"></span>
-      <span style="width:14px;height:14px;border-radius:50%;background:#14301f;border:1px solid rgba(232,201,106,.4);"></span>
-      <span style="width:14px;height:14px;border-radius:50%;background:#C75B3A;"></span>
-      <span style="width:14px;height:14px;border-radius:50%;background:#dfd5c0;"></span>
-      <span style="width:14px;height:14px;border-radius:50%;background:#6e2433;"></span>
-    </div>
+    <div data-reveal style="font-family:'Inter',system-ui,sans-serif;font-size:clamp(2.6rem,7.7vw,5.8rem);font-weight:700;letter-spacing:clamp(2px,.5vw,6px);text-transform:uppercase;color:var(--text-accent);line-height:1;margin-bottom:clamp(16px,2.6vw,28px);">Participe</div>
     <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.6rem,3.7vw,2.6rem);line-height:1.22;color:var(--text-accent);margin:0 auto 18px;text-wrap:balance;">¿Conoce la historia de un <em style="font-style:italic;color:var(--text-accent);">héroe</em> mexicano,<br>contemporáneo o histórico?</h2>
-    <p data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.8vw,1.9rem);color:rgba(243,238,226,.88);line-height:1.6;margin-bottom:18px;">Evíenos la información via correo electrónico, revisamos y podremos subirlo a<br><span style="color:var(--text-accent);font-style:italic;">Héroes Invisibles</span>.</p>
+    <p data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.8vw,1.9rem);color:rgba(243,238,226,.88);line-height:1.6;margin-bottom:18px;">Evíenos la información via correo electrónico, revisamos y podremos subirlo&nbsp;a<br><span style="color:var(--text-accent);font-style:italic;">Héroes Invisibles</span>.</p>
     <a data-reveal href="mailto:carloscalderonsoy@gmail.com" class="btn-pill btn-glow" style="display:inline-flex;align-items:center;font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:600;">Enviar historia</a>
   </div>
   <span class="sec-num">08</span>
@@ -602,6 +594,25 @@
     <button class="tweak-swatch" data-accent-news="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
   </div>
 
+  <!-- PARTICIPE -->
+  <div class="tweak-label">Participe</div>
+  <div class="tweak-sublabel">Fondo</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch active" data-bg-contacto="#1b1d24" style="background:#1b1d24;" title="Carbón"></button>
+    <button class="tweak-swatch" data-bg-contacto="#04111f" style="background:#04111f;" title="Medianoche"></button>
+    <button class="tweak-swatch" data-bg-contacto="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-bg-contacto="#6e2433" style="background:#6e2433;" title="Vino"></button>
+    <button class="tweak-swatch" data-bg-contacto="#2d1500" style="background:#2d1500;" title="Ámbar tostado"></button>
+  </div>
+  <div class="tweak-sublabel">Acento</div>
+  <div class="tweak-swatches">
+    <button class="tweak-swatch" data-accent-contacto="#F5A000" style="background:#F5A000;" title="Dorado"></button>
+    <button class="tweak-swatch active" data-accent-contacto="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
+    <button class="tweak-swatch" data-accent-contacto="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
+    <button class="tweak-swatch" data-accent-contacto="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
+    <button class="tweak-swatch" data-accent-contacto="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
+  </div>
+
   <div class="tweak-section-div"></div>
   <div class="tweak-label" style="margin-bottom:8px;">Textura diagonal (Propósito)</div>
   <button id="texture-toggle">Sin textura</button>
@@ -703,6 +714,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { attr: 'bg-timeline',  cssVar: '--bg-timeline',     targetId: 'sec-timeline' },
     { attr: 'bg-hm',        cssVar: '--bg-heroe-mes',    targetId: 'heroe-del-mes' },
     { attr: 'bg-news',      cssVar: '--bg-newsletter',   targetId: 'newsletter' },
+    { attr: 'bg-contacto',  cssVar: '--bg-contacto',     targetId: 'sec-contacto' },
   ];
   sectionSwatches.forEach(function(cfg) {
     document.querySelectorAll('[data-' + cfg.attr + ']').forEach(function(btn) {
@@ -726,6 +738,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { attr: 'accent-hm',            targetId: 'heroe-del-mes', cssVar: '--text-accent' },
     { attr: 'accent-hm-epigrafe',   targetId: 'heroe-del-mes', cssVar: '--hm-epigrafe' },
     { attr: 'accent-news',          targetId: 'newsletter',    cssVar: '--text-accent' },
+    { attr: 'accent-contacto',      targetId: 'sec-contacto',  cssVar: '--text-accent' },
   ];
   accentSwatches.forEach(function(cfg) {
     document.querySelectorAll('[data-' + cfg.attr + ']').forEach(function(btn) {
