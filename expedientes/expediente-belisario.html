@@ -37,7 +37,14 @@
   .exp-tweak-swatch.active{border-color:#fff;}
   .exp-tweak-div{height:1px;background:rgba(245,160,0,.15);margin:12px 0 10px;}
 
-  @media print{nav,footer,#exp-tweaks-btn,#exp-tweaks-panel,[data-print-hide]{display:none !important;}}
+  @media print{
+    nav,footer,#exp-tweaks-btn,#exp-tweaks-panel,[data-print-hide]{display:none !important;}
+    *{animation:none !important;transition:none !important;box-shadow:none !important;}
+    [data-reveal]{opacity:1 !important;transform:none !important;}
+    img{filter:none !important;}
+    figure,blockquote,section{break-inside:avoid;page-break-inside:avoid;}
+    body{background:#fff;}
+  }
 
   @keyframes hsk-glow-gold{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4);}50%{box-shadow:0 0 38px 9px rgba(201,168,76,.7);}}
   .nav-glow{animation:hsk-glow-gold 2.6s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease;}
@@ -108,7 +115,7 @@
 
     <figure id="exp-quote" data-reveal style="margin:clamp(48px,7vw,72px) 0;padding:clamp(28px,4.5vw,40px) 24px;background:var(--bg-quote,#ece5d6);text-align:center;">
       <div aria-hidden="true" style="height:2px;width:56px;background:var(--text-accent);margin:0 auto 28px;transform-origin:center;animation:hsk-grow 900ms ease-out;"></div>
-      <blockquote style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.28;color:#6e2433;font-weight:500;text-wrap:balance;">«La representación nacional tiene el deber de deponer al usurpador, aunque el precio sea la vida de quien lo diga.»</blockquote>
+      <blockquote style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.28;color:var(--quote-ink,#6e2433);font-weight:500;text-wrap:balance;">«La representación nacional tiene el deber de deponer al usurpador, aunque el precio sea la vida de quien lo diga.»</blockquote>
       <figcaption style="font-size:.9rem;letter-spacing:1.5px;text-transform:uppercase;color:#6b5a42;margin-top:24px;">Del espíritu de su discurso ante el Senado · octubre de 1913</figcaption>
       <div aria-hidden="true" style="height:2px;width:56px;background:var(--text-accent);margin:28px auto 0;transform-origin:center;animation:hsk-grow 900ms ease-out;"></div>
     </figure>
@@ -167,7 +174,7 @@
   </div>
 </article>
 
-<section style="background:#f3eee2;padding:clamp(48px,8vw,80px) 24px;border-top:1px solid #DFC070;">
+<section data-print-hide style="background:#f3eee2;padding:clamp(48px,8vw,80px) 24px;border-top:1px solid #DFC070;">
   <div style="max-width:720px;margin:0 auto;">
     <div data-print-hide style="text-align:center;margin-bottom:clamp(36px,6vw,56px);padding-bottom:clamp(28px,5vw,44px);border-bottom:1px solid #DFC070;">
       <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,2.6vw,1.8rem);color:#1b1d24;line-height:1.4;margin-bottom:18px;">¿Este héroe merece ser recordado?</p>
@@ -202,12 +209,12 @@
 </section>
 
 <footer id="exp-footer" style="background:var(--bg-footer,#1b1d24);color:rgba(243,238,226,0.72);padding:clamp(56px,9vw,96px) 24px 56px;border-top:2px solid var(--text-accent);">
-  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px clamp(40px,6vw,72px);">
-    <div style="flex:1 1 220px;min-width:min(100%,220px);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:40px;">
+    <div style="flex:0 1 auto;max-width:min(100%,38ch);">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></div>
       <p style="font-size:.96rem;line-height:1.7;margin-top:12px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un archivo que volvemos a abrir.</p>
     </div>
-    <div style="flex:1 1 220px;min-width:min(100%,220px);">
+    <div style="flex:0 1 auto;max-width:min(100%,38ch);">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Navegación</div>
       <div style="display:flex;flex-direction:column;gap:9px;font-size:.98rem;">
         <a href="/" style="color:rgba(243,238,226,0.78);">Inicio</a>
@@ -215,7 +222,7 @@
         <a href="/#newsletter" style="color:rgba(243,238,226,0.78);">Suscribirme</a>
       </div>
     </div>
-    <div style="flex:1 1 220px;min-width:min(100%,220px);">
+    <div style="flex:0 1 auto;max-width:min(100%,38ch);">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Fuentes de archivo</div>
       <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Wikimedia Commons</p>
     </div>
@@ -467,6 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { attr: 'exp-accent-header',    targetId: 'exp-header',    cssVar: '--text-accent' },
       { attr: 'exp-bg-quote',         targetId: 'exp-quote',     cssVar: '--bg-quote' },
       { attr: 'exp-accent-quote',     targetId: 'exp-quote',     cssVar: '--text-accent' },
+      { attr: 'exp-accent-quote',     targetId: 'exp-quote',     cssVar: '--quote-ink' },
       { attr: 'exp-bg-highlight',     targetId: 'exp-highlight', cssVar: '--bg-highlight' },
       { attr: 'exp-accent-highlight', targetId: 'exp-highlight', cssVar: '--text-accent' },
       { attr: 'exp-bg-footer',        targetId: 'exp-footer',    cssVar: '--bg-footer' },
