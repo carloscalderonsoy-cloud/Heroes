@@ -168,6 +168,8 @@
         <a data-share="facebook" href="#" target="_blank" rel="noopener" class="share-ico" aria-label="Compartir en Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.52l.38-2.93H13.5V8.7c0-.85.24-1.43 1.45-1.43h1.55V4.65c-.27-.04-1.19-.12-2.26-.12-2.24 0-3.77 1.37-3.77 3.88v2.16H8v2.93h2.47V21h3.03z"/></svg></a>
         <a data-share="liga" href="#" class="share-ico" aria-label="Compartir liga" title="Compartir liga"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg></a>
         <a data-share="pdf" href="#" class="share-ico" aria-label="Descargar PDF" title="Descargar PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v6"/><path d="M9.5 14.5 12 17l2.5-2.5"/></svg></a>
+        <a data-share="print" href="#" class="share-ico" aria-label="Imprimir" title="Imprimir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg></a>
+        <a data-share="email" href="#" class="share-ico" aria-label="Enviar por correo" title="Enviar por correo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6.5 10 7 10-7"/></svg></a>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid #DFC070;padding-top:26px;">
@@ -239,6 +241,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   var pdf = document.querySelector('[data-share="pdf"]');
   if (pdf) pdf.addEventListener('click', function(ev) { ev.preventDefault(); window.print(); });
+  var pr = document.querySelector('[data-share="print"]');
+  if (pr) pr.addEventListener('click', function(ev) { ev.preventDefault(); window.print(); });
+  var em = document.querySelector('[data-share="email"]');
+  if (em) em.href = 'mailto:?subject=' + encodeURIComponent(document.title) + '&body=' + encodeURIComponent(text + '
+' + url);
 
   var vote = document.querySelector('[data-vote]');
   if (vote) {
