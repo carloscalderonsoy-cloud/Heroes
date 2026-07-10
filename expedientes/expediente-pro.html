@@ -30,6 +30,11 @@
   @keyframes hsk-glow-gold{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4);}50%{box-shadow:0 0 38px 9px rgba(201,168,76,.7);}}
   .nav-glow{animation:hsk-glow-gold 2.6s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease;}
   .nav-glow:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused;}
+
+  /* Share icon buttons */
+  .share-ico{width:48px;height:48px;border:1px solid #DFC070;border-radius:2px;display:flex;align-items:center;justify-content:center;color:#1b1d24;background:transparent;transition:background .2s,border-color .2s;}
+  .share-ico:hover{background:#F5A000;border-color:#F5A000;}
+  .share-ico svg{width:22px;height:22px;display:block;}
 </style>
 </head>
 <body>
@@ -55,7 +60,7 @@
     <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,5.6rem);font-weight:600;line-height:1;letter-spacing:.5px;margin-top:34px;">Padre Pro</h1>
     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,3vw,1.9rem);color:rgba(243,238,226,0.82);margin-top:14px;line-height:1.3;max-width:30ch;">El jesuita que ministró disfrazado — y fue fusilado sin juicio, con los brazos en cruz.</p>
     <div style="display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:24px;font-size:.92rem;color:rgba(243,238,226,0.6);">
-      <span>n. 13 de enero de 1891, Zacatecas</span><span style="color:#F5A000;">—</span><span>m. 23 de noviembre de 1927, Ciudad de México</span>
+      <span>n. 13 de enero de 1891, Zacatecas</span><span>m. 23 de noviembre de 1927, Ciudad de México</span>
     </div>
   </div>
 </header>
@@ -135,14 +140,17 @@
 
 <section style="background:#f3eee2;padding:clamp(48px,8vw,80px) 24px;border-top:1px solid #DFC070;">
   <div style="max-width:720px;margin:0 auto;">
+    <div data-print-hide style="text-align:center;margin-bottom:clamp(36px,6vw,56px);padding-bottom:clamp(28px,5vw,44px);border-bottom:1px solid #DFC070;">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,2.6vw,1.8rem);color:#1b1d24;line-height:1.4;margin-bottom:18px;">¿Este héroe merece ser recordado?</p>
+      <button data-vote style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:#F5A000;border:none;border-radius:999px;padding:16px 34px;font-weight:600;cursor:pointer;min-height:48px;">★ Votar por este héroe</button>
+    </div>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;margin-bottom:clamp(36px,6vw,56px);">
       <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Compartir este expediente</span>
       <div style="display:flex;gap:10px;">
-        <a data-share="whatsapp" href="#" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">WhatsApp</a>
-        <a data-share="facebook" href="#" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">Facebook</a>
-        <a data-share="copy" href="#" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">Copiar enlace</a>
-        <a data-share="pdf" href="#" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;display:flex;align-items:center;">Descargar PDF</a>
-        <a data-share="more" href="#" style="display:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;border:1px solid #DFC070;padding:11px 18px;border-radius:2px;min-height:44px;align-items:center;">Más opciones</a>
+        <a data-share="whatsapp" href="#" target="_blank" rel="noopener" class="share-ico" aria-label="Compartir por WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.35A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.8.82-2.99-.2-.31A8.2 8.2 0 1 1 12 20.2zm4.5-6.14c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.16 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.56.1.47-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg></a>
+        <a data-share="facebook" href="#" target="_blank" rel="noopener" class="share-ico" aria-label="Compartir en Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.52l.38-2.93H13.5V8.7c0-.85.24-1.43 1.45-1.43h1.55V4.65c-.27-.04-1.19-.12-2.26-.12-2.24 0-3.77 1.37-3.77 3.88v2.16H8v2.93h2.47V21h3.03z"/></svg></a>
+        <a data-share="liga" href="#" class="share-ico" aria-label="Compartir liga" title="Compartir liga"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg></a>
+        <a data-share="pdf" href="#" class="share-ico" aria-label="Descargar PDF" title="Descargar PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v6"/><path d="M9.5 14.5 12 17l2.5-2.5"/></svg></a>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid #DFC070;padding-top:26px;">
@@ -156,12 +164,12 @@
 </section>
 
 <footer style="background:#1b1d24;color:rgba(243,238,226,0.72);padding:clamp(56px,9vw,96px) 24px 56px;border-top:2px solid #F5A000;">
-  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:40px;">
-    <div>
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px clamp(40px,6vw,72px);">
+    <div style="flex:1 1 220px;min-width:min(100%,220px);">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:#F5A000;">Invisibles</span></div>
       <p style="font-size:.96rem;line-height:1.7;margin-top:12px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un archivo que volvemos a abrir.</p>
     </div>
-    <div>
+    <div style="flex:1 1 220px;min-width:min(100%,220px);">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F5A000;margin-bottom:14px;">Navegación</div>
       <div style="display:flex;flex-direction:column;gap:9px;font-size:.98rem;">
         <a href="../index.html" style="color:rgba(243,238,226,0.78);">Inicio</a>
@@ -169,7 +177,7 @@
         <a href="../index.html#newsletter" style="color:rgba(243,238,226,0.78);">Suscribirme</a>
       </div>
     </div>
-    <div>
+    <div style="flex:1 1 220px;min-width:min(100%,220px);">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F5A000;margin-bottom:14px;">Fuentes de archivo</div>
       <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Wikimedia Commons</p>
     </div>
@@ -196,29 +204,36 @@ document.addEventListener('DOMContentLoaded', function() {
   var text = 'Padre Pro — el jesuita que ministró disfrazado y fue fusilado sin juicio. #HéroesInvisibles';
   var wa = document.querySelector('[data-share="whatsapp"]');
   var fb = document.querySelector('[data-share="facebook"]');
-  var cp = document.querySelector('[data-share="copy"]');
   if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url);
   if (fb) fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
-  if (cp) cp.addEventListener('click', function(ev) {
+  var lg = document.querySelector('[data-share="liga"]');
+  if (lg) lg.addEventListener('click', function(ev) {
     ev.preventDefault();
-    if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function() {});
-    var prev = cp.textContent;
-    cp.textContent = 'Enlace copiado';
-    setTimeout(function() { cp.textContent = prev; }, 1600);
+    if (navigator.share) {
+      navigator.share({ title: document.title, text: text, url: url }).catch(function() {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).catch(function() {});
+      lg.style.background = '#F5A000';
+      setTimeout(function() { lg.style.background = ''; }, 1200);
+    }
   });
   var pdf = document.querySelector('[data-share="pdf"]');
   if (pdf) pdf.addEventListener('click', function(ev) { ev.preventDefault(); window.print(); });
-  var more = document.querySelector('[data-share="more"]');
-  if (more) {
-    if (navigator.share) {
-      more.style.display = 'flex';
-      more.addEventListener('click', function(ev) {
-        ev.preventDefault();
-        navigator.share({ title: document.title, text: text, url: url }).catch(function() {});
-      });
-    } else {
-      more.remove();
-    }
+
+  var vote = document.querySelector('[data-vote]');
+  if (vote) {
+    var voteKey = 'hsk-vote-' + window.location.pathname;
+    var setVoted = function() {
+      vote.textContent = 'Voto registrado — gracias';
+      vote.disabled = true;
+      vote.style.opacity = '.75';
+      vote.style.cursor = 'default';
+    };
+    try { if (localStorage.getItem(voteKey)) setVoted(); } catch (e) {}
+    vote.addEventListener('click', function() {
+      try { localStorage.setItem(voteKey, '1'); } catch (e) {}
+      setVoted();
+    });
   }
 });
 </script>

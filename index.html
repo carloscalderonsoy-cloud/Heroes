@@ -98,7 +98,7 @@
   .sec-num{position:absolute;bottom:18px;right:24px;font-family:'Cinzel',serif;font-size:1.95rem;letter-spacing:3px;color:rgba(232,201,106,.65);user-select:none;pointer-events:none;z-index:2;}
 
   /* Audio button */
-  #audio-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(232,201,106,.5);color:rgba(243,238,226,.85);font-size:clamp(11px,1.6vw,13px);letter-spacing:2.5px;text-transform:uppercase;padding:clamp(12px,2.2vw,15px) clamp(22px,4vw,30px);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .25s ease,box-shadow .25s ease;}
+  #audio-btn{display:inline-flex;align-items:center;gap:12px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(232,201,106,.5);color:rgba(243,238,226,.85);font-size:clamp(17px,2.4vw,20px);letter-spacing:2.5px;text-transform:uppercase;padding:clamp(18px,3.3vw,23px) clamp(33px,6vw,45px);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .25s ease,box-shadow .25s ease;}
   #audio-btn:hover{background:rgba(232,201,106,.15);border-color:var(--text-accent);}
 
   /* CTA pill buttons — bigger, rounded, with a subtle attention glow */
@@ -135,18 +135,27 @@
   <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 25%,#2c2f3a 0%,#1b1d24 55%,#131419 100%);"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.08;background-image:repeating-linear-gradient(115deg,#E8C96A 0 1px,transparent 1px 7px);"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.45;background:radial-gradient(80% 60% at 68% 38%,rgba(232,201,106,.22),transparent 60%);"></div>
-  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;" aria-hidden="true">
-    <source src="assets/HeroMasterMovil.mp4" type="video/mp4" media="(max-width: 768px)">
-    <source src="assets/HeroMaster%203.mp4" type="video/mp4">
-  </video>
+  <video id="hero-video" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;" aria-hidden="true"></video>
+  <script>
+    (function(){
+      var v = document.getElementById('hero-video');
+      var isMobile = window.matchMedia('(max-width: 768px)').matches;
+      v.src = isMobile ? 'assets/HeroeMovil444.mp4' : 'assets/Heroe444.mp4';
+      v.load();
+      var p = v.play(); if (p && p.catch) p.catch(function(){});
+    })();
+  </script>
 
   <div style="position:relative;width:100%;max-width:1180px;margin:0 auto;padding:0 24px 84px;z-index:3;">
     <div>
       <div data-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
       <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#f6f2e8;line-height:.98;letter-spacing:.5px;font-size:clamp(3.4rem,11vw,8rem);text-wrap:balance;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></h1>
-      <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon">♪</span> Encender música</button>
+      <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon" style="font-size:1.4em;line-height:1;">𝄞</span> Encender música</button>
     </div>
   </div>
+  <a href="#conmemoracion" aria-label="Ver más" style="position:absolute;left:50%;transform:translateX(-50%);bottom:14px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--text-accent);font-size:12px;letter-spacing:4px;text-transform:uppercase;">
+    <span style="animation:hsk-pulse 2.4s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;gap:10px;">Ver más<span aria-hidden="true" style="width:1px;height:42px;background:var(--text-accent);display:block;"></span></span>
+  </a>
   <span class="sec-num">01</span>
 </header>
 <audio id="bg-audio" loop>
@@ -154,7 +163,7 @@
 </audio>
 
 <!-- BANNER CRISTIADA — intercambiable por cualquier futura conmemoración -->
-<a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" aria-label="Centenario de la Guerra Cristera — conocer la historia completa" class="cta-glow" style="display:flex;align-items:center;min-height:92vh;text-decoration:none;background:#120a05 url('/assets/4.png?v=2') center/cover no-repeat;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;overflow:hidden;">
+<a id="conmemoracion" href="https://cristeros.vercel.app/" target="_blank" rel="noopener" aria-label="Centenario de la Guerra Cristera — conocer la historia completa" class="cta-glow" style="display:flex;align-items:center;min-height:92vh;text-decoration:none;background:#120a05 url('/assets/4.png?v=2') center/cover no-repeat;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;overflow:hidden;">
   <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,9,5,.9) 0%,rgba(15,9,5,.84) 45%,rgba(15,9,5,.94) 100%);"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(65% 90% at 50% 50%,rgba(201,168,76,.1) 0%,transparent 70%);pointer-events:none;"></div>
   <div style="position:relative;width:100%;max-width:820px;margin:0 auto;padding:clamp(36px,5vw,56px) 24px clamp(28px,4vw,44px);text-align:center;">
@@ -248,7 +257,7 @@
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Revolución</div>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Belisario Domínguez</h3>
-          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1863 – m. 1913</div>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1863&ensp;m. 1913</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Enfrentó al dictador Victoriano Huerta desde la tribuna del Senado.</p>
         </div>
       </a>
@@ -261,7 +270,7 @@
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Contemporáneo</div>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Homero Gómez González</h3>
-          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1970 – m. 2020</div>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1970&ensp;m. 2020</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Guardián del santuario de la Mariposa Monarca en Michoacán.</p>
         </div>
       </a>
@@ -274,7 +283,7 @@
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Virreinato</div>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Sor Juana Inés de la Cruz</h3>
-          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1648 – m. 1695</div>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1648&ensp;m. 1695</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Poetisa y filósofa del siglo XVII, primera gran escritora de las Américas.</p>
         </div>
       </a>
@@ -287,7 +296,7 @@
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Contemporáneo</div>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Alicia Matías Teodoro</h3>
-          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1976 – m. 2025</div>
+          <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1976&ensp;m. 2025</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Arriesgó su vida para salvar a su nieta durante la explosión en el Puente de la Concordia, Ciudad de México.</p>
         </div>
       </a>
@@ -356,7 +365,7 @@
           <span>Expediente 001</span><span style="color:var(--text-accent);">·</span><span>Época: Revolución</span><span style="color:var(--text-accent);">·</span><span style="color:var(--text-accent);">Estado: recuperado</span>
         </div>
         <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:600;line-height:1.02;color:#1b1d24;">Belisario Domínguez</h2>
-        <div data-reveal style="font-size:1.05rem;letter-spacing:1.5px;color:var(--text-accent);margin-top:8px;">n. 1863 – m. 1913</div>
+        <div data-reveal style="font-size:1.05rem;letter-spacing:1.5px;color:var(--text-accent);margin-top:8px;">n. 1863&ensp;m. 1913</div>
         <p data-reveal style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,2.8vw,2rem);color:var(--text-accent);line-height:1.34;margin-top:16px;max-width:28ch;">El senador por Chiapas, médico chiapaneco, se levantó en el senado a decir en voz alta lo que nadie más se atrevía.</p>
         <p data-reveal style="font-size:1.1rem;line-height:1.9;color:#3a3b42;margin-top:18px;max-width:52ch;text-wrap:pretty;">En 1913, mientras Victoriano Huerta gobernaba tras el asesinato del presidente Madero, un senador, médico chiapaneco se levantó en el Senado a decir en voz alta lo que nadie se atrevía. Hoy la medalla más alta del Senado lleva su nombre — y esta es su historia.</p>
         <a data-reveal href="expedientes/expediente-belisario.html" class="btn-pill btn-glow-on-light" style="display:inline-flex;align-items:center;margin-top:30px;font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:500;min-height:48px;">Abrir su historia</a>
@@ -367,24 +376,24 @@
 </section>
 
 <!-- NEWSLETTER — darker background -->
-<section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(20px,3vw,32px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
+<section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(10px,1.5vw,16px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:680px;margin:0 auto;text-align:center;">
     <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Reciba un héroe cada mes<br><em style="color:var(--text-accent);">en su correo.</em></h2>
-    <p data-reveal style="font-size:1.1rem;color:#5a4830;margin-top:14px;line-height:1.7;max-width:46ch;margin-left:auto;margin-right:auto;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda.</p>
-    <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px;">
+    <p data-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;max-width:46ch;margin-left:auto;margin-right:auto;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda.</p>
+    <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;">
       <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
       <input id="hsk-email" type="email" required placeholder="su@correo.com" autocomplete="email" style="flex:1;min-width:240px;font-size:16px;padding:15px 18px;background:#f3eee2;border:1px solid #a89880;color:#1b1d24;border-radius:2px;min-height:52px;">
       <button type="submit" class="btn-pill btn-glow-on-light" style="font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);border:none;padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:500;cursor:pointer;min-height:52px;">Suscribirme</button>
     </form>
-    <p data-reveal style="font-size:.86rem;color:#5a4830;margin-top:12px;letter-spacing:.5px;">#HéroesInvisibles</p>
+    <p data-reveal style="font-size:.86rem;color:#5a4830;margin-top:8px;letter-spacing:.5px;">#HéroesInvisibles</p>
   </div>
   <span class="sec-num" style="color:rgba(90,72,48,.65);">07</span>
 </section>
 
 <!-- CONTACTO / INVITACIÓN -->
-<section id="sec-contacto" style="background:var(--bg-contacto,#1b1d24);padding:clamp(28px,4.5vw,44px) 24px clamp(44px,6.5vw,64px);border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
+<section id="sec-contacto" style="background:var(--bg-contacto,#1b1d24);padding:clamp(14px,2vw,22px) 24px clamp(22px,3.2vw,34px);border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-    <div data-reveal style="font-family:'Inter',system-ui,sans-serif;font-size:clamp(2.6rem,7.7vw,5.8rem);font-weight:700;letter-spacing:clamp(2px,.5vw,6px);text-transform:uppercase;color:var(--text-accent);line-height:1;margin-bottom:clamp(16px,2.6vw,28px);">Participe</div>
+    <div data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.56rem,4.6vw,3.5rem);font-weight:600;letter-spacing:clamp(1.2px,.3vw,3.6px);text-transform:uppercase;color:var(--text-accent);line-height:1;margin-bottom:clamp(10px,1.8vw,18px);">Participe</div>
     <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.6rem,3.7vw,2.6rem);line-height:1.22;color:var(--text-accent);margin:0 auto 18px;text-wrap:balance;">¿Conoce la historia de un <em style="font-style:italic;color:var(--text-accent);">héroe</em> mexicano,<br>contemporáneo o histórico?</h2>
     <p data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.8vw,1.9rem);color:rgba(243,238,226,.88);line-height:1.6;margin-bottom:18px;">Evíenos la información via correo electrónico, revisamos y podremos subirlo&nbsp;a<br><span style="color:var(--text-accent);font-style:italic;">Héroes Invisibles</span>.</p>
     <a data-reveal href="mailto:carloscalderonsoy@gmail.com" class="btn-pill btn-glow" style="display:inline-flex;align-items:center;font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:600;">Enviar historia</a>
@@ -394,12 +403,12 @@
 
 <!-- FOOTER -->
 <footer style="background:#1b1d24;color:rgba(243,238,226,.72);padding:clamp(18px,5.5vw,58px) 24px 18px;border-top:2px solid var(--sep-gold);">
-  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:40px;">
-    <div>
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px clamp(40px,6vw,72px);">
+    <div style="flex:1 1 220px;min-width:min(100%,220px);">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></div>
       <p style="font-size:.96rem;line-height:1.7;margin-top:12px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un expediente que volvemos a abrir.</p>
     </div>
-    <div>
+    <div style="flex:1 1 220px;min-width:min(100%,220px);">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Navegación</div>
       <div style="display:flex;flex-direction:column;gap:9px;font-size:.98rem;">
         <a href="/" style="color:rgba(243,238,226,.78);">Inicio</a>
@@ -408,7 +417,7 @@
         <a href="#newsletter" style="color:rgba(243,238,226,.78);">Suscribirme</a>
       </div>
     </div>
-    <div>
+    <div style="flex:1 1 220px;min-width:min(100%,220px);">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Fuentes de archivo</div>
       <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
     </div>
@@ -450,6 +459,12 @@
     <button class="tweak-swatch" data-bg-hero="#f5e6c8" style="background:#f5e6c8;" title="Crema dorada"></button>
     <button class="tweak-swatch" data-bg-hero="#f0d090" style="background:#f0d090;" title="Ámbar pálido"></button>
     <button class="tweak-swatch" data-bg-hero="#e8d4a8" style="background:#e8d4a8;" title="Lino dorado"></button>
+    <button class="tweak-swatch" data-bg-hero="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="tweak-swatch" data-bg-hero="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
+    <button class="tweak-swatch" data-bg-hero="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-bg-hero="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+    <button class="tweak-swatch" data-bg-hero="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-bg-hero="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -470,6 +485,7 @@
     <button class="tweak-swatch active" data-bg-proposito="#14301f" style="background:#14301f;" title="Verde bosque"></button>
     <button class="tweak-swatch" data-bg-proposito="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
     <button class="tweak-swatch" data-bg-proposito="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-bg-proposito="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -494,6 +510,12 @@
     <button class="tweak-swatch" data-bg-cards="#f5e6c8" style="background:#f5e6c8;" title="Crema dorada"></button>
     <button class="tweak-swatch" data-bg-cards="#f0d090" style="background:#f0d090;" title="Ámbar pálido"></button>
     <button class="tweak-swatch" data-bg-cards="#e8d4a8" style="background:#e8d4a8;" title="Lino dorado"></button>
+    <button class="tweak-swatch" data-bg-cards="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="tweak-swatch" data-bg-cards="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
+    <button class="tweak-swatch" data-bg-cards="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-bg-cards="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+    <button class="tweak-swatch" data-bg-cards="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-bg-cards="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -515,6 +537,7 @@
     <button class="tweak-swatch active" data-bg-timeline="#14301f" style="background:#14301f;" title="Verde bosque"></button>
     <button class="tweak-swatch" data-bg-timeline="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
     <button class="tweak-swatch" data-bg-timeline="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-bg-timeline="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -543,6 +566,12 @@
     <button class="tweak-swatch" data-bg-hm="#cdd6cf" style="background:#cdd6cf;" title="Verde salvia"></button>
     <button class="tweak-swatch" data-bg-hm="#c7d2d9" style="background:#c7d2d9;" title="Azul piedra"></button>
     <button class="tweak-swatch" data-bg-hm="#d9cde0" style="background:#d9cde0;" title="Lavanda pálido"></button>
+    <button class="tweak-swatch" data-bg-hm="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="tweak-swatch" data-bg-hm="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
+    <button class="tweak-swatch" data-bg-hm="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-bg-hm="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+    <button class="tweak-swatch" data-bg-hm="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-bg-hm="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Fondo epígrafe</div>
   <div class="tweak-swatches">
@@ -553,6 +582,12 @@
     <button class="tweak-swatch" data-accent-hm-epigrafe="#c8bba6" style="background:#c8bba6;" title="Taupe"></button>
     <button class="tweak-swatch" data-accent-hm-epigrafe="#d7c9c2" style="background:#d7c9c2;" title="Rosa terracota"></button>
     <button class="tweak-swatch" data-accent-hm-epigrafe="#cdd6cf" style="background:#cdd6cf;" title="Verde salvia"></button>
+    <button class="tweak-swatch" data-accent-hm-epigrafe="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="tweak-swatch" data-accent-hm-epigrafe="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
+    <button class="tweak-swatch" data-accent-hm-epigrafe="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-accent-hm-epigrafe="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+    <button class="tweak-swatch" data-accent-hm-epigrafe="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-accent-hm-epigrafe="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -582,6 +617,12 @@
     <button class="tweak-swatch" data-bg-news="#f5e6c8" style="background:#f5e6c8;" title="Crema dorada"></button>
     <button class="tweak-swatch" data-bg-news="#f0d090" style="background:#f0d090;" title="Ámbar pálido"></button>
     <button class="tweak-swatch" data-bg-news="#e8d4a8" style="background:#e8d4a8;" title="Lino dorado"></button>
+    <button class="tweak-swatch" data-bg-news="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="tweak-swatch" data-bg-news="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
+    <button class="tweak-swatch" data-bg-news="#14301f" style="background:#14301f;" title="Verde bosque"></button>
+    <button class="tweak-swatch" data-bg-news="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+    <button class="tweak-swatch" data-bg-news="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-bg-news="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -603,6 +644,11 @@
     <button class="tweak-swatch" data-bg-contacto="#14301f" style="background:#14301f;" title="Verde bosque"></button>
     <button class="tweak-swatch" data-bg-contacto="#6e2433" style="background:#6e2433;" title="Vino"></button>
     <button class="tweak-swatch" data-bg-contacto="#2d1500" style="background:#2d1500;" title="Ámbar tostado"></button>
+    <button class="tweak-swatch" data-bg-contacto="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
+    <button class="tweak-swatch" data-bg-contacto="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
+    <button class="tweak-swatch" data-bg-contacto="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
+    <button class="tweak-swatch" data-bg-contacto="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
+    <button class="tweak-swatch" data-bg-contacto="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
   </div>
   <div class="tweak-sublabel">Acento</div>
   <div class="tweak-swatches">
@@ -631,7 +677,7 @@ function toggleAudio() {
     btn.style.background = 'rgba(232,201,106,.15)';
   } else {
     audio.pause();
-    icon.textContent = '♪';
+    icon.textContent = '𝄞';
     btn.style.borderColor = 'rgba(232,201,106,.5)';
     btn.style.background = 'rgba(27,29,36,.6)';
   }
