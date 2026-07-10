@@ -152,7 +152,14 @@
   <div style="max-width:720px;margin:0 auto;">
     <div data-print-hide style="text-align:center;margin-bottom:clamp(36px,6vw,56px);padding-bottom:clamp(28px,5vw,44px);border-bottom:1px solid #DFC070;">
       <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,2.6vw,1.8rem);color:#1b1d24;line-height:1.4;margin-bottom:18px;">¿Este héroe merece ser recordado?</p>
-      <button data-vote style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:#F5A000;border:none;border-radius:999px;padding:16px 34px;font-weight:600;cursor:pointer;min-height:48px;">★ Votar por este héroe</button>
+      <div data-stars role="radiogroup" aria-label="Votar de 1 a 5 estrellas" style="display:inline-flex;gap:6px;">
+        <button type="button" data-star="1" aria-label="1 estrella" style="background:none;border:none;cursor:pointer;font-size:2.4rem;line-height:1;color:#b3a58a;padding:2px 4px;transition:color .15s,transform .15s;">☆</button>
+        <button type="button" data-star="2" aria-label="2 estrellas" style="background:none;border:none;cursor:pointer;font-size:2.4rem;line-height:1;color:#b3a58a;padding:2px 4px;transition:color .15s,transform .15s;">☆</button>
+        <button type="button" data-star="3" aria-label="3 estrellas" style="background:none;border:none;cursor:pointer;font-size:2.4rem;line-height:1;color:#b3a58a;padding:2px 4px;transition:color .15s,transform .15s;">☆</button>
+        <button type="button" data-star="4" aria-label="4 estrellas" style="background:none;border:none;cursor:pointer;font-size:2.4rem;line-height:1;color:#b3a58a;padding:2px 4px;transition:color .15s,transform .15s;">☆</button>
+        <button type="button" data-star="5" aria-label="5 estrellas" style="background:none;border:none;cursor:pointer;font-size:2.4rem;line-height:1;color:#b3a58a;padding:2px 4px;transition:color .15s,transform .15s;">☆</button>
+      </div>
+      <p data-vote-result style="font-size:.92rem;letter-spacing:1px;text-transform:uppercase;color:#6b5a42;margin-top:12px;">Cargando votos…</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;margin-bottom:clamp(36px,6vw,56px);">
       <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Compartir esta historia</span>
@@ -234,23 +241,69 @@ document.addEventListener('DOMContentLoaded', function() {
   var pr = document.querySelector('[data-share="print"]');
   if (pr) pr.addEventListener('click', function(ev) { ev.preventDefault(); window.print(); });
   var em = document.querySelector('[data-share="email"]');
-  if (em) em.href = 'mailto:?subject=' + encodeURIComponent(document.title) + '&body=' + encodeURIComponent(text + '
-' + url);
+  if (em) em.href = 'mailto:?subject=' + encodeURIComponent(document.title) + '&body=' + encodeURIComponent(text + ' - ' + url);
 
-  var vote = document.querySelector('[data-vote]');
-  if (vote) {
-    var voteKey = 'hsk-vote-' + window.location.pathname;
-    var setVoted = function() {
-      vote.textContent = 'Voto registrado — gracias';
-      vote.disabled = true;
-      vote.style.opacity = '.75';
-      vote.style.cursor = 'default';
+  var starsWrap = document.querySelector('[data-stars]');
+  if (starsWrap) {
+    var heroId = (window.location.pathname.split('/').pop() || 'expediente').replace('.html', '');
+    var VOTE_API = 'https://abacus.jasoncameron.dev';
+    var VOTE_NS = 'heroes-invisibles-votos';
+    var starBtns = Array.from(starsWrap.querySelectorAll('[data-star]'));
+    var voteResult = document.querySelector('[data-vote-result]');
+    var voteKey = 'hsk-star-' + heroId;
+    var myVote = 0;
+    try { myVote = parseInt(localStorage.getItem(voteKey) || '0', 10) || 0; } catch (e) {}
+    var shownStars = myVote;
+    var paintStars = function(n) {
+      starBtns.forEach(function(b, i) {
+        b.textContent = i < n ? '\u2605' : '\u2606';
+        b.style.color = i < n ? '#F5A000' : '#b3a58a';
+      });
     };
-    try { if (localStorage.getItem(voteKey)) setVoted(); } catch (e) {}
-    vote.addEventListener('click', function() {
-      try { localStorage.setItem(voteKey, '1'); } catch (e) {}
-      setVoted();
+    var renderVotes = function(counts) {
+      var total = 0, sum = 0;
+      for (var k = 1; k <= 5; k++) { total += counts[k]; sum += k * counts[k]; }
+      if (total > 0) {
+        var avg = sum / total;
+        shownStars = Math.round(avg);
+        var txt = 'Promedio: ' + avg.toFixed(1) + ' de 5 \u00b7 ' + total + (total === 1 ? ' voto' : ' votos');
+        if (myVote) txt += ' \u00b7 Su voto: ' + myVote + ' \u2605';
+        voteResult.textContent = txt;
+      } else {
+        shownStars = myVote;
+        voteResult.textContent = myVote ? 'Su voto: ' + myVote + ' \u2605 \u2014 gracias' : 'Sea el primero en votar por este h\u00e9roe.';
+      }
+      paintStars(shownStars);
+    };
+    var loadVotes = function() {
+      Promise.all([1, 2, 3, 4, 5].map(function(k) {
+        return fetch(VOTE_API + '/get/' + VOTE_NS + '/' + heroId + '-s' + k)
+          .then(function(r) { return r.ok ? r.json() : { value: 0 }; })
+          .then(function(d) { return d.value || 0; })
+          .catch(function() { return 0; });
+      })).then(function(vals) {
+        var counts = {};
+        vals.forEach(function(v, i) { counts[i + 1] = v; });
+        renderVotes(counts);
+      });
+    };
+    starBtns.forEach(function(b, i) {
+      b.addEventListener('mouseenter', function() { if (!myVote) paintStars(i + 1); });
+      b.addEventListener('mouseleave', function() { paintStars(shownStars); });
+      b.addEventListener('click', function() {
+        if (myVote) return;
+        myVote = i + 1;
+        try { localStorage.setItem(voteKey, String(myVote)); } catch (e) {}
+        shownStars = myVote;
+        paintStars(myVote);
+        voteResult.textContent = 'Voto registrado \u2014 gracias';
+        fetch(VOTE_API + '/hit/' + VOTE_NS + '/' + heroId + '-s' + myVote)
+          .catch(function() {})
+          .then(function() { setTimeout(loadVotes, 400); });
+      });
     });
+    paintStars(shownStars);
+    loadVotes();
   }
 });
 </script>
