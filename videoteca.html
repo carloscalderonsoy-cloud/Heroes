@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videoteca — Héroes Invisibles</title>
+<meta name="description" content="La historia en voz alta. Documentales, discursos y semblanzas que devuelven rostro y voz a los héroes del archivo.">
+<meta property="og:title" content="Videoteca — Héroes Invisibles">
+<meta property="og:description" content="La historia en voz alta. Documentales, discursos y semblanzas que devuelven rostro y voz a los héroes del archivo.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:#0f2417;color:#f3eee2;font-family:'Inter',system-ui,sans-serif;font-size:18px;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:#E8C96A;color:#14301f;}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid #E8C96A;outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+  :root{
+    --verde-bosque:#14301f;
+    --verde-hondo:#0f2417;
+    --verde-carta:#1a3d27;
+    --oro:#E8C96A;
+    --oro-hondo:#C9A84C;
+    --crema:#f3eee2;
+  }
+
+  /* Rejilla de la videoteca */
+  .vt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,3.6vw,44px);}
+
+  /* Tarjeta */
+  .vt-card{background:var(--verde-carta);border:1px solid rgba(232,201,106,.28);display:flex;flex-direction:column;transition:transform .5s ease,box-shadow .5s ease,border-color .5s ease;}
+  .vt-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.35);border-color:var(--oro);}
+
+  /* Marco del video: portada con botón, el iframe entra al hacer clic */
+  .vt-frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0b1a11;border-bottom:1px solid rgba(232,201,106,.28);cursor:pointer;width:100%;display:block;border-top:0;border-left:0;border-right:0;padding:0;}
+  .vt-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.82);transition:filter 1s ease,transform 1.2s cubic-bezier(.16,1,.3,1);}
+  .vt-card:hover .vt-frame img{filter:saturate(1) brightness(.92);transform:scale(1.04);}
+  .vt-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(15,36,23,.72) 0%,rgba(15,36,23,.12) 55%,transparent 100%);pointer-events:none;}
+  .vt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .vt-frame.is-playing{cursor:default;}
+  .vt-frame.is-playing::after{display:none;}
+
+  .vt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:74px;height:74px;border-radius:50%;background:rgba(20,48,31,.72);border:1px solid var(--oro);color:var(--oro);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background .25s ease,transform .25s ease,box-shadow .25s ease;pointer-events:none;}
+  .vt-card:hover .vt-play{background:var(--oro);color:var(--verde-bosque);transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 30px 6px rgba(232,201,106,.35);}
+  .vt-play svg{width:26px;height:26px;margin-left:4px;fill:currentColor;}
+
+  .vt-badge{position:absolute;top:14px;left:14px;z-index:2;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(243,238,226,.82);border:1px solid rgba(232,201,106,.45);padding:4px 9px;background:rgba(11,26,17,.55);pointer-events:none;}
+  .vt-dur{position:absolute;bottom:14px;right:14px;z-index:2;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--oro);pointer-events:none;}
+
+  .vt-body{padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;flex:1;}
+  .vt-meta{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--oro-hondo);}
+  .vt-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.6vw,2rem);font-weight:600;line-height:1.1;margin:9px 0 6px;color:var(--crema);}
+  .vt-hero{font-size:.86rem;letter-spacing:.5px;color:rgba(243,238,226,.55);font-style:italic;margin-bottom:12px;}
+  .vt-desc{font-size:1rem;line-height:1.62;color:rgba(243,238,226,.76);}
+  .vt-links{margin-top:auto;padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;}
+  .vt-links a{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid transparent;transition:color .25s ease,border-color .25s ease;}
+  .vt-expediente{color:var(--oro);}
+  .vt-expediente:hover{border-bottom-color:var(--oro);}
+  .vt-youtube{color:rgba(243,238,226,.55);}
+  .vt-youtube:hover{color:var(--crema);border-bottom-color:rgba(243,238,226,.45);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="position:sticky;top:0;z-index:500;background:#14301f;border-bottom:2px solid rgba(232,201,106,.35);">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+    <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
+      <a href="/" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Inicio</a>
+      <a href="/#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Propósito</a>
+      <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
+      <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
+      <a href="videoteca.html" aria-current="page" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;padding:4px 0;white-space:nowrap;">Videoteca</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header style="position:relative;overflow:hidden;background:#14301f;color:#f3eee2;border-bottom:2px solid #E8C96A;padding:clamp(64px,11vw,120px) 24px clamp(48px,8vw,80px);">
+  <div style="position:absolute;inset:0;background:radial-gradient(78% 85% at 26% 30%,rgba(32,78,49,.75) 0%,rgba(20,48,31,0) 70%);pointer-events:none;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;">
+    <div data-reveal style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E8C96A;margin-bottom:18px;display:flex;align-items:center;gap:14px;"><span style="width:30px;height:1px;background:#E8C96A;display:inline-block;"></span>Videoteca</div>
+    <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:600;line-height:1.02;letter-spacing:.5px;max-width:16ch;">La historia, <em style="color:#E8C96A;">en voz alta.</em></h1>
+    <p data-reveal style="font-size:1.12rem;color:rgba(243,238,226,.78);margin-top:22px;max-width:60ch;line-height:1.8;">Documentales, discursos y semblanzas que le devuelven rostro y voz a los héroes del archivo. Un expediente se lee; una vida también se escucha. Míralos aquí y sigue leyendo en su expediente.</p>
+    <div data-reveal style="margin-top:30px;display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,201,106,.75);">
+      <span style="width:30px;height:1px;background:rgba(232,201,106,.4);display:inline-block;"></span>4 videos en la videoteca
+    </div>
+  </div>
+</header>
+
+<!-- VIDEOTECA -->
+<section style="background:#0f2417;padding:clamp(48px,7vw,88px) 24px clamp(72px,12vw,128px);">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div class="vt-grid">
+
+      <!-- 01 · Belisario Domínguez -->
+      <article data-reveal class="vt-card">
+        <button class="vt-frame" data-yt="obu9ivFRitM" aria-label="Reproducir: El discurso que le costó la vida">
+          <img src="assets/Belisario%20Main.png" style="object-position:center 18%;" alt="Belisario Domínguez" loading="lazy">
+          <span class="vt-badge">Video 01</span>
+          <span class="vt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <div class="vt-body">
+          <div class="vt-meta">Revolución · Cámara Alta</div>
+          <h2 class="vt-title">El discurso que le costó la vida</h2>
+          <div class="vt-hero">Belisario Domínguez &middot; 1863–1913</div>
+          <p class="vt-desc">Las palabras que ningún senador se atrevió a leer en voz alta: la acusación de Belisario Domínguez contra Victoriano Huerta. Las mandó imprimir él mismo. Semanas después lo asesinaron por ellas.</p>
+          <div class="vt-links">
+            <a class="vt-expediente" href="expedientes/expediente-belisario.html">Leer su expediente <span aria-hidden="true">→</span></a>
+            <a class="vt-youtube" href="https://www.youtube.com/watch?v=obu9ivFRitM" target="_blank" rel="noopener">Ver en YouTube <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 · Gertrudis Bocanegra -->
+      <article data-reveal class="vt-card">
+        <button class="vt-frame" data-yt="gT3eKUAhBQs" aria-label="Reproducir: La insurgente que no delató a nadie">
+          <img src="assets/Gertrudis%20Bocanegra.png" style="object-position:center 11%;" alt="María Gertrudis Bocanegra" loading="lazy">
+          <span class="vt-badge">Video 02</span>
+          <span class="vt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <div class="vt-body">
+          <div class="vt-meta">Independencia · Secretaría de Cultura</div>
+          <h2 class="vt-title">La insurgente que no delató a nadie</h2>
+          <div class="vt-hero">Gertrudis Bocanegra &middot; 1765–1817</div>
+          <p class="vt-desc">Correo y espía de la insurgencia en Michoacán. La torturaron para arrancarle nombres y murió fusilada en la plaza de Pátzcuaro sin dar ni uno solo.</p>
+          <div class="vt-links">
+            <a class="vt-expediente" href="expedientes/expediente-gertrudis.html">Leer su expediente <span aria-hidden="true">→</span></a>
+            <a class="vt-youtube" href="https://www.youtube.com/watch?v=gT3eKUAhBQs" target="_blank" rel="noopener">Ver en YouTube <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 · Matilde Montoya -->
+      <article data-reveal class="vt-card">
+        <button class="vt-frame" data-yt="uuhIMN5EaEs" aria-label="Reproducir: La primera médica de México">
+          <img src="assets/Matilde%20Montoya.png" style="object-position:center 10%;" alt="Matilde Montoya" loading="lazy">
+          <span class="vt-badge">Video 03</span>
+          <span class="vt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <div class="vt-body">
+          <div class="vt-meta">Porfiriato · Canal Once</div>
+          <h2 class="vt-title">La primera médica de México</h2>
+          <div class="vt-hero">Matilde Montoya &middot; 1857–1938</div>
+          <p class="vt-desc">Le cerraron las aulas, la prensa la llamó impúdica y sus propios compañeros pidieron su expulsión. En 1887 se tituló de todos modos, y detrás de ella pasaron todas las demás.</p>
+          <div class="vt-links">
+            <a class="vt-expediente" href="expedientes/expediente-matilde.html">Leer su expediente <span aria-hidden="true">→</span></a>
+            <a class="vt-youtube" href="https://www.youtube.com/watch?v=uuhIMN5EaEs" target="_blank" rel="noopener">Ver en YouTube <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 · Hermila Galindo -->
+      <article data-reveal class="vt-card">
+        <button class="vt-frame" data-yt="BpW_tDV21nI" aria-label="Reproducir: La revolucionaria que exigió el voto">
+          <img src="assets/Hermila%20Galindo.png" style="object-position:center 14%;" alt="Hermila Galindo" loading="lazy">
+          <span class="vt-badge">Video 04</span>
+          <span class="vt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <div class="vt-body">
+          <div class="vt-meta">Revolución · Secretaría de Cultura</div>
+          <h2 class="vt-title">La revolucionaria que exigió el voto</h2>
+          <div class="vt-hero">Hermila Galindo &middot; 1886–1954</div>
+          <p class="vt-desc">Pidió el sufragio femenino ante el Congreso Constituyente de 1917 y le dijeron que no. Tenía razón cuarenta años antes que la ley.</p>
+          <div class="vt-links">
+            <a class="vt-expediente" href="expedientes/expediente-hermila.html">Leer su expediente <span aria-hidden="true">→</span></a>
+            <a class="vt-youtube" href="https://www.youtube.com/watch?v=BpW_tDV21nI" target="_blank" rel="noopener">Ver en YouTube <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Cierre -->
+    <div data-reveal style="margin-top:clamp(56px,8vw,90px);text-align:center;border-top:1px solid rgba(232,201,106,.25);padding-top:clamp(40px,6vw,64px);">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,1.9rem);color:rgba(243,238,226,.82);max-width:34ch;margin:0 auto 28px;">La videoteca crece con el archivo. Cada mes, una voz más.</p>
+      <a href="indice.html" style="display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#14301f;background:#E8C96A;border:1px solid #E8C96A;border-radius:999px;padding:15px 30px;font-weight:500;transition:transform .25s ease,box-shadow .25s ease;" onmouseover="this.style.transform='translateY(-2px) scale(1.03)';this.style.boxShadow='0 10px 30px rgba(232,201,106,.28)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">Explorar los héroes</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#14301f;color:rgba(243,238,226,.72);padding:clamp(56px,9vw,96px) 24px 56px;border-top:2px solid #E8C96A;">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:40px;">
+    <div style="flex:0 1 auto;max-width:min(100%,38ch);">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:#E8C96A;">Invisibles</span></div>
+      <p style="font-size:.96rem;line-height:1.7;margin-top:12px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un expediente que volvemos a abrir.</p>
+    </div>
+    <div style="flex:0 1 auto;max-width:min(100%,38ch);">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#E8C96A;margin-bottom:14px;">Navegación</div>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:.98rem;">
+        <a href="/" style="color:rgba(243,238,226,.78);">Inicio</a>
+        <a href="indice.html" style="color:rgba(243,238,226,.78);">Explorar los héroes</a>
+        <a href="videoteca.html" style="color:rgba(243,238,226,.78);">Videoteca</a>
+        <a href="expedientes/expediente-belisario.html" style="color:rgba(243,238,226,.78);">Nuestro héroe del mes</a>
+        <a href="/#newsletter" style="color:rgba(243,238,226,.78);">Suscribirme</a>
+      </div>
+    </div>
+    <div style="flex:0 1 auto;max-width:min(100%,38ch);">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#E8C96A;margin-bottom:14px;">Créditos de video</div>
+      <p style="font-size:.92rem;line-height:1.8;">Canal Once (IPN)<br>Cámara Alta — Senado de la República<br>Secretaría de Cultura de México</p>
+    </div>
+  </div>
+  <div style="max-width:1180px;margin:48px auto 0;padding-top:26px;border-top:1px solid rgba(205,191,159,.22);display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:.86rem;letter-spacing:.5px;">
+    <span>Los videos pertenecen a sus autores y se muestran aquí con fines de divulgación.</span>
+    <span style="color:rgba(243,238,226,.5);">#HéroesInvisibles · 2026</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // El iframe de YouTube sólo se carga al hacer clic en la portada.
+  document.querySelectorAll('.vt-frame').forEach(function(frame) {
+    frame.addEventListener('click', function() {
+      var id = frame.getAttribute('data-yt');
+      if (!id || frame.querySelector('iframe')) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+      iframe.title = frame.getAttribute('aria-label') || 'Video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      frame.innerHTML = '';
+      frame.classList.add('is-playing');
+      frame.appendChild(iframe);
+    });
+  });
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = Array.from(document.querySelectorAll('[data-reveal]'));
+  if (!reduce && 'IntersectionObserver' in window) {
+    els.forEach(function(el) { el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; el.style.transition = 'opacity 760ms ease-out, transform 760ms ease-out'; });
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) {
+        var sibs = e.target.parentElement ? Array.from(e.target.parentElement.querySelectorAll('[data-reveal]')) : [e.target];
+        e.target.style.transitionDelay = (Math.max(0, sibs.indexOf(e.target)) % 5 * 80) + 'ms';
+        e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; io.unobserve(e.target);
+      }});
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(function(el) { io.observe(el); });
+    setTimeout(function() { els.forEach(function(el) { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }); }, 1800);
+  }
+});
+</script>
+</body>
+</html>
