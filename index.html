@@ -98,7 +98,7 @@
   .sec-num{position:absolute;bottom:18px;right:24px;font-family:'Cinzel',serif;font-size:1.95rem;letter-spacing:3px;color:rgba(232,201,106,.65);user-select:none;pointer-events:none;z-index:2;}
 
   /* Audio button */
-  #audio-btn{display:inline-flex;align-items:center;gap:12px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(232,201,106,.5);color:rgba(243,238,226,.85);font-size:clamp(17px,2.4vw,20px);letter-spacing:2.5px;text-transform:uppercase;padding:clamp(18px,3.3vw,23px) clamp(33px,6vw,45px);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .25s ease,box-shadow .25s ease;}
+  #audio-btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(232,201,106,.5);color:rgba(243,238,226,.85);font-size:clamp(13.6px,1.92vw,16px);letter-spacing:2.5px;text-transform:uppercase;padding:clamp(14px,2.64vw,18px) clamp(26px,4.8vw,36px);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .25s ease,box-shadow .25s ease;}
   #audio-btn:hover{background:rgba(232,201,106,.15);border-color:var(--text-accent);}
 
   /* CTA pill buttons — bigger, rounded, with a subtle attention glow */
@@ -402,12 +402,12 @@
 
 <!-- FOOTER -->
 <footer style="background:#1b1d24;color:rgba(243,238,226,.72);padding:clamp(18px,5.5vw,58px) 24px 18px;border-top:2px solid var(--sep-gold);">
-  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:40px;">
-    <div style="flex:1 1 260px;">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:clamp(28px,4vw,56px);">
+    <div style="flex:0 1 auto;max-width:34ch;">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></div>
       <p style="font-size:.96rem;line-height:1.7;margin-top:12px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un expediente que volvemos a abrir.</p>
     </div>
-    <div style="flex:1 1 260px;">
+    <div style="flex:0 1 auto;">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Navegación</div>
       <div style="display:flex;flex-direction:column;gap:9px;font-size:.98rem;">
         <a href="/" style="color:rgba(243,238,226,.78);">Inicio</a>
@@ -416,7 +416,7 @@
         <a href="#newsletter" style="color:rgba(243,238,226,.78);">Suscribirme</a>
       </div>
     </div>
-    <div style="flex:1 1 260px;">
+    <div style="flex:0 1 auto;max-width:36ch;">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Fuentes de archivo</div>
       <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
     </div>
