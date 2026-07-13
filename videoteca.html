@@ -60,6 +60,7 @@
   .vt-desc{font-size:1rem;line-height:1.62;color:rgba(243,238,226,.76);}
   .vt-links{margin-top:auto;padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;}
   .vt-links a{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid transparent;transition:color .25s ease,border-color .25s ease;}
+  .vt-links a span[aria-hidden]{font-size:2em;line-height:0;position:relative;top:1px;}
   .vt-expediente{color:var(--oro);}
   .vt-expediente:hover{border-bottom-color:var(--oro);}
   .vt-youtube{color:rgba(243,238,226,.55);}
@@ -67,6 +68,13 @@
   @keyframes hsk-glow-gold{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4);}50%{box-shadow:0 0 38px 9px rgba(201,168,76,.7);}}
   .nav-glow{animation:hsk-glow-gold 2.6s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease;}
   .nav-glow:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused;}
+
+  /* Kicker del encabezado */
+  .vt-kicker{font-size:clamp(26px,3.6vw,36px);letter-spacing:4px;text-transform:uppercase;color:var(--oro);margin-bottom:18px;line-height:1.2;}
+
+  /* CTA de cierre con resplandor */
+  .vt-cta{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--verde-bosque);background:var(--oro);border:1px solid var(--oro);border-radius:999px;padding:15px 30px;font-weight:500;animation:hsk-glow-gold 2.6s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease;}
+  .vt-cta:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused;box-shadow:0 0 46px 12px rgba(232,201,106,.6);}
 </style>
 </head>
 <body>
@@ -89,7 +97,7 @@
 <header style="position:relative;overflow:hidden;background:#14301f;color:#f3eee2;border-bottom:2px solid #E8C96A;padding:clamp(64px,11vw,120px) 24px clamp(48px,8vw,80px);">
   <div style="position:absolute;inset:0;background:radial-gradient(78% 85% at 26% 30%,rgba(32,78,49,.75) 0%,rgba(20,48,31,0) 70%);pointer-events:none;"></div>
   <div style="position:relative;max-width:1180px;margin:0 auto;">
-    <div data-reveal style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E8C96A;margin-bottom:18px;display:flex;align-items:center;gap:14px;"><span style="width:30px;height:1px;background:#E8C96A;display:inline-block;"></span>Videoteca</div>
+    <div data-reveal class="vt-kicker">Videoteca</div>
     <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:600;line-height:1.02;letter-spacing:.5px;max-width:16ch;">La historia, <em style="color:#E8C96A;">en voz alta.</em></h1>
     <p data-reveal style="font-size:1.12rem;color:rgba(243,238,226,.78);margin-top:22px;max-width:60ch;line-height:1.8;">Documentales, discursos y semblanzas que le devuelven rostro y voz a los héroes del archivo. Un expediente se lee; una vida también se escucha. Míralos aquí y sigue leyendo en su expediente.</p>
     <div data-reveal style="margin-top:30px;display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,201,106,.75);">
@@ -183,8 +191,9 @@
 
     <!-- Cierre -->
     <div data-reveal style="margin-top:clamp(56px,8vw,90px);text-align:center;border-top:1px solid rgba(232,201,106,.25);padding-top:clamp(40px,6vw,64px);">
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,1.9rem);color:rgba(243,238,226,.82);max-width:34ch;margin:0 auto 28px;">La videoteca crece con el archivo. Cada mes, una voz más.</p>
-      <a href="indice.html" style="display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#14301f;background:#E8C96A;border:1px solid #E8C96A;border-radius:999px;padding:15px 30px;font-weight:500;transition:transform .25s ease,box-shadow .25s ease;" onmouseover="this.style.transform='translateY(-2px) scale(1.03)';this.style.boxShadow='0 10px 30px rgba(232,201,106,.28)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">Explorar los héroes</a>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,1.9rem);color:rgba(243,238,226,.82);max-width:34ch;margin:0 auto 12px;">La videoteca crece con el archivo.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,1.9rem);color:rgba(243,238,226,.82);max-width:34ch;margin:0 auto 28px;">Cada mes, una voz más.</p>
+      <a href="indice.html" class="vt-cta">Explorar los héroes</a>
     </div>
   </div>
 </section>
@@ -220,8 +229,14 @@ document.addEventListener('DOMContentLoaded', function() {
     frame.addEventListener('click', function() {
       var id = frame.getAttribute('data-yt');
       if (!id || frame.querySelector('iframe')) return;
+      // rel=0 limita los sugeridos al mismo canal; iv_load_policy=3 quita las tarjetas.
+      // Si se añade data-list="PL..." a la portada, los sugeridos salen sólo de esa lista.
+      var src = 'https://www.youtube-nocookie.com/embed/' + id +
+        '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&color=white';
+      var list = frame.getAttribute('data-list');
+      if (list) src += '&list=' + encodeURIComponent(list);
       var iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+      iframe.src = src;
       iframe.title = frame.getAttribute('aria-label') || 'Video';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       iframe.allowFullscreen = true;

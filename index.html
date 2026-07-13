@@ -9,6 +9,7 @@
 <meta property="og:description" content="Las historias de los mexicanos que cambiaron México. Un archivo nuevo cada mes.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="assets/belisario-poster.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -136,14 +137,20 @@
   <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 25%,#2c2f3a 0%,#1b1d24 55%,#131419 100%);"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.08;background-image:repeating-linear-gradient(115deg,#E8C96A 0 1px,transparent 1px 7px);"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.45;background:radial-gradient(80% 60% at 68% 38%,rgba(232,201,106,.22),transparent 60%);"></div>
-  <video id="hero-video" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;" aria-hidden="true"></video>
+  <!-- La foto fija cubre el hueco hasta que el video tiene su primer cuadro listo. -->
+  <div id="hero-poster" aria-hidden="true" style="position:absolute;inset:0;background:#1b1d24 url('assets/belisario-poster.jpg') center/cover no-repeat;filter:saturate(.7) brightness(.62);transition:opacity 900ms ease;"></div>
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/belisario-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;" aria-hidden="true"></video>
   <script>
     (function(){
       var v = document.getElementById('hero-video');
+      var poster = document.getElementById('hero-poster');
       var isMobile = window.matchMedia('(max-width: 768px)').matches;
       v.src = isMobile ? 'assets/HeroesMovilFinal.mp4' : 'assets/HeroeWeb2.mp4';
       v.load();
       var p = v.play(); if (p && p.catch) p.catch(function(){});
+      function revealVideo(){ poster.style.opacity = '0'; }
+      if (v.readyState >= 3) revealVideo();
+      else v.addEventListener('canplay', revealVideo, { once: true });
     })();
   </script>
 
@@ -151,7 +158,7 @@
     <div>
       <div data-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
       <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#f6f2e8;line-height:.98;letter-spacing:.5px;font-size:clamp(3.4rem,11vw,8rem);text-wrap:balance;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></h1>
-      <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon" style="font-size:2.8em;line-height:1;">𝄞</span> Encender música</button>
+      <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon" style="font-size:2.8em;line-height:1;">𝄞</span> <span id="audio-label">Encender música</span></button>
     </div>
   </div>
   <a href="#conmemoracion" aria-label="Ver más" style="position:absolute;left:50%;transform:translateX(-50%);bottom:4px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--text-accent);font-size:12px;letter-spacing:4px;text-transform:uppercase;">
@@ -216,7 +223,7 @@
       </div>
     </div>
 
-    <blockquote data-reveal style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.5rem,3.2vw,2.3rem);color:var(--text-accent);max-width:680px;margin:clamp(48px,7vw,72px) auto 0;line-height:1.5;text-align:center;">"Además de cada nombre, hay decenas de quienes poco se sabe."</blockquote>
+    <blockquote data-reveal style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.5rem,3.2vw,2.3rem);color:var(--text-accent);max-width:680px;margin:clamp(48px,7vw,72px) auto 0;line-height:1.5;text-align:center;">Además de cada nombre, hay decenas de quienes poco se sabe.</blockquote>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:clamp(24px,3vw,40px);margin-top:clamp(48px,7vw,80px);border-top:1px solid rgba(232,201,106,.32);padding-top:clamp(32px,4vw,44px);">
       <div data-reveal>
@@ -670,15 +677,20 @@ function toggleAudio() {
   var audio = document.getElementById('bg-audio');
   var btn = document.getElementById('audio-btn');
   var icon = document.getElementById('audio-icon');
+  var label = document.getElementById('audio-label');
   if (audio.paused) {
     audio.volume = 0.35;
     audio.play();
     icon.textContent = '◼';
+    label.textContent = 'Apagar música';
+    btn.setAttribute('aria-label', 'Apagar música de fondo');
     btn.style.borderColor = 'var(--text-accent)';
     btn.style.background = 'rgba(232,201,106,.15)';
   } else {
     audio.pause();
     icon.textContent = '𝄞';
+    label.textContent = 'Encender música';
+    btn.setAttribute('aria-label', 'Encender música de fondo');
     btn.style.borderColor = 'rgba(232,201,106,.5)';
     btn.style.background = 'rgba(27,29,36,.6)';
   }
