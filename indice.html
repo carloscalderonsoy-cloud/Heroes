@@ -32,11 +32,12 @@
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
     <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
       <a href="/" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Inicio</a>
+      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
       <a href="/#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Propósito</a>
       <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
       <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
       <a href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
+      <a href="#" onclick="event.preventDefault();if(navigator.share){navigator.share({title:document.title,url:location.href}).catch(function(){});}else{navigator.clipboard.writeText(location.href).then(function(){alert('Enlace copiado al portapapeles.');});}" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Compártenos</a>
     </div>
   </div>
 </nav>

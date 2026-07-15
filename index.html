@@ -9,7 +9,7 @@
 <meta property="og:description" content="Las historias de los mexicanos que cambiaron México. Un archivo nuevo cada mes.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="assets/belisario-poster.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hermila-poster.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -96,7 +96,7 @@
   .cristiada-mini-cta:hover{background:#e6c878 !important;color:#120a05 !important;}
 
   /* Section pagination */
-  .sec-num{position:absolute;bottom:18px;right:24px;font-family:'Cinzel',serif;font-size:1.95rem;letter-spacing:3px;color:rgba(232,201,106,.65);user-select:none;pointer-events:none;z-index:2;}
+  .sec-num{position:absolute;bottom:18px;right:24px;font-family:'Cinzel',serif;font-size:1.15rem;letter-spacing:2px;color:rgba(232,201,106,.65);user-select:none;pointer-events:none;z-index:2;}
 
   /* Audio button */
   #audio-btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:rgba(27,29,36,.6);border:1px solid rgba(232,201,106,.5);color:rgba(243,238,226,.85);font-size:clamp(13.6px,1.92vw,16px);letter-spacing:2.5px;text-transform:uppercase;padding:clamp(14px,2.64vw,18px) clamp(26px,4.8vw,36px);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .25s ease,box-shadow .25s ease;}
@@ -123,11 +123,12 @@
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
     <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
       <a href="#" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Inicio</a>
+      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="btn-pill btn-glow-gold" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.5);padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
       <a href="#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Propósito</a>
       <a href="#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
       <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
       <a href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="btn-pill btn-glow-gold" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.5);padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
+      <a href="#" onclick="event.preventDefault();if(navigator.share){navigator.share({title:document.title,url:location.href}).catch(function(){});}else{navigator.clipboard.writeText(location.href).then(function(){alert('Enlace copiado al portapapeles.');});}" class="btn-pill btn-glow-gold" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.5);padding:6px 16px;white-space:nowrap;">Compártenos</a>
     </div>
   </div>
 </nav>
@@ -138,8 +139,8 @@
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.08;background-image:repeating-linear-gradient(115deg,#E8C96A 0 1px,transparent 1px 7px);"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.45;background:radial-gradient(80% 60% at 68% 38%,rgba(232,201,106,.22),transparent 60%);"></div>
   <!-- La foto fija cubre el hueco hasta que el video tiene su primer cuadro listo. -->
-  <div id="hero-poster" aria-hidden="true" style="position:absolute;inset:0;background:#1b1d24 url('assets/belisario-poster.jpg') center/cover no-repeat;filter:saturate(.7) brightness(.62);transition:opacity 900ms ease;"></div>
-  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/belisario-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;" aria-hidden="true"></video>
+  <div id="hero-poster" aria-hidden="true" style="position:absolute;inset:0;background:#1b1d24 url('assets/hermila-poster.jpg') center/cover no-repeat;filter:saturate(.7) brightness(.62);transition:opacity 900ms ease;"></div>
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hermila-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;" aria-hidden="true"></video>
   <script>
     (function(){
       var v = document.getElementById('hero-video');
@@ -161,8 +162,8 @@
       <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon" style="font-size:2.8em;line-height:1;">𝄞</span> <span id="audio-label">Encender música</span></button>
     </div>
   </div>
-  <a href="#conmemoracion" aria-label="Ver más" style="position:absolute;left:50%;transform:translateX(-50%);bottom:4px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--text-accent);font-size:12px;letter-spacing:4px;text-transform:uppercase;">
-    <span style="animation:hsk-pulse 2.4s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;gap:10px;"><span style="background:var(--text-accent);color:#1b1d24;padding:9px 22px;border-radius:999px;font-weight:700;letter-spacing:3px;box-shadow:0 6px 20px rgba(0,0,0,.4);">Ver más</span><span aria-hidden="true" style="width:1px;height:32px;background:var(--text-accent);display:block;"></span></span>
+  <a href="#conmemoracion" aria-label="Ver más" style="position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(18px,4vw,34px);z-index:4;display:flex;align-items:center;justify-content:center;">
+    <span style="animation:hsk-pulse 2.4s ease-in-out infinite;display:inline-flex;align-items:center;justify-content:center;background:var(--text-accent);color:#1b1d24;padding:clamp(14px,2.4vw,18px) clamp(30px,5vw,44px);border-radius:999px;font-weight:700;letter-spacing:3px;font-size:clamp(12px,1.6vw,14px);text-transform:uppercase;box-shadow:0 6px 20px rgba(0,0,0,.4);">Ver más</span>
   </a>
   <span class="sec-num">01</span>
 </header>
@@ -244,7 +245,7 @@
       </div>
     </div>
 
-    <p data-reveal style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);color:var(--text-accent);margin-top:clamp(40px,6vw,60px);">Compártalo — es la mejor forma de ayudarnos.</p>
+    <p data-reveal style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);color:var(--text-accent);margin-top:clamp(40px,6vw,60px);">Si le gustó, compartirlo es la mejor forma de ayudarnos.</p>
   </div>
   <span class="sec-num">03</span>
 </section>
@@ -429,6 +430,10 @@
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Fuentes de archivo</div>
       <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
     </div>
+  </div>
+  <div style="max-width:1180px;margin:clamp(24px,3.5vw,36px) auto 0;padding-top:18px;border-top:1px solid rgba(232,201,106,.18);text-align:center;">
+    <p style="font-size:.82rem;line-height:1.7;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación histórica. El diseño del sitio y algunas fotografías fueron creados o restaurados con apoyo de inteligencia artificial.</p>
+    <p style="font-size:.9rem;font-style:italic;color:var(--text-accent);margin-top:10px;">Gracias por visitarnos.</p>
   </div>
 </footer>
 

@@ -48,11 +48,12 @@
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
     <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
     <a href="../index.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Inicio</a>
+    <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
     <a href="../index.html#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Propósito</a>
     <a href="../index.html#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;">Héroe del mes</a>
     <a href="../indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
     <a href="../videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-    <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
+    <a href="#" onclick="event.preventDefault();if(navigator.share){navigator.share({title:document.title,url:location.href}).catch(function(){});}else{navigator.clipboard.writeText(location.href).then(function(){alert('Enlace copiado al portapapeles.');});}" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Compártenos</a>
     </div>
   </div>
 </nav>
@@ -189,6 +190,10 @@
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F5A000;margin-bottom:14px;">Fuentes de archivo</div>
       <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
     </div>
+  </div>
+  <div style="max-width:1180px;margin:clamp(24px,3.5vw,36px) auto 0;padding-top:18px;border-top:1px solid rgba(232,201,106,.18);text-align:center;">
+    <p style="font-size:.82rem;line-height:1.7;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación histórica. El diseño del sitio y algunas fotografías fueron creados o restaurados con apoyo de inteligencia artificial.</p>
+    <p style="font-size:.9rem;font-style:italic;color:var(--text-accent);margin-top:10px;">Gracias por visitarnos.</p>
   </div>
 </footer>
 
