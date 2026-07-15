@@ -37,7 +37,7 @@
       <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
       <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
       <a href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="#" onclick="event.preventDefault();if(navigator.share){navigator.share({title:document.title,url:location.href}).catch(function(){});}else{navigator.clipboard.writeText(location.href).then(function(){alert('Enlace copiado al portapapeles.');});}" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Compártenos</a>
+      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Compártenos</a>
     </div>
   </div>
 </nav>
@@ -307,6 +307,72 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   if (search) search.addEventListener('input', apply);
 });
+</script>
+
+<script>
+(function(){
+  var btn = document.getElementById('hsk-share-btn');
+  if (!btn) return;
+  var panel = null;
+  function closePanel(){
+    if (!panel) return;
+    panel.remove(); panel = null;
+    btn.setAttribute('aria-expanded','false');
+    document.removeEventListener('click', onDocClick);
+    document.removeEventListener('keydown', onKeydown);
+  }
+  function onDocClick(e){ if (panel && !panel.contains(e.target) && e.target !== btn) closePanel(); }
+  function onKeydown(e){ if (e.key === 'Escape') closePanel(); }
+  function openPanel(){
+    var url = location.href;
+    var title = document.title;
+    var text = title + ' — Héroes Invisibles';
+    var items = [
+      { label: 'WhatsApp', href: 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url) },
+      { label: 'Facebook', href: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) },
+      { label: 'X', href: 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url) },
+      { label: 'Correo', href: 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' - ' + url) }
+    ];
+    panel = document.createElement('div');
+    panel.setAttribute('role','menu');
+    panel.style.cssText = 'position:fixed;z-index:9999;background:#1b1d24;border:1px solid rgba(232,201,106,.5);border-radius:10px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;max-width:min(320px,calc(100vw - 16px));box-shadow:0 12px 30px rgba(0,0,0,.5);';
+    items.forEach(function(it){
+      var a = document.createElement('a');
+      a.href = it.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = it.label;
+      a.style.cssText = 'font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#E8C96A;border:1px solid rgba(232,201,106,.4);border-radius:999px;padding:7px 12px;white-space:nowrap;text-decoration:none;';
+      panel.appendChild(a);
+    });
+    var copyBtn = document.createElement('button');
+    copyBtn.type = 'button'; copyBtn.textContent = 'Copiar enlace';
+    copyBtn.style.cssText = 'font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;background:#E8C96A;border:1px solid #E8C96A;border-radius:999px;padding:7px 12px;white-space:nowrap;cursor:pointer;';
+    copyBtn.addEventListener('click', function(){
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function(){
+          copyBtn.textContent = '¡Copiado!';
+          setTimeout(closePanel, 900);
+        });
+      }
+    });
+    panel.appendChild(copyBtn);
+    document.body.appendChild(panel);
+    var r = btn.getBoundingClientRect();
+    var pw = panel.offsetWidth;
+    var left = Math.min(Math.max(8, r.left), window.innerWidth - pw - 8);
+    var top = r.bottom + 8;
+    if (top + panel.offsetHeight > window.innerHeight - 8) top = Math.max(8, r.top - panel.offsetHeight - 8);
+    panel.style.top = top + 'px';
+    panel.style.left = left + 'px';
+    btn.setAttribute('aria-expanded','true');
+    setTimeout(function(){
+      document.addEventListener('click', onDocClick);
+      document.addEventListener('keydown', onKeydown);
+    }, 0);
+  }
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    if (panel) closePanel(); else openPanel();
+  });
+})();
 </script>
 </body>
 </html>
