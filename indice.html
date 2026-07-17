@@ -37,7 +37,7 @@
       <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
       <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
       <a href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">Compártenos</a>
+      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Compártenos</a>
     </div>
   </div>
 </nav>
@@ -309,11 +309,31 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<style>
+.hsk-share-item{position:relative;display:inline-flex;}
+.hsk-share-ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,.08);border:1px solid rgba(232,201,106,.4);color:#E8C96A;text-decoration:none;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease;padding:0;}
+.hsk-share-ico:hover,.hsk-share-ico:focus-visible{background:#E8C96A;color:#1b1d24;border-color:#E8C96A;transform:translateY(-2px);}
+.hsk-share-ico svg{width:20px;height:20px;pointer-events:none;}
+.hsk-share-tip{position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;background:#E8C96A;padding:5px 9px;border-radius:5px;opacity:0;pointer-events:none;transition:opacity .18s ease;font-weight:600;}
+.hsk-share-item.hsk-tip-left .hsk-share-tip{left:0;transform:none;}
+.hsk-share-item.hsk-tip-right .hsk-share-tip{left:auto;right:0;transform:none;}
+.hsk-share-item:hover .hsk-share-tip,.hsk-share-item:focus-within .hsk-share-tip,.hsk-share-item.hsk-tip-force .hsk-share-tip{opacity:1;}
+.hsk-share-close{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:transparent;border:none;color:rgba(243,238,226,.6);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
+.hsk-share-close:hover{background:rgba(232,201,106,.15);color:#E8C96A;}
+</style>
 <script>
 (function(){
   var btn = document.getElementById('hsk-share-btn');
   if (!btn) return;
   var panel = null;
+  var ICONS = {
+    whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.35A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.8.82-2.99-.2-.31A8.2 8.2 0 1 1 12 20.2zm4.5-6.14c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.16 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.56.1.47-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.52l.38-2.93H13.5V8.7c0-.85.24-1.43 1.45-1.43h1.55V4.65c-.27-.04-1.19-.12-2.26-.12-2.24 0-3.77 1.37-3.77 3.88v2.16H8v2.93h2.47V21h3.03z"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    correo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6.5 10 7 10-7"/></svg>',
+    liga: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>',
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+  };
   function closePanel(){
     if (!panel) return;
     panel.remove(); panel = null;
@@ -323,37 +343,62 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   function onDocClick(e){ if (panel && !panel.contains(e.target) && e.target !== btn) closePanel(); }
   function onKeydown(e){ if (e.key === 'Escape') closePanel(); }
+  function makeItem(iconKey, label, href, onClick){
+    var wrap = document.createElement('span');
+    wrap.className = 'hsk-share-item';
+    var a = document.createElement(onClick ? 'button' : 'a');
+    a.className = 'hsk-share-ico';
+    a.innerHTML = ICONS[iconKey];
+    if (onClick) { a.type = 'button'; a.addEventListener('click', onClick); }
+    else { a.href = href; a.target = '_blank'; a.rel = 'noopener'; }
+    a.setAttribute('aria-label', label);
+    var tip = document.createElement('span');
+    tip.className = 'hsk-share-tip';
+    tip.textContent = label;
+    wrap.appendChild(a);
+    wrap.appendChild(tip);
+    wrap.addEventListener('mouseenter', function(){
+      wrap.classList.remove('hsk-tip-left','hsk-tip-right');
+      var r = tip.getBoundingClientRect();
+      if (r.right > window.innerWidth - 8) wrap.classList.add('hsk-tip-right');
+      else if (r.left < 8) wrap.classList.add('hsk-tip-left');
+    });
+    return { wrap: wrap, tip: tip };
+  }
   function openPanel(){
     var url = location.href;
     var title = document.title;
-    var text = title + ' — Héroes Invisibles';
-    var items = [
-      { label: 'WhatsApp', href: 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url) },
-      { label: 'Facebook', href: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) },
-      { label: 'X', href: 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url) },
-      { label: 'Correo', href: 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' - ' + url) }
-    ];
+    var text = 'Si le parece bien este sitio, por favor compártalo. Es la mejor forma de difundirlo.';
     panel = document.createElement('div');
     panel.setAttribute('role','menu');
-    panel.style.cssText = 'position:fixed;z-index:9999;background:#1b1d24;border:1px solid rgba(232,201,106,.5);border-radius:10px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;max-width:min(320px,calc(100vw - 16px));box-shadow:0 12px 30px rgba(0,0,0,.5);';
-    items.forEach(function(it){
-      var a = document.createElement('a');
-      a.href = it.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = it.label;
-      a.style.cssText = 'font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#E8C96A;border:1px solid rgba(232,201,106,.4);border-radius:999px;padding:7px 12px;white-space:nowrap;text-decoration:none;';
-      panel.appendChild(a);
+    panel.style.cssText = 'position:fixed;z-index:9999;background:#1b1d24;border:1px solid rgba(232,201,106,.5);border-radius:12px;padding:16px 14px 14px;display:flex;flex-wrap:wrap;gap:10px;max-width:min(320px,calc(100vw - 16px));box-shadow:0 12px 30px rgba(0,0,0,.5);';
+
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'hsk-share-close';
+    closeBtn.setAttribute('aria-label','Cerrar');
+    closeBtn.innerHTML = ICONS.close;
+    closeBtn.addEventListener('click', closePanel);
+    panel.appendChild(closeBtn);
+
+    panel.appendChild(makeItem('whatsapp', 'WhatsApp', 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url)).wrap);
+    panel.appendChild(makeItem('facebook', 'Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)).wrap);
+    panel.appendChild(makeItem('x', 'X', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url)).wrap);
+    panel.appendChild(makeItem('correo', 'Correo', 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' - ' + url)).wrap);
+
+    var copyItem = makeItem('liga', 'Copiar enlace', null, function(){
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(url).then(function(){
+        copyItem.tip.textContent = 'Copiado';
+        copyItem.wrap.classList.add('hsk-tip-force');
+        setTimeout(function(){
+          copyItem.tip.textContent = 'Copiar enlace';
+          copyItem.wrap.classList.remove('hsk-tip-force');
+        }, 1400);
+      });
     });
-    var copyBtn = document.createElement('button');
-    copyBtn.type = 'button'; copyBtn.textContent = 'Copiar enlace';
-    copyBtn.style.cssText = 'font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;background:#E8C96A;border:1px solid #E8C96A;border-radius:999px;padding:7px 12px;white-space:nowrap;cursor:pointer;';
-    copyBtn.addEventListener('click', function(){
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(function(){
-          copyBtn.textContent = '¡Copiado!';
-          setTimeout(closePanel, 900);
-        });
-      }
-    });
-    panel.appendChild(copyBtn);
+    panel.appendChild(copyItem.wrap);
+
     document.body.appendChild(panel);
     var r = btn.getBoundingClientRect();
     var pw = panel.offsetWidth;
