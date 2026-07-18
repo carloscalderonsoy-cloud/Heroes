@@ -26,7 +26,6 @@
     --bg-hero:#1b1d24;
     --bg-proposito:#14301f;
     --bg-cards:#ece5d6;
-    --bg-timeline:#14301f;
     --bg-heroe-mes:#ece5d6;
     --bg-newsletter:#c8bba6;
     --bg-contacto:#1b1d24;
@@ -81,15 +80,6 @@
   }
   #texture-toggle.on{background:rgba(232,201,106,.15);color:var(--text-accent);border-color:var(--text-accent);}
 
-  /* Vertical timeline — original left-of-text line/dot format, block centered on the page */
-  .vtl-wrap{position:relative;padding-left:44px;width:fit-content;max-width:100%;margin:0 auto;text-align:left;}
-  .vtl-wrap::before{content:'';position:absolute;left:6px;top:6px;bottom:20px;width:2px;background:linear-gradient(to bottom,var(--text-accent) 0%,rgba(232,201,106,.1) 100%);}
-  .vtl-era{position:relative;margin-bottom:clamp(26px,3.5vw,42px);text-align:left;}
-  .vtl-era::before{content:'';position:absolute;left:-38px;top:5px;width:10px;height:10px;border-radius:50%;background:#1b1d24;border:2px solid var(--text-accent);}
-  .vtl-epoch{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:#6b7280;margin-bottom:2px;}
-  .vtl-range{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text-accent);font-weight:600;line-height:1.1;margin-bottom:4px;}
-  .vtl-heroes{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(243,238,226,.6);font-style:italic;}
-
   /* Cristiada mini card hover */
   .cristiada-mini-cta{transition:background .25s,color .25s;}
   .cristiada-mini-cta:hover{background:#e6c878 !important;color:#120a05 !important;}
@@ -122,12 +112,13 @@
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
     <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
       <a href="#" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Inicio</a>
-      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="btn-pill btn-glow-gold" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.5);padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
+      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-pill btn-glow-gold" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.5);padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
       <a href="#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Propósito</a>
       <a href="#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
       <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
       <a href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Compártenos</a>
+      <a href="linea-tiempo.html" target="_blank" rel="noopener noreferrer" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Línea de tiempo</a>
+      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Compartir</a>
     </div>
   </div>
 </nav>
@@ -158,9 +149,9 @@
     <div>
       <div data-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
       <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#f6f2e8;line-height:.98;letter-spacing:.5px;font-size:clamp(3.4rem,11vw,8rem);text-wrap:balance;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></h1>
-      <div style="display:flex;flex-direction:column;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;">
         <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon" style="font-size:2.8em;line-height:1;">𝄞</span> <span id="audio-label">Encender música</span></button>
-        <a href="#conmemoracion" class="btn-pill btn-glow" aria-label="Ver más" style="margin-top:0;display:inline-flex;align-items:center;justify-content:center;background:var(--text-accent);color:#1b1d24;padding:clamp(14px,2.4vw,18px) clamp(30px,5vw,44px);font-weight:700;letter-spacing:3px;font-size:clamp(12px,1.6vw,14px);text-transform:uppercase;">Ver más</a>
+        <a href="#conmemoracion" class="btn-pill btn-glow" aria-label="Ver más" style="margin-top:0;display:inline-flex;align-items:center;justify-content:center;background:var(--text-accent);color:#1b1d24;padding:clamp(14px,2.64vw,18px) clamp(26px,4.8vw,36px);font-weight:700;letter-spacing:2.5px;font-size:clamp(13.6px,1.92vw,16px);text-transform:uppercase;">Ver más</a>
       </div>
     </div>
   </div>
@@ -171,7 +162,7 @@
 </audio>
 
 <!-- BANNER CRISTIADA — intercambiable por cualquier futura conmemoración -->
-<a id="conmemoracion" href="https://cristeros.vercel.app/" target="_blank" rel="noopener" aria-label="Centenario de la Guerra Cristera — conocer la historia completa" class="cta-glow" style="display:flex;align-items:center;min-height:92vh;text-decoration:none;background:#120a05 url('/assets/4.png?v=2') center/cover no-repeat;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;overflow:hidden;">
+<a id="conmemoracion" href="https://cristeros.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Centenario de la Guerra Cristera — conocer la historia completa" class="cta-glow" style="display:flex;align-items:center;min-height:92vh;text-decoration:none;background:#120a05 url('/assets/4.png?v=2') center/cover no-repeat;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;overflow:hidden;">
   <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,9,5,.9) 0%,rgba(15,9,5,.84) 45%,rgba(15,9,5,.94) 100%);"></div>
   <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(65% 90% at 50% 50%,rgba(201,168,76,.1) 0%,transparent 70%);pointer-events:none;"></div>
   <div style="position:relative;width:100%;max-width:820px;margin:0 auto;padding:clamp(36px,5vw,56px) 24px clamp(28px,4vw,44px);text-align:center;">
@@ -314,50 +305,6 @@
   <span class="sec-num">04</span>
 </section>
 
-<!-- LÍNEA DE TIEMPO — VERTICAL -->
-<section id="sec-timeline" style="background:var(--bg-timeline,#14301f);color:#f3eee2;padding:clamp(64px,11vw,120px) 24px;position:relative;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);--text-accent:#E8C96A;">
-  <div style="max-width:1180px;margin:0 auto;text-align:center;">
-    <div data-reveal style="font-size:36px;letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:10px;">Línea de tiempo de México</div>
-    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.4vw,1.72rem);font-weight:600;line-height:1.06;margin:0 auto clamp(48px,7vw,80px);max-width:22ch;">Cada héroe, en la época que lo reclama.</h2>
-
-    <div data-reveal class="vtl-wrap">
-      <div class="vtl-era">
-        <div class="vtl-epoch">Virreinato</div>
-        <div class="vtl-range">1535 – 1821</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Independencia</div>
-        <div class="vtl-range">1810 – 1821</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Reforma</div>
-        <div class="vtl-range">1855 – 1876</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Porfiriato</div>
-        <div class="vtl-range">1876 – 1911</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Revolución Mexicana</div>
-        <div class="vtl-range">1910 – 1920</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Cristiada</div>
-        <div class="vtl-range">1926 – 1929</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Siglo XX</div>
-        <div class="vtl-range">1930 – 2000</div>
-      </div>
-      <div class="vtl-era" style="margin-bottom:0;">
-        <div class="vtl-epoch">Contemporáneo</div>
-        <div class="vtl-range">2001 – presente</div>
-      </div>
-    </div>
-  </div>
-  <span class="sec-num">05</span>
-</section>
-
 <!-- HÉROE DEL MES — moved to end, larger fonts -->
 <section id="heroe-del-mes" style="background:var(--bg-heroe-mes,#ece5d6);padding:clamp(64px,11vw,128px) 24px;position:relative;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);">
   <div style="max-width:1180px;margin:0 auto;">
@@ -380,7 +327,7 @@
       </div>
     </div>
   </div>
-  <span class="sec-num">06</span>
+  <span class="sec-num">05</span>
 </section>
 
 <!-- NEWSLETTER — darker background -->
@@ -394,7 +341,7 @@
       <button type="submit" class="btn-pill btn-glow-on-light" style="font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);border:none;padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:500;cursor:pointer;min-height:52px;">Suscribirme</button>
     </form>
   </div>
-  <span class="sec-num" style="color:rgba(90,72,48,.65);">07</span>
+  <span class="sec-num" style="color:rgba(90,72,48,.65);">06</span>
 </section>
 
 <!-- CONTACTO / INVITACIÓN -->
@@ -405,19 +352,19 @@
     <p data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2vw,1.35rem);color:rgba(243,238,226,.88);line-height:1.5;margin-bottom:18px;text-wrap:balance;">Envíenos la información por correo; la revisamos y podremos subirla a <span style="color:var(--text-accent);font-style:italic;">Héroes&nbsp;Invisibles</span>.</p>
     <a data-reveal href="mailto:carloscalderonsoy@gmail.com" class="btn-pill btn-glow" style="display:inline-flex;align-items:center;font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:600;">Enviar historia</a>
   </div>
-  <span class="sec-num">08</span>
+  <span class="sec-num">07</span>
 </section>
 
 <!-- FOOTER -->
-<footer style="background:#1b1d24;color:rgba(243,238,226,.72);padding:clamp(18px,5.5vw,58px) 24px 18px;border-top:2px solid var(--sep-gold);">
-  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:clamp(28px,4vw,56px);">
+<footer style="background:#1b1d24;color:rgba(243,238,226,.72);padding:clamp(12px,3vw,28px) 24px 12px;border-top:2px solid var(--sep-gold);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:clamp(16px,2.4vw,30px);">
     <div style="flex:0 1 auto;max-width:34ch;">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:var(--text-accent);">Invisibles</span></div>
-      <p style="font-size:.96rem;line-height:1.7;margin-top:12px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un expediente que volvemos a abrir.</p>
+      <p style="font-size:.96rem;line-height:1.4;margin-top:6px;max-width:34ch;">El archivo de los mexicanos que cambiaron la historia. Cada historia, un expediente que volvemos a abrir.</p>
     </div>
     <div style="flex:0 1 auto;">
-      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Navegación</div>
-      <div style="display:flex;flex-direction:column;gap:9px;font-size:.98rem;">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:8px;">Navegación</div>
+      <div style="display:flex;flex-direction:column;gap:5px;font-size:.98rem;">
         <a href="/" style="color:rgba(243,238,226,.78);">Inicio</a>
         <a href="indice.html" style="color:rgba(243,238,226,.78);">Explorar los héroes</a>
         <a href="videoteca.html" style="color:rgba(243,238,226,.78);">Videoteca</a>
@@ -426,13 +373,13 @@
       </div>
     </div>
     <div style="flex:0 1 auto;max-width:36ch;">
-      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:14px;">Fuentes de archivo</div>
-      <p style="font-size:.92rem;line-height:1.8;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:8px;">Fuentes de archivo</div>
+      <p style="font-size:.92rem;line-height:1.5;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
     </div>
   </div>
-  <div style="max-width:1180px;margin:clamp(24px,3.5vw,36px) auto 0;padding-top:18px;border-top:1px solid rgba(232,201,106,.18);text-align:center;">
-    <p style="font-size:.82rem;line-height:1.7;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación histórica. El diseño del sitio y algunas fotografías fueron creados o restaurados con ayuda de inteligencia artificial.</p>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;font-style:italic;letter-spacing:.3px;color:var(--text-accent);margin-top:14px;">Gracias por visitarnos</p>
+  <div style="max-width:1180px;margin:clamp(12px,2vw,18px) auto 0;padding-top:10px;border-top:1px solid rgba(232,201,106,.18);text-align:center;">
+    <p style="font-size:.82rem;line-height:1.45;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación histórica.<br>El diseño del sitio y algunas fotografías fueron creados o restaurados con ayuda de inteligencia artificial.</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;font-style:italic;letter-spacing:.3px;color:var(--text-accent);margin-top:8px;">Gracias por visitarnos</p>
   </div>
 </footer>
 
@@ -538,27 +485,6 @@
     <button class="tweak-swatch" data-accent-cards="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
     <button class="tweak-swatch" data-accent-cards="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
     <button class="tweak-swatch" data-accent-cards="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
-  </div>
-
-  <!-- LÍNEA DE TIEMPO -->
-  <div class="tweak-label">Línea de tiempo</div>
-  <div class="tweak-sublabel">Fondo</div>
-  <div class="tweak-swatches">
-    <button class="tweak-swatch" data-bg-timeline="#05130b" style="background:#05130b;" title="Verde bosque muy oscuro"></button>
-    <button class="tweak-swatch" data-bg-timeline="#0a1f13" style="background:#0a1f13;" title="Verde bosque oscuro"></button>
-    <button class="tweak-swatch active" data-bg-timeline="#14301f" style="background:#14301f;" title="Verde bosque"></button>
-    <button class="tweak-swatch" data-bg-timeline="#1f4a2e" style="background:#1f4a2e;" title="Verde bosque claro"></button>
-    <button class="tweak-swatch" data-bg-timeline="#2c6640" style="background:#2c6640;" title="Verde bosque muy claro"></button>
-    <button class="tweak-swatch" data-bg-timeline="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
-  </div>
-  <div class="tweak-sublabel">Acento</div>
-  <div class="tweak-swatches">
-    <button class="tweak-swatch" data-accent-timeline="#F5A000" style="background:#F5A000;" title="Dorado"></button>
-    <button class="tweak-swatch active" data-accent-timeline="#E8C96A" style="background:#E8C96A;" title="Oro suave"></button>
-    <button class="tweak-swatch" data-accent-timeline="#FF6B3D" style="background:#FF6B3D;" title="Naranja"></button>
-    <button class="tweak-swatch" data-accent-timeline="#C75B3A" style="background:#C75B3A;" title="Terracota"></button>
-    <button class="tweak-swatch" data-accent-timeline="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
-    <button class="tweak-swatch" data-accent-timeline="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
   </div>
 
   <!-- HÉROE DEL MES -->
@@ -774,7 +700,6 @@ document.addEventListener('DOMContentLoaded', function() {
     { attr: 'bg-hero',      cssVar: '--bg-hero',        targetId: 'sec-hero' },
     { attr: 'bg-proposito', cssVar: '--bg-proposito',    targetId: 'blue-bg-el' },
     { attr: 'bg-cards',     cssVar: '--bg-cards',        targetId: 'sec-cards' },
-    { attr: 'bg-timeline',  cssVar: '--bg-timeline',     targetId: 'sec-timeline' },
     { attr: 'bg-hm',        cssVar: '--bg-heroe-mes',    targetId: 'heroe-del-mes' },
     { attr: 'bg-news',      cssVar: '--bg-newsletter',   targetId: 'newsletter' },
     { attr: 'bg-contacto',  cssVar: '--bg-contacto',     targetId: 'sec-contacto' },
@@ -797,7 +722,6 @@ document.addEventListener('DOMContentLoaded', function() {
     { attr: 'accent-hero',          targetId: 'sec-hero',      cssVar: '--text-accent' },
     { attr: 'accent-proposito',     targetId: 'proposito',     cssVar: '--text-accent' },
     { attr: 'accent-cards',         targetId: 'sec-cards',     cssVar: '--text-accent' },
-    { attr: 'accent-timeline',      targetId: 'sec-timeline',  cssVar: '--text-accent' },
     { attr: 'accent-hm',            targetId: 'heroe-del-mes', cssVar: '--text-accent' },
     { attr: 'accent-hm-epigrafe',   targetId: 'heroe-del-mes', cssVar: '--hm-epigrafe' },
     { attr: 'accent-news',          targetId: 'newsletter',    cssVar: '--text-accent' },
@@ -830,15 +754,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
 .hsk-share-item{position:relative;display:inline-flex;}
-.hsk-share-ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,.08);border:1px solid rgba(232,201,106,.4);color:#E8C96A;text-decoration:none;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease;padding:0;}
-.hsk-share-ico:hover,.hsk-share-ico:focus-visible{background:#E8C96A;color:#1b1d24;border-color:#E8C96A;transform:translateY(-2px);}
+.hsk-share-ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,.1);border:1px solid rgba(232,201,106,.4);color:#E8C96A;text-decoration:none;cursor:pointer;transition:filter .2s ease,transform .2s ease;padding:0;}
+.hsk-share-ico:hover,.hsk-share-ico:focus-visible{filter:brightness(1.18);transform:translateY(-2px);}
 .hsk-share-ico svg{width:20px;height:20px;pointer-events:none;}
+.hsk-ico-whatsapp{background:#25D366;border-color:#25D366;color:#fff;}
+.hsk-ico-facebook{background:#1877F2;border-color:#1877F2;color:#fff;}
+.hsk-ico-x{background:#000;border-color:#333;color:#fff;}
+.hsk-share-close-wrap{position:absolute;top:6px;right:6px;}
+.hsk-share-close-wrap .hsk-share-tip{bottom:auto;top:calc(100% + 6px);}
+.hsk-share-ico.hsk-share-close{width:24px;height:24px;background:transparent;border:none;color:rgba(243,238,226,.6);}
+.hsk-share-ico.hsk-share-close:hover{background:rgba(232,201,106,.15);color:#E8C96A;transform:none;filter:none;}
+.hsk-share-ico.hsk-share-close svg{width:14px;height:14px;}
 .hsk-share-tip{position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;background:#E8C96A;padding:5px 9px;border-radius:5px;opacity:0;pointer-events:none;transition:opacity .18s ease;font-weight:600;}
 .hsk-share-item.hsk-tip-left .hsk-share-tip{left:0;transform:none;}
 .hsk-share-item.hsk-tip-right .hsk-share-tip{left:auto;right:0;transform:none;}
 .hsk-share-item:hover .hsk-share-tip,.hsk-share-item:focus-within .hsk-share-tip,.hsk-share-item.hsk-tip-force .hsk-share-tip{opacity:1;}
-.hsk-share-close{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:transparent;border:none;color:rgba(243,238,226,.6);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
-.hsk-share-close:hover{background:rgba(232,201,106,.15);color:#E8C96A;}
 </style>
 <script>
 (function(){
@@ -862,14 +792,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   function onDocClick(e){ if (panel && !panel.contains(e.target) && e.target !== btn) closePanel(); }
   function onKeydown(e){ if (e.key === 'Escape') closePanel(); }
-  function makeItem(iconKey, label, href, onClick){
+  function makeItem(iconKey, label, href, onClick, brandClass){
     var wrap = document.createElement('span');
     wrap.className = 'hsk-share-item';
     var a = document.createElement(onClick ? 'button' : 'a');
-    a.className = 'hsk-share-ico';
+    a.className = 'hsk-share-ico' + (brandClass ? ' ' + brandClass : '');
     a.innerHTML = ICONS[iconKey];
     if (onClick) { a.type = 'button'; a.addEventListener('click', onClick); }
-    else { a.href = href; a.target = '_blank'; a.rel = 'noopener'; }
+    else { a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
     a.setAttribute('aria-label', label);
     var tip = document.createElement('span');
     tip.className = 'hsk-share-tip';
@@ -887,22 +817,35 @@ document.addEventListener('DOMContentLoaded', function() {
   function openPanel(){
     var url = location.href;
     var title = document.title;
-    var text = 'Si le parece bien este sitio, por favor compártalo. Es la mejor forma de difundirlo.';
+    var text = 'Compartirlo es la mejor forma de ayudar';
     panel = document.createElement('div');
     panel.setAttribute('role','menu');
-    panel.style.cssText = 'position:fixed;z-index:9999;background:#1b1d24;border:1px solid rgba(232,201,106,.5);border-radius:12px;padding:16px 14px 14px;display:flex;flex-wrap:wrap;gap:10px;max-width:min(320px,calc(100vw - 16px));box-shadow:0 12px 30px rgba(0,0,0,.5);';
+    panel.style.cssText = 'position:fixed;z-index:9999;background:#1b1d24;border:1px solid rgba(232,201,106,.5);border-radius:12px;padding:36px 14px 14px;display:flex;flex-wrap:wrap;gap:10px;max-width:min(320px,calc(100vw - 16px));box-shadow:0 12px 30px rgba(0,0,0,.5);';
 
+    var closeWrap = document.createElement('span');
+    closeWrap.className = 'hsk-share-item hsk-share-close-wrap';
     var closeBtn = document.createElement('button');
     closeBtn.type = 'button';
-    closeBtn.className = 'hsk-share-close';
+    closeBtn.className = 'hsk-share-ico hsk-share-close';
     closeBtn.setAttribute('aria-label','Cerrar');
     closeBtn.innerHTML = ICONS.close;
     closeBtn.addEventListener('click', closePanel);
-    panel.appendChild(closeBtn);
+    var closeTip = document.createElement('span');
+    closeTip.className = 'hsk-share-tip';
+    closeTip.textContent = 'Cerrar';
+    closeWrap.appendChild(closeBtn);
+    closeWrap.appendChild(closeTip);
+    closeWrap.addEventListener('mouseenter', function(){
+      closeWrap.classList.remove('hsk-tip-left','hsk-tip-right');
+      var r = closeTip.getBoundingClientRect();
+      if (r.right > window.innerWidth - 8) closeWrap.classList.add('hsk-tip-right');
+      else if (r.left < 8) closeWrap.classList.add('hsk-tip-left');
+    });
+    panel.appendChild(closeWrap);
 
-    panel.appendChild(makeItem('whatsapp', 'WhatsApp', 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url)).wrap);
-    panel.appendChild(makeItem('facebook', 'Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)).wrap);
-    panel.appendChild(makeItem('x', 'X', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url)).wrap);
+    panel.appendChild(makeItem('whatsapp', 'WhatsApp', 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), null, 'hsk-ico-whatsapp').wrap);
+    panel.appendChild(makeItem('facebook', 'Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), null, 'hsk-ico-facebook').wrap);
+    panel.appendChild(makeItem('x', 'X', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), null, 'hsk-ico-x').wrap);
     panel.appendChild(makeItem('correo', 'Correo', 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' - ' + url)).wrap);
 
     var copyItem = makeItem('liga', 'Copiar enlace', null, function(){

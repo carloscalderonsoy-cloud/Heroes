@@ -32,12 +32,13 @@
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
     <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
       <a href="/" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Inicio</a>
-      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
+      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;border:1px solid rgba(245,160,0,0.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
       <a href="/#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Propósito</a>
       <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
       <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#F5A000;padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
       <a href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Compártenos</a>
+      <a href="linea-tiempo.html" target="_blank" rel="noopener noreferrer" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Línea de tiempo</a>
+      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,0.72);padding:4px 0;white-space:nowrap;">Compartir</a>
     </div>
   </div>
 </nav>
@@ -311,15 +312,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
 .hsk-share-item{position:relative;display:inline-flex;}
-.hsk-share-ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,.08);border:1px solid rgba(232,201,106,.4);color:#E8C96A;text-decoration:none;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease;padding:0;}
-.hsk-share-ico:hover,.hsk-share-ico:focus-visible{background:#E8C96A;color:#1b1d24;border-color:#E8C96A;transform:translateY(-2px);}
+.hsk-share-ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,.1);border:1px solid rgba(232,201,106,.4);color:#E8C96A;text-decoration:none;cursor:pointer;transition:filter .2s ease,transform .2s ease;padding:0;}
+.hsk-share-ico:hover,.hsk-share-ico:focus-visible{filter:brightness(1.18);transform:translateY(-2px);}
 .hsk-share-ico svg{width:20px;height:20px;pointer-events:none;}
+.hsk-ico-whatsapp{background:#25D366;border-color:#25D366;color:#fff;}
+.hsk-ico-facebook{background:#1877F2;border-color:#1877F2;color:#fff;}
+.hsk-ico-x{background:#000;border-color:#333;color:#fff;}
+.hsk-share-close-wrap{position:absolute;top:6px;right:6px;}
+.hsk-share-close-wrap .hsk-share-tip{bottom:auto;top:calc(100% + 6px);}
+.hsk-share-ico.hsk-share-close{width:24px;height:24px;background:transparent;border:none;color:rgba(243,238,226,.6);}
+.hsk-share-ico.hsk-share-close:hover{background:rgba(232,201,106,.15);color:#E8C96A;transform:none;filter:none;}
+.hsk-share-ico.hsk-share-close svg{width:14px;height:14px;}
 .hsk-share-tip{position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#1b1d24;background:#E8C96A;padding:5px 9px;border-radius:5px;opacity:0;pointer-events:none;transition:opacity .18s ease;font-weight:600;}
 .hsk-share-item.hsk-tip-left .hsk-share-tip{left:0;transform:none;}
 .hsk-share-item.hsk-tip-right .hsk-share-tip{left:auto;right:0;transform:none;}
 .hsk-share-item:hover .hsk-share-tip,.hsk-share-item:focus-within .hsk-share-tip,.hsk-share-item.hsk-tip-force .hsk-share-tip{opacity:1;}
-.hsk-share-close{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:transparent;border:none;color:rgba(243,238,226,.6);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
-.hsk-share-close:hover{background:rgba(232,201,106,.15);color:#E8C96A;}
 </style>
 <script>
 (function(){
@@ -343,14 +350,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   function onDocClick(e){ if (panel && !panel.contains(e.target) && e.target !== btn) closePanel(); }
   function onKeydown(e){ if (e.key === 'Escape') closePanel(); }
-  function makeItem(iconKey, label, href, onClick){
+  function makeItem(iconKey, label, href, onClick, brandClass){
     var wrap = document.createElement('span');
     wrap.className = 'hsk-share-item';
     var a = document.createElement(onClick ? 'button' : 'a');
-    a.className = 'hsk-share-ico';
+    a.className = 'hsk-share-ico' + (brandClass ? ' ' + brandClass : '');
     a.innerHTML = ICONS[iconKey];
     if (onClick) { a.type = 'button'; a.addEventListener('click', onClick); }
-    else { a.href = href; a.target = '_blank'; a.rel = 'noopener'; }
+    else { a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
     a.setAttribute('aria-label', label);
     var tip = document.createElement('span');
     tip.className = 'hsk-share-tip';
@@ -368,22 +375,35 @@ document.addEventListener('DOMContentLoaded', function() {
   function openPanel(){
     var url = location.href;
     var title = document.title;
-    var text = 'Si le parece bien este sitio, por favor compártalo. Es la mejor forma de difundirlo.';
+    var text = 'Compartirlo es la mejor forma de ayudar';
     panel = document.createElement('div');
     panel.setAttribute('role','menu');
-    panel.style.cssText = 'position:fixed;z-index:9999;background:#1b1d24;border:1px solid rgba(232,201,106,.5);border-radius:12px;padding:16px 14px 14px;display:flex;flex-wrap:wrap;gap:10px;max-width:min(320px,calc(100vw - 16px));box-shadow:0 12px 30px rgba(0,0,0,.5);';
+    panel.style.cssText = 'position:fixed;z-index:9999;background:#1b1d24;border:1px solid rgba(232,201,106,.5);border-radius:12px;padding:36px 14px 14px;display:flex;flex-wrap:wrap;gap:10px;max-width:min(320px,calc(100vw - 16px));box-shadow:0 12px 30px rgba(0,0,0,.5);';
 
+    var closeWrap = document.createElement('span');
+    closeWrap.className = 'hsk-share-item hsk-share-close-wrap';
     var closeBtn = document.createElement('button');
     closeBtn.type = 'button';
-    closeBtn.className = 'hsk-share-close';
+    closeBtn.className = 'hsk-share-ico hsk-share-close';
     closeBtn.setAttribute('aria-label','Cerrar');
     closeBtn.innerHTML = ICONS.close;
     closeBtn.addEventListener('click', closePanel);
-    panel.appendChild(closeBtn);
+    var closeTip = document.createElement('span');
+    closeTip.className = 'hsk-share-tip';
+    closeTip.textContent = 'Cerrar';
+    closeWrap.appendChild(closeBtn);
+    closeWrap.appendChild(closeTip);
+    closeWrap.addEventListener('mouseenter', function(){
+      closeWrap.classList.remove('hsk-tip-left','hsk-tip-right');
+      var r = closeTip.getBoundingClientRect();
+      if (r.right > window.innerWidth - 8) closeWrap.classList.add('hsk-tip-right');
+      else if (r.left < 8) closeWrap.classList.add('hsk-tip-left');
+    });
+    panel.appendChild(closeWrap);
 
-    panel.appendChild(makeItem('whatsapp', 'WhatsApp', 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url)).wrap);
-    panel.appendChild(makeItem('facebook', 'Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)).wrap);
-    panel.appendChild(makeItem('x', 'X', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url)).wrap);
+    panel.appendChild(makeItem('whatsapp', 'WhatsApp', 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), null, 'hsk-ico-whatsapp').wrap);
+    panel.appendChild(makeItem('facebook', 'Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), null, 'hsk-ico-facebook').wrap);
+    panel.appendChild(makeItem('x', 'X', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), null, 'hsk-ico-x').wrap);
     panel.appendChild(makeItem('correo', 'Correo', 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' - ' + url)).wrap);
 
     var copyItem = makeItem('liga', 'Copiar enlace', null, function(){
