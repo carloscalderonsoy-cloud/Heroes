@@ -48,6 +48,7 @@
   /* CTA de cierre con resplandor */
   .lt-cta{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--verde-bosque);background:var(--oro);border:1px solid var(--oro);border-radius:999px;padding:15px 30px;font-weight:500;animation:hsk-glow-gold 2.6s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease;}
   .lt-cta:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused;box-shadow:0 0 46px 12px rgba(232,201,106,.6);}
+  nav a:hover{background:rgba(232,201,106,.12);}
 </style>
 </head>
 <body>
@@ -55,15 +56,14 @@
 <!-- NAV -->
 <nav style="position:sticky;top:0;z-index:500;background:#14301f;border-bottom:2px solid rgba(232,201,106,.35);">
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
-    <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
-      <a href="/" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Inicio</a>
-      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;border:1px solid rgba(232,201,106,.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
-      <a href="/#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Propósito</a>
-      <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
-      <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
-      <a href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="linea-tiempo.html" aria-current="page" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;padding:4px 0;white-space:nowrap;">Línea de tiempo</a>
-      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Compartir</a>
+    <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:20px;">
+      <a href="/" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Inicio</a>
+      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;border:1px solid rgba(232,201,106,.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: GUERRA CRISTERA</a>
+      <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Héroe del mes</a>
+      <a target="_blank" rel="noopener noreferrer" href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Explorar los héroes</a>
+      <a target="_blank" rel="noopener noreferrer" href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Videoteca</a>
+      <a href="linea-tiempo.html" aria-current="page" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;padding:6px 10px;border-radius:999px;white-space:nowrap;">Línea de tiempo</a>
+      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Compartir</a>
     </div>
   </div>
 </nav>
@@ -73,52 +73,58 @@
   <div style="position:absolute;inset:0;background:radial-gradient(78% 85% at 26% 30%,rgba(32,78,49,.75) 0%,rgba(20,48,31,0) 70%);pointer-events:none;"></div>
   <div style="position:relative;max-width:1180px;margin:0 auto;">
     <div data-reveal class="lt-kicker">Línea de tiempo</div>
-    <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:600;line-height:1.02;letter-spacing:.5px;max-width:20ch;">Cada héroe, <em style="color:#E8C96A;">en la época que lo reclama.</em></h1>
-    <p data-reveal style="font-size:.94rem;color:rgba(243,238,226,.78);margin-top:14px;max-width:60ch;line-height:1.6;">Del Virreinato al presente: un recorrido por las épocas de México donde se ubica cada expediente del archivo.</p>
+    <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:600;line-height:1.02;letter-spacing:.5px;max-width:20ch;text-wrap:balance;">Cada héroe, <em style="color:#E8C96A;">en la época que lo reclama.</em></h1>
+    <p data-reveal style="font-size:.94rem;color:rgba(243,238,226,.78);margin-top:14px;max-width:60ch;line-height:1.6;text-wrap:pretty;">Del Virreinato al presente: un recorrido por las épocas de México donde se ubica cada expediente del&nbsp;archivo.</p>
   </div>
 </header>
 
 <!-- LÍNEA DE TIEMPO -->
 <section style="background:#0f2417;padding:clamp(48px,7vw,88px) 24px clamp(72px,12vw,128px);">
-  <div style="max-width:1180px;margin:0 auto;text-align:center;">
+  <div style="max-width:1180px;margin:0 auto;">
 
-    <div data-reveal class="vtl-wrap">
-      <div class="vtl-era">
-        <div class="vtl-epoch">Virreinato</div>
-        <div class="vtl-range">1535 – 1821</div>
+    <div style="display:flex;justify-content:flex-end;align-items:flex-start;flex-wrap:wrap;gap:clamp(32px,5vw,64px);">
+      <div data-reveal class="vtl-wrap" style="margin:0;">
+        <div class="vtl-era">
+          <div class="vtl-epoch">Virreinato</div>
+          <div class="vtl-range">1535 – 1821</div>
+        </div>
+        <div class="vtl-era">
+          <div class="vtl-epoch">Independencia</div>
+          <div class="vtl-range">1810 – 1821</div>
+        </div>
+        <div class="vtl-era">
+          <div class="vtl-epoch">Reforma</div>
+          <div class="vtl-range">1855 – 1876</div>
+        </div>
+        <div class="vtl-era">
+          <div class="vtl-epoch">Porfiriato</div>
+          <div class="vtl-range">1876 – 1911</div>
+        </div>
+        <div class="vtl-era">
+          <div class="vtl-epoch">Revolución Mexicana</div>
+          <div class="vtl-range">1910 – 1920</div>
+        </div>
+        <div class="vtl-era">
+          <div class="vtl-epoch">Cristiada</div>
+          <div class="vtl-range">1926 – 1929</div>
+        </div>
+        <div class="vtl-era">
+          <div class="vtl-epoch">Siglo XX</div>
+          <div class="vtl-range">1930 – 2000</div>
+        </div>
+        <div class="vtl-era" style="margin-bottom:0;">
+          <div class="vtl-epoch">Contemporáneo</div>
+          <div class="vtl-range">2001 – presente</div>
+        </div>
       </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Independencia</div>
-        <div class="vtl-range">1810 – 1821</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Reforma</div>
-        <div class="vtl-range">1855 – 1876</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Porfiriato</div>
-        <div class="vtl-range">1876 – 1911</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Revolución Mexicana</div>
-        <div class="vtl-range">1910 – 1920</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Cristiada</div>
-        <div class="vtl-range">1926 – 1929</div>
-      </div>
-      <div class="vtl-era">
-        <div class="vtl-epoch">Siglo XX</div>
-        <div class="vtl-range">1930 – 2000</div>
-      </div>
-      <div class="vtl-era" style="margin-bottom:0;">
-        <div class="vtl-epoch">Contemporáneo</div>
-        <div class="vtl-range">2001 – presente</div>
+
+      <div data-reveal style="flex:0 1 320px;width:100%;max-width:320px;aspect-ratio:3/4;border:1px dashed rgba(232,201,106,.4);background:rgba(232,201,106,.05);display:flex;align-items:center;justify-content:center;">
+        <span style="color:rgba(232,201,106,.55);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:24px;line-height:1.6;">Espacio para fotografías<br>(próximamente)</span>
       </div>
     </div>
 
-    <div data-reveal style="margin-top:clamp(56px,8vw,90px);border-top:1px solid rgba(232,201,106,.25);padding-top:clamp(40px,6vw,64px);">
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,1.9rem);color:rgba(243,238,226,.82);max-width:34ch;margin:0 auto 28px;">Cada época tuvo a los suyos. Aquí puede leer sus expedientes.</p>
+    <div data-reveal style="text-align:center;margin-top:clamp(56px,8vw,90px);border-top:1px solid rgba(232,201,106,.25);padding-top:clamp(40px,6vw,64px);">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,1.9rem);color:rgba(243,238,226,.82);max-width:34ch;margin:0 auto 28px;">Cada época tuvo a los suyos. Aquí puede leer sus&nbsp;expedientes.</p>
       <a href="indice.html" class="lt-cta">Explorar los héroes</a>
     </div>
   </div>
@@ -147,8 +153,8 @@
     </div>
   </div>
   <div style="max-width:1180px;margin:clamp(12px,2vw,18px) auto 0;padding-top:10px;border-top:1px solid rgba(232,201,106,.18);text-align:center;">
-    <p style="font-size:.82rem;line-height:1.45;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación histórica.<br>El diseño del sitio y algunas fotografías fueron creados o restaurados con ayuda de inteligencia artificial.</p>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;font-style:italic;letter-spacing:.3px;color:#E8C96A;margin-top:8px;">Gracias por visitarnos</p>
+    <p style="font-size:.82rem;line-height:1.45;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;text-wrap:pretty;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación&nbsp;histórica.<br>El diseño del sitio y algunas fotografías fueron creados o restaurados con ayuda de inteligencia&nbsp;artificial.</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;font-style:italic;letter-spacing:.3px;color:#E8C96A;margin-top:8px;">Gracias por visitarnos</p>
   </div>
 </footer>
 

@@ -75,6 +75,7 @@
   /* CTA de cierre con resplandor */
   .vt-cta{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--verde-bosque);background:var(--oro);border:1px solid var(--oro);border-radius:999px;padding:15px 30px;font-weight:500;animation:hsk-glow-gold 2.6s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease;}
   .vt-cta:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused;box-shadow:0 0 46px 12px rgba(232,201,106,.6);}
+  nav a:hover{background:rgba(232,201,106,.12);}
 </style>
 </head>
 <body>
@@ -82,15 +83,14 @@
 <!-- NAV -->
 <nav style="position:sticky;top:0;z-index:500;background:#14301f;border-bottom:2px solid rgba(232,201,106,.35);">
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
-    <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:36px;">
-      <a href="/" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Inicio</a>
-      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;border:1px solid rgba(232,201,106,.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: LA CRISTIADA</a>
-      <a href="/#proposito" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Propósito</a>
-      <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Héroe del mes</a>
-      <a href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Explorar los héroes</a>
-      <a href="videoteca.html" aria-current="page" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;padding:4px 0;white-space:nowrap;">Videoteca</a>
-      <a href="linea-tiempo.html" target="_blank" rel="noopener noreferrer" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Línea de tiempo</a>
-      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:4px 0;white-space:nowrap;">Compartir</a>
+    <div style="min-width:max-content;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:center;gap:20px;">
+      <a href="/" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Inicio</a>
+      <a href="https://cristeros.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-glow" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;border:1px solid rgba(232,201,106,.5);border-radius:999px;padding:6px 16px;white-space:nowrap;">CONMEMORACIÓN ESPECIAL: GUERRA CRISTERA</a>
+      <a href="/#heroe-del-mes" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Héroe del mes</a>
+      <a target="_blank" rel="noopener noreferrer" href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Explorar los héroes</a>
+      <a href="videoteca.html" aria-current="page" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#E8C96A;padding:6px 10px;border-radius:999px;white-space:nowrap;">Videoteca</a>
+      <a href="linea-tiempo.html" target="_blank" rel="noopener noreferrer" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Línea de tiempo</a>
+      <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Compartir</a>
     </div>
   </div>
 </nav>
@@ -231,8 +231,8 @@
     </div>
   </div>
   <div style="max-width:1180px;margin:clamp(12px,2vw,18px) auto 0;padding-top:10px;border-top:1px solid rgba(232,201,106,.18);text-align:center;">
-    <p style="font-size:.82rem;line-height:1.45;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación histórica.<br>El diseño del sitio y algunas fotografías fueron creados o restaurados con ayuda de inteligencia artificial.</p>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;font-style:italic;letter-spacing:.3px;color:#E8C96A;margin-top:8px;">Gracias por visitarnos</p>
+    <p style="font-size:.82rem;line-height:1.45;color:rgba(243,238,226,.55);max-width:70ch;margin:0 auto;text-wrap:pretty;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación&nbsp;histórica.<br>El diseño del sitio y algunas fotografías fueron creados o restaurados con ayuda de inteligencia&nbsp;artificial.</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;font-style:italic;letter-spacing:.3px;color:#E8C96A;margin-top:8px;">Gracias por visitarnos</p>
   </div>
 </footer>
 
