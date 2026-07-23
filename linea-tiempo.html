@@ -39,7 +39,8 @@
   /* Línea de tiempo vertical */
   .vtl-wrap{position:relative;padding-left:44px;width:fit-content;max-width:100%;margin:0 auto;text-align:left;}
   .vtl-wrap::before{content:'';position:absolute;left:6px;top:6px;bottom:20px;width:2px;background:linear-gradient(to bottom,var(--oro) 0%,rgba(232,201,106,.1) 100%);}
-  .vtl-era{position:relative;margin-bottom:clamp(26px,3.5vw,42px);text-align:left;}
+  .vtl-era{display:block;position:relative;margin-bottom:clamp(26px,3.5vw,42px);text-align:left;}
+  .vtl-era:hover .vtl-range{text-decoration:underline;}
   .vtl-era::before{content:'';position:absolute;left:-38px;top:5px;width:10px;height:10px;border-radius:50%;background:#0f2417;border:2px solid var(--oro);}
   .vtl-epoch{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:#9ba3ad;margin-bottom:2px;}
   .vtl-range{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--oro);font-weight:600;line-height:1.1;margin-bottom:4px;}
@@ -84,38 +85,38 @@
 
     <div style="display:flex;justify-content:flex-start;align-items:flex-start;flex-wrap:wrap;gap:clamp(32px,5vw,64px);">
       <div data-reveal class="vtl-wrap" style="margin:0;">
-        <div class="vtl-era">
+        <a class="vtl-era" href="indice.html?epoca=Virreinato" target="_blank" rel="noopener noreferrer">
           <div class="vtl-epoch">Virreinato</div>
           <div class="vtl-range">1535 – 1821</div>
-        </div>
-        <div class="vtl-era">
+        </a>
+        <a class="vtl-era" href="indice.html?epoca=Independencia" target="_blank" rel="noopener noreferrer">
           <div class="vtl-epoch">Independencia</div>
           <div class="vtl-range">1810 – 1821</div>
-        </div>
-        <div class="vtl-era">
+        </a>
+        <a class="vtl-era" href="indice.html?epoca=Reforma" target="_blank" rel="noopener noreferrer">
           <div class="vtl-epoch">Reforma</div>
           <div class="vtl-range">1855 – 1876</div>
-        </div>
-        <div class="vtl-era">
+        </a>
+        <a class="vtl-era" href="indice.html?epoca=Porfiriato" target="_blank" rel="noopener noreferrer">
           <div class="vtl-epoch">Porfiriato</div>
           <div class="vtl-range">1876 – 1911</div>
-        </div>
-        <div class="vtl-era">
+        </a>
+        <a class="vtl-era" href="indice.html?epoca=Revoluci%C3%B3n" target="_blank" rel="noopener noreferrer">
           <div class="vtl-epoch">Revolución Mexicana</div>
           <div class="vtl-range">1910 – 1920</div>
-        </div>
-        <div class="vtl-era">
+        </a>
+        <a class="vtl-era" href="indice.html?epoca=Cristiada" target="_blank" rel="noopener noreferrer">
           <div class="vtl-epoch">Cristiada</div>
           <div class="vtl-range">1926 – 1929</div>
-        </div>
-        <div class="vtl-era">
+        </a>
+        <a class="vtl-era" href="indice.html" target="_blank" rel="noopener noreferrer">
           <div class="vtl-epoch">Siglo XX</div>
           <div class="vtl-range">1930 – 2000</div>
-        </div>
-        <div class="vtl-era" style="margin-bottom:0;">
+        </a>
+        <a class="vtl-era" href="indice.html?epoca=Contempor%C3%A1neo" target="_blank" rel="noopener noreferrer" style="margin-bottom:0;">
           <div class="vtl-epoch">Contemporáneo</div>
           <div class="vtl-range">2001 – presente</div>
-        </div>
+        </a>
       </div>
 
       <div data-reveal style="flex:1 1 340px;width:100%;max-width:560px;aspect-ratio:3/4;border:1px solid rgba(232,201,106,.4);overflow:hidden;">
@@ -135,15 +136,15 @@
   <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:clamp(32px,5vw,72px);">
     <div style="flex:0 1 auto;max-width:460px;">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:#E8C96A;">Invisibles</span></div>
-      <p style="font-size:clamp(.72rem,2.1vw,.82rem);line-height:1.4;margin-top:6px;white-space:nowrap;overflow-x:auto;">El archivo de los mexicanos que cambiaron la historia.<br>Cada historia, un expediente que volvemos a abrir.</p>
+      <p style="font-size:.82rem;line-height:1.4;margin-top:6px;text-wrap:pretty;">El archivo de los mexicanos que cambiaron la historia.</p>
     </div>
     <div style="flex:0 1 auto;max-width:480px;">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#E8C96A;margin-bottom:8px;">Fuentes de archivo</div>
-      <p style="font-size:clamp(.72rem,2.1vw,.82rem);line-height:1.5;white-space:nowrap;overflow-x:auto;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
+      <p style="font-size:.82rem;line-height:1.5;text-wrap:pretty;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
     </div>
   </div>
   <div style="max-width:1180px;margin:clamp(4px,.8vw,7px) auto 0;padding-top:4px;border-top:1px solid rgba(232,201,106,.18);text-align:center;">
-    <p style="font-size:clamp(.72rem,2.1vw,.82rem);line-height:1.45;color:rgba(243,238,226,.55);margin:0 auto;white-space:nowrap;overflow-x:auto;">Héroes Invisibles es un proyecto sin fines de lucro, con fines académicos y de divulgación&nbsp;histórica.<br>El diseño del sitio y algunas fotografías fueron creados o restaurados con ayuda de inteligencia&nbsp;artificial.</p>
+    <p style="font-size:.82rem;line-height:1.45;color:rgba(243,238,226,.55);max-width:66ch;margin:0 auto;text-wrap:pretty;">Este sitio Web es sin fines de lucro, con objeto de hacer&nbsp;divulgación.<br>Partes del sitio y algunas fotografías, textos y videos fueron creados, restaurados ó adaptados con ayuda de inteligencia&nbsp;artificial.</p>
     <p style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;font-style:italic;letter-spacing:.3px;color:#E8C96A;margin-top:5px;">Gracias por visitarnos</p>
   </div>
 </footer>

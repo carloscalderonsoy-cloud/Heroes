@@ -237,11 +237,11 @@
   <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:clamp(40px,6vw,80px);">
     <div style="flex:0 1 auto;max-width:460px;">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:#F5A000;">Invisibles</span></div>
-      <p style="font-size:clamp(.72rem,2.1vw,.82rem);line-height:1.7;margin-top:12px;white-space:nowrap;overflow-x:auto;">El archivo de los mexicanos que cambiaron la historia.<br>Cada historia, un expediente que volvemos a abrir.</p>
+      <p style="font-size:.82rem;line-height:1.7;margin-top:12px;text-wrap:pretty;">El archivo de los mexicanos que cambiaron la historia.</p>
     </div>
     <div style="flex:0 1 auto;max-width:480px;">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F5A000;margin-bottom:14px;">Fuentes de archivo</div>
-      <p style="font-size:clamp(.72rem,2.1vw,.82rem);line-height:1.8;white-space:nowrap;overflow-x:auto;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
+      <p style="font-size:.82rem;line-height:1.8;text-wrap:pretty;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara</p>
     </div>
   </div>
 </footer>
@@ -297,6 +297,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   if (search) search.addEventListener('input', apply);
+
+  var epoca = new URLSearchParams(location.search).get('epoca');
+  var epocaBtn = epoca && btns.find(function(b) { return b.getAttribute('data-filter') === epoca; });
+  if (epocaBtn) epocaBtn.click();
 });
 </script>
 
