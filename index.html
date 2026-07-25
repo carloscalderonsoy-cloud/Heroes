@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="assets/hermila-poster.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Zilla+Slab:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -21,6 +21,7 @@
   a{color:inherit;text-decoration:none;}
 
   :root{
+    --font-display:'Cormorant Garamond',serif;
     --text-accent:#E8C96A;
     --texture-opacity:0;
     --bg-hero:#1b1d24;
@@ -73,6 +74,10 @@
   .tweak-swatches{display:flex;gap:7px;flex-wrap:wrap;}
   .tweak-swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .2s;}
   .tweak-swatch.active{border-color:#fff;}
+  .tweak-fonts{display:flex;gap:7px;flex-wrap:wrap;}
+  .tweak-font{min-width:40px;height:30px;padding:0 6px;border-radius:4px;cursor:pointer;border:2px solid transparent;background:rgba(232,201,106,.08);color:#f3eee2;font-size:1rem;line-height:1;transition:border-color .2s,background .2s;}
+  .tweak-font:hover{background:rgba(232,201,106,.16);}
+  .tweak-font.active{border-color:#fff;background:rgba(232,201,106,.22);}
   #texture-toggle{
     background:rgba(255,255,255,.07);border:1px solid rgba(232,201,106,.3);
     color:rgba(243,238,226,.55);font-size:.62rem;letter-spacing:1.5px;
@@ -149,7 +154,7 @@
   <div style="position:relative;width:100%;max-width:1180px;margin:0 auto;padding:0 24px 84px;z-index:3;">
     <div>
       <div data-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
-      <h1 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#f6f2e8;line-height:.98;letter-spacing:.5px;font-size:clamp(3.4rem,11vw,8rem);text-wrap:balance;">Héroes <span style="font-style:italic;color:var(--text-accent);">Silenciosos</span></h1>
+      <h1 data-reveal style="font-family:var(--font-display);font-weight:600;color:#f6f2e8;line-height:.98;letter-spacing:.5px;font-size:clamp(3.4rem,11vw,8rem);text-wrap:balance;">Héroes <span style="font-style:italic;color:var(--text-accent);">Silenciosos</span></h1>
       <div style="display:flex;flex-direction:column;align-items:flex-start;width:fit-content;">
         <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon" style="font-size:2.8em;line-height:1;">𝄞</span> <span id="audio-label">Encender música</span></button>
         <a href="#conmemoracion" class="btn-pill btn-glow" aria-label="Ver más" style="align-self:center;margin-top:0;display:inline-flex;align-items:center;justify-content:center;background:var(--text-accent);color:#1b1d24;padding:clamp(14px,2.64vw,18px) clamp(26px,4.8vw,36px);font-weight:700;letter-spacing:2.5px;font-size:clamp(13.6px,1.92vw,16px);text-transform:uppercase;">Ver más</a>
@@ -170,7 +175,7 @@
     <div style="font-family:'Cinzel',serif;font-weight:700;font-size:clamp(2rem,7.2vw,4.8rem);letter-spacing:clamp(1px,0.4vw,3px);text-transform:uppercase;color:#c9a84c;line-height:1.15;margin-bottom:clamp(18px,2.6vw,28px);text-wrap:balance;">Conmemoración especial</div>
     <div style="font-family:'Cinzel',serif;font-weight:700;font-size:clamp(1rem,3.5vw,2.6rem);color:#c9a84c;letter-spacing:clamp(0.5px,0.4vw,2px);line-height:1.3;margin-bottom:clamp(14px,2vw,22px);">2026 Centenario<br>de la Cristiada</div>
     <div style="font-family:'Cinzel',serif;font-weight:600;font-size:clamp(.95rem,3.2vw,2.4rem);color:rgba(201,168,76,.75);letter-spacing:clamp(0.5px,0.4vw,1.5px);line-height:1.2;margin-bottom:clamp(14px,2vw,22px);">Semillero de héroes</div>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,1.7vw,1.25rem);color:rgba(242,232,213,.85);line-height:1.6;max-width:480px;margin:0 auto clamp(24px,3.6vw,36px);">A cien años de un conflicto que transformó a México: las voces que defendieron la libertad de conciencia.</p>
+    <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1rem,1.7vw,1.25rem);color:rgba(242,232,213,.85);line-height:1.6;max-width:480px;margin:0 auto clamp(24px,3.6vw,36px);">A cien años de un conflicto que transformó a México: las voces que defendieron la libertad de conciencia.</p>
     <div class="cristiada-mini-cta btn-pill btn-glow-gold" style="display:inline-flex;align-items:center;font-family:'Cinzel',serif;font-weight:700;font-size:clamp(1rem,2.6vw,1.35rem);letter-spacing:3px;text-transform:uppercase;color:#120a05;background:#c9a84c;border:1px solid #c9a84c;padding:clamp(20px,3.6vw,27px) clamp(38px,7vw,60px);transition:background .3s,color .3s,transform .25s ease;">Abrir su historia</div>
   </div>
   <span class="sec-num">02</span>
@@ -190,7 +195,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);align-items:flex-start;">
       <div style="flex:1 1 560px;min-width:min(100%,300px);">
         <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);align-items:flex-end;">
-          <h2 data-reveal style="flex:1 1 320px;font-family:'Cormorant Garamond',serif;font-weight:600;line-height:.92;letter-spacing:.5px;font-size:clamp(3rem,7.5vw,6rem);color:#f6efe2;text-wrap:balance;"><span style="display:block;padding-bottom:.14em;">¿Por qué</span>héroes <em style="font-style:italic;color:var(--text-accent);">silenciosos?</em></h2>
+          <h2 data-reveal style="flex:1 1 320px;font-family:var(--font-display);font-weight:600;line-height:.92;letter-spacing:.5px;font-size:clamp(3rem,7.5vw,6rem);color:#f6efe2;text-wrap:balance;"><span style="display:block;padding-bottom:.14em;">¿Por qué</span>héroes <em style="font-style:italic;color:var(--text-accent);">silenciosos?</em></h2>
           <div style="flex:1 1 280px;">
             <p data-reveal style="font-size:clamp(1.5rem,2.8vw,2rem);line-height:1.34;color:#f4ece0;font-weight:400;text-wrap:pretty;">México recuerda a sus héroes de bronce — los de los billetes y las avenidas.<br><br>Además de cada nombre famoso hay decenas <em style="color:var(--text-accent);">de quienes poco se sabe.</em></p>
             <p data-reveal style="font-size:1.15rem;line-height:2;color:rgba(244,236,224,.82);margin-top:18px;text-wrap:pretty;">La espía fusilada.<br>El senador que enfrentó un dictador.<br>La primera médica.<br>La sufragista borrada.<br><br>Este proyecto recupera esas historias y vuelve a abrir el expediente que el tiempo guardó.</p>
@@ -215,7 +220,7 @@
       </div>
     </div>
 
-    <blockquote data-reveal style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.5rem,3.2vw,2.3rem);color:var(--text-accent);max-width:680px;margin:clamp(48px,7vw,72px) auto 0;line-height:1.5;text-align:center;">El olvido también tiene responsables.</blockquote>
+    <blockquote data-reveal style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.5rem,3.2vw,2.3rem);color:var(--text-accent);max-width:680px;margin:clamp(48px,7vw,72px) auto 0;line-height:1.5;text-align:center;">El olvido también tiene responsables.</blockquote>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:clamp(24px,3vw,40px);margin-top:clamp(48px,7vw,80px);border-top:1px solid rgba(232,201,106,.32);padding-top:clamp(32px,4vw,44px);">
       <div data-reveal>
@@ -232,11 +237,11 @@
       </div>
       <div data-reveal>
         <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;"><div style="width:11px;height:11px;flex-shrink:0;background:var(--text-accent);margin-top:.35em;"></div><h3 style="font-size:1.45rem;font-weight:600;color:#f6efe2;line-height:1.1;">Un documento vivo</h3></div>
-        <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Crece mes con mes y queda abierto para todos.</p>
+        <p style="font-size:.98rem;line-height:1.6;color:rgba(244,236,224,.74);">Nunca se termina de escribir: cada mes se suman nuevos expedientes, fotografías y testimonios que amplían esta memoria compartida.</p>
       </div>
     </div>
 
-    <p data-reveal style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.7rem,2.6vw,2rem);color:var(--text-accent);margin-top:clamp(40px,6vw,60px);">Si esta página le pareció útil, compartir es la mejor forma de ayudar</p>
+    <p data-reveal style="text-align:center;font-family:var(--font-display);font-style:italic;font-size:clamp(1.7rem,2.6vw,2rem);color:var(--text-accent);margin-top:clamp(40px,6vw,60px);">Si esta página le pareció útil, compartir es la mejor forma de ayudar</p>
   </div>
   <span class="sec-num">03</span>
 </section>
@@ -245,7 +250,7 @@
 <section id="sec-cards" style="background:var(--bg-cards,#ece5d6);padding:clamp(64px,11vw,120px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:1180px;margin:0 auto;">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;margin-bottom:clamp(34px,6vw,58px);">
-      <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:600;line-height:1.04;color:#1b1d24;">Los que cambiaron el país. <em style="color:var(--text-accent);">He aquí sus nombres.</em></h2>
+      <h2 data-reveal style="font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:600;line-height:1.04;color:#1b1d24;">Los que cambiaron el país. <em style="color:var(--text-accent);">He aquí sus nombres.</em></h2>
       <a data-reveal href="indice.html" class="btn-pill btn-glow-on-light" style="font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:clamp(14px,2.4vw,17px) clamp(22px,4.5vw,32px);border:1px solid var(--text-accent);white-space:nowrap;display:inline-flex;align-items:center;font-weight:500;">Explorar los héroes</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:clamp(18px,2.5vw,28px);">
@@ -256,7 +261,7 @@
         </div>
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Revolución</div>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Belisario Domínguez</h3>
+          <h3 style="font-family:var(--font-display);font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Belisario Domínguez</h3>
           <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1863&ensp;m. 1913</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Enfrentó al dictador Victoriano Huerta desde la tribuna del Senado.</p>
         </div>
@@ -269,7 +274,7 @@
         </div>
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Contemporáneo</div>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Homero Gómez González</h3>
+          <h3 style="font-family:var(--font-display);font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Homero Gómez González</h3>
           <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1970&ensp;m. 2020</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Guardián del santuario de la Mariposa Monarca en Michoacán.</p>
         </div>
@@ -282,7 +287,7 @@
         </div>
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Virreinato</div>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Sor Juana Inés de la Cruz</h3>
+          <h3 style="font-family:var(--font-display);font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Sor Juana Inés de la Cruz</h3>
           <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1648&ensp;m. 1695</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Poetisa y filósofa del siglo XVII, primera gran escritora de las Américas.</p>
         </div>
@@ -295,7 +300,7 @@
         </div>
         <div style="padding:18px 18px 22px;">
           <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a42;">Época: Contemporáneo</div>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Alicia Matías Teodoro</h3>
+          <h3 style="font-family:var(--font-display);font-size:1.55rem;font-weight:600;line-height:1.08;margin:6px 0 4px;color:#1b1d24;">Alicia Matías Teodoro</h3>
           <div style="font-size:.85rem;color:#6b5a42;margin-bottom:8px;letter-spacing:.5px;">n. 1976&ensp;m. 2025</div>
           <p style="font-size:.98rem;color:#3a3b42;line-height:1.5;">Arriesgó su vida para salvar a su nieta durante la explosión en el Puente de la Concordia, Ciudad de México.</p>
         </div>
@@ -320,9 +325,9 @@
         <div data-reveal style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-accent);margin-bottom:20px;border-bottom:1px solid var(--text-accent);padding-bottom:16px;">
           <span>Expediente 001</span><span style="color:var(--text-accent);">·</span><span>Época: Revolución</span><span style="color:var(--text-accent);">·</span><span style="color:var(--text-accent);">Estado: recuperado</span>
         </div>
-        <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:600;line-height:1.02;color:#1b1d24;">Belisario Domínguez</h2>
+        <h2 data-reveal style="font-family:var(--font-display);font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:600;line-height:1.02;color:#1b1d24;">Belisario Domínguez</h2>
         <div data-reveal style="font-size:1.05rem;letter-spacing:1.5px;color:var(--text-accent);margin-top:8px;">n. 1863&ensp;m. 1913</div>
-        <p data-reveal style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,2.8vw,2rem);color:var(--text-accent);line-height:1.34;margin-top:16px;max-width:28ch;">El senador por Chiapas, médico chiapaneco, se levantó en el senado a decir en voz alta lo que nadie más se atrevía.</p>
+        <p data-reveal style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.4rem,2.8vw,2rem);color:var(--text-accent);line-height:1.34;margin-top:16px;max-width:28ch;">El senador por Chiapas, médico chiapaneco, se levantó en el senado a decir en voz alta lo que nadie más se atrevía.</p>
         <p data-reveal style="font-size:1.1rem;line-height:1.9;color:#3a3b42;margin-top:18px;max-width:52ch;text-wrap:pretty;">En 1913, mientras Victoriano Huerta gobernaba tras el asesinato del presidente Madero, un senador, médico chiapaneco se levantó en el Senado a decir en voz alta lo que nadie se atrevía. Hoy la medalla más alta del Senado lleva su nombre — y esta es su historia.</p>
         <a data-reveal href="expedientes/expediente-belisario.html" class="btn-pill btn-glow-on-light" style="display:inline-flex;align-items:center;margin-top:30px;font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:500;min-height:48px;">Abrir su historia</a>
       </div>
@@ -334,7 +339,7 @@
 <!-- NEWSLETTER — darker background -->
 <section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(8px,1.2vw,13px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:680px;margin:0 auto;text-align:center;">
-    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Reciba un héroe cada mes<br><em style="color:var(--text-accent);">en su correo.</em></h2>
+    <h2 data-reveal style="font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Reciba un héroe cada mes<br><em style="color:var(--text-accent);">en su correo.</em></h2>
     <p data-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;max-width:46ch;margin-left:auto;margin-right:auto;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda.</p>
     <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;">
       <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
@@ -348,9 +353,9 @@
 <!-- CONTACTO / INVITACIÓN -->
 <section id="sec-contacto" style="background:var(--bg-contacto,#1b1d24);padding:clamp(8px,1.2vw,13px) 24px clamp(13px,1.9vw,20px);border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-    <div data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.09rem,3.22vw,2.45rem);font-weight:600;letter-spacing:clamp(1.2px,.3vw,3.6px);text-transform:uppercase;color:var(--text-accent);line-height:1;margin-bottom:clamp(10px,1.8vw,18px);">Participe</div>
-    <h2 data-reveal style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.6rem,3.7vw,2.6rem);line-height:1.22;color:var(--text-accent);margin:0 auto 18px;text-wrap:balance;">¿Conoce la historia de un <em style="font-style:italic;color:var(--text-accent);">héroe</em> mexicano,<br>contemporáneo o histórico?</h2>
-    <p data-reveal style="font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2vw,1.35rem);color:rgba(243,238,226,.88);line-height:1.5;margin-bottom:18px;text-wrap:balance;">Envíenos la información por correo; la revisamos y podremos subirla a <span style="color:var(--text-accent);font-style:italic;">Héroes&nbsp;Silenciosos</span>.</p>
+    <div data-reveal style="font-family:var(--font-display);font-size:clamp(1.09rem,3.22vw,2.45rem);font-weight:600;letter-spacing:clamp(1.2px,.3vw,3.6px);text-transform:uppercase;color:var(--text-accent);line-height:1;margin-bottom:clamp(10px,1.8vw,18px);">Participe</div>
+    <h2 data-reveal style="font-family:var(--font-display);font-weight:600;font-size:clamp(1.6rem,3.7vw,2.6rem);line-height:1.22;color:var(--text-accent);margin:0 auto 18px;text-wrap:balance;">¿Conoce la historia de un <em style="font-style:italic;color:var(--text-accent);">héroe</em> mexicano,<br>contemporáneo o histórico?</h2>
+    <p data-reveal style="font-family:var(--font-display);font-size:clamp(1rem,2vw,1.35rem);color:rgba(243,238,226,.88);line-height:1.5;margin-bottom:18px;text-wrap:balance;">Envíenos la información por correo; la revisamos y podremos subirla a <span style="color:var(--text-accent);font-style:italic;">Héroes&nbsp;Silenciosos</span>.</p>
     <a data-reveal href="mailto:carloscalderonsoy@gmail.com" class="btn-pill btn-glow" style="display:inline-flex;align-items:center;font-size:clamp(13px,2vw,15px);letter-spacing:1.5px;text-transform:uppercase;color:#1b1d24;background:var(--text-accent);padding:clamp(15px,2.6vw,18px) clamp(24px,5vw,36px);font-weight:600;">Enviar historia</a>
   </div>
   <span class="sec-num">07</span>
@@ -360,16 +365,16 @@
 <footer style="background:#1b1d24;color:rgba(243,238,226,.72);padding:clamp(4px,1vw,10px) 24px 4px;border-top:2px solid var(--sep-gold);">
   <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:clamp(32px,5vw,72px);">
     <div style="flex:0 1 auto;max-width:520px;">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:var(--text-accent);">Silenciosos</span></div>
+      <div style="font-family:var(--font-display);font-size:1.6rem;color:#f3eee2;">Héroes <span style="font-style:italic;color:var(--text-accent);">Silenciosos</span></div>
       <p style="font-size:.82rem;line-height:1.5;margin-top:6px;text-wrap:pretty;">El archivo de los mexicanos que cambiaron la historia. Este sitio Web es sin fines de lucro, con objeto de hacer divulgación. Partes del sitio y algunas fotografías, textos y videos fueron creados, restaurados ó adaptados con ayuda de inteligencia artificial.</p>
     </div>
     <div style="flex:0 1 auto;max-width:480px;">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#f3eee2;">Fuentes de <span style="font-style:italic;color:var(--text-accent);">archivo</span></div>
+      <div style="font-family:var(--font-display);font-size:1.6rem;color:#f3eee2;">Fuentes de <span style="font-style:italic;color:var(--text-accent);">archivo</span></div>
       <p style="font-size:.82rem;line-height:1.5;margin-top:6px;text-wrap:pretty;">Archivo General de la Nación (AGN)<br>Mediateca del Instituto Nacional de Antropología e Historia (INAH)<br>Enciclopedia Histórica y Biográfica de la Universidad de Guadalajara<br>El Informador</p>
     </div>
   </div>
   <div style="max-width:1180px;margin:clamp(4px,.8vw,7px) auto 0;text-align:center;">
-    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,9vw,3rem);font-weight:600;font-style:italic;letter-spacing:.3px;color:#E8C96A;margin-top:clamp(2px,1vw,5px);">Gracias por visitarnos</p>
+    <p style="font-family:var(--font-display);font-size:clamp(2rem,9vw,3rem);font-weight:600;font-style:italic;letter-spacing:.3px;color:#E8C96A;margin-top:clamp(2px,1vw,5px);">Gracias por visitarnos</p>
   </div>
 </footer>
 
@@ -390,6 +395,18 @@
     <button class="tweak-swatch" data-accent="#dfd5c0" style="background:#dfd5c0;" title="Lino"></button>
     <button class="tweak-swatch" data-accent="#9e9a94" style="background:#9e9a94;" title="Gris rata"></button>
     <button class="tweak-swatch" data-accent="#B39DDB" style="background:#B39DDB;" title="Lavanda"></button>
+  </div>
+
+  <div class="tweak-section-div"></div>
+  <div class="tweak-label">Tipografía de encabezados</div>
+  <div class="tweak-fonts">
+    <button class="tweak-font active" data-font="'Cormorant Garamond',serif" style="font-family:'Cormorant Garamond',serif;" title="Cormorant Garamond (original)">Aa</button>
+    <button class="tweak-font" data-font="'Playfair Display',serif" style="font-family:'Playfair Display',serif;" title="Playfair Display — editorial, alto contraste">Aa</button>
+    <button class="tweak-font" data-font="'EB Garamond',serif" style="font-family:'EB Garamond',serif;" title="EB Garamond — clásica, de archivo">Aa</button>
+    <button class="tweak-font" data-font="'Libre Baskerville',serif" style="font-family:'Libre Baskerville',serif;" title="Libre Baskerville — libro histórico">Aa</button>
+    <button class="tweak-font" data-font="'Spectral',serif" style="font-family:'Spectral',serif;" title="Spectral — editorial contemporánea">Aa</button>
+    <button class="tweak-font" data-font="'Crimson Pro',serif" style="font-family:'Crimson Pro',serif;" title="Crimson Pro — literaria, cálida">Aa</button>
+    <button class="tweak-font" data-font="'Zilla Slab',serif" style="font-family:'Zilla Slab',serif;" title="Zilla Slab — expediente / máquina de escribir">Aa</button>
   </div>
 
   <div class="tweak-section-div"></div>
@@ -673,6 +690,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!tweaksPanel.contains(e.target) && e.target !== tweaksBtn) {
       tweaksPanel.style.display = 'none';
     }
+  });
+
+  /* Heading font swatches */
+  document.querySelectorAll('[data-font]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var val = this.dataset.font;
+      document.documentElement.style.setProperty('--font-display', val);
+      document.querySelectorAll('[data-font]').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+    });
   });
 
   /* Accent color swatches */
