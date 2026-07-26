@@ -670,7 +670,6 @@ document.addEventListener('DOMContentLoaded', function() {
       entries.forEach(function(e) { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     els.forEach(function(el) { io.observe(el); });
-    setTimeout(function() { els.forEach(function(el) { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }); }, 1800);
   }
 
   /* Word-by-word heading reveal */
@@ -716,7 +715,6 @@ document.addEventListener('DOMContentLoaded', function() {
           entries.forEach(function(e) { if (e.isIntersecting) { revealWords(e.target); wio.unobserve(e.target); } });
         }, { threshold: 0.3, rootMargin: '0px 0px -8% 0px' });
         wordEls.forEach(function(el) { wio.observe(el); });
-        setTimeout(function() { wordEls.forEach(revealWords); }, 1800);
       } else {
         wordEls.forEach(revealWords);
       }
