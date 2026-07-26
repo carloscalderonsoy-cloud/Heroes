@@ -53,6 +53,7 @@
   .word-reveal{display:inline-block;overflow:hidden;vertical-align:top;}
   .word-reveal-inner{display:inline-block;transform:translateY(115%);opacity:0;transition:transform 1400ms cubic-bezier(.16,1,.3,1),opacity 1240ms ease-out;transition-delay:calc(var(--i,0) * 130ms);}
   .word-reveal.is-visible .word-reveal-inner{transform:translateY(0);opacity:1;}
+  .hero-title .word-reveal-inner{transition-duration:2800ms, 2480ms;transition-delay:calc(var(--i,0) * 260ms);}
   @media(prefers-reduced-motion:reduce){.word-reveal-inner{transition:none !important;transform:none !important;opacity:1 !important;}}
 
   /* Slow ambient zoom for the small Propósito photo collage */
