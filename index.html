@@ -40,6 +40,7 @@
   }
 
   @keyframes hsk-kenburns{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.07) translate(-1.5%,-1.5%);}}
+  @keyframes hsk-kenburns-strong{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.22) translate(-4%,-3%);}}
   @keyframes hsk-grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
   :focus-visible{outline:2px solid var(--text-accent);outline-offset:3px;}
   @media(prefers-reduced-motion:reduce){*{animation:none !important;}}
@@ -56,7 +57,7 @@
   @media(prefers-reduced-motion:reduce){.word-reveal-inner{transition:none !important;transform:none !important;opacity:1 !important;}}
 
   /* Slow ambient zoom for the small Propósito photo collage */
-  .kb-photo{animation:hsk-kenburns 24s ease-in-out infinite alternate;}
+  .kb-photo{animation:hsk-kenburns-strong 12s ease-in-out infinite alternate;transform-origin:center;}
 
   /* Propósito section */
   .blue-section-base{position:absolute;inset:0;background:var(--bg-proposito,#14301f);transition:background .35s;}
@@ -218,17 +219,17 @@
 
       <div data-reveal style="flex:0 0 auto;display:flex;flex-direction:column;gap:clamp(14px,2vw,22px);margin:0 auto;">
         <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;">
-          <img src="assets/SorJuanaInes.png" alt="Sor Juana Inés de la Cruz" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;animation-duration:22s;animation-delay:-3s;">
+          <img src="assets/SorJuanaInes.png" alt="Sor Juana Inés de la Cruz" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;animation-duration:11s;animation-delay:-2s;">
         </div>
         <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;margin-left:clamp(23px,3.75vw,50px);">
-          <img src="assets/Belisario%20Main.png" alt="Belisario Domínguez" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);animation-duration:26s;animation-delay:-11s;">
+          <img src="assets/Belisario%20Main.png" alt="Belisario Domínguez" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.1);animation-duration:13s;animation-delay:-6s;">
           <div aria-hidden="true" style="position:absolute;inset:0;background:#6e2433;mix-blend-mode:multiply;opacity:.45;"></div>
         </div>
         <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;">
-          <img src="assets/Alicia33.png" alt="Alicia Matías Teodoro" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;animation-duration:24s;animation-delay:-7s;">
+          <img src="assets/Alicia33.png" alt="Alicia Matías Teodoro" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;animation-duration:12s;animation-delay:-4s;">
         </div>
         <div style="width:clamp(135px,16.25vw,188px);height:clamp(135px,16.25vw,188px);overflow:hidden;border:1.5px solid var(--text-accent);box-shadow:0 0 0 1px rgba(20,14,16,.6);position:relative;background:#16171c;margin-left:clamp(23px,3.75vw,50px);">
-          <img src="assets/HomeroGomezMain.png" alt="Homero Gómez González" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;animation-duration:28s;animation-delay:-18s;">
+          <img src="assets/HomeroGomezMain.png" alt="Homero Gómez González" class="kb-photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;animation-duration:14s;animation-delay:-9s;">
         </div>
       </div>
     </div>
