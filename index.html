@@ -51,9 +51,9 @@
 
   /* Word-by-word text reveal for key headings */
   .word-reveal{display:inline-block;overflow:hidden;vertical-align:top;}
-  .word-reveal-inner{display:inline-block;transform:translateY(115%);opacity:0;transition:transform 1400ms cubic-bezier(.16,1,.3,1),opacity 1240ms ease-out;transition-delay:calc(var(--i,0) * 130ms);}
+  .word-reveal-inner{display:inline-block;transform:translateY(115%);opacity:0;transition:transform 3500ms cubic-bezier(.16,1,.3,1),opacity 3100ms ease-out;transition-delay:calc(var(--i,0) * 325ms);}
   .word-reveal.is-visible .word-reveal-inner{transform:translateY(0);opacity:1;}
-  .hero-title .word-reveal-inner{transition-duration:2800ms, 2480ms;transition-delay:calc(var(--i,0) * 260ms);}
+  .hero-title .word-reveal-inner{transition-duration:7000ms, 6200ms;transition-delay:calc(var(--i,0) * 650ms);}
   @media(prefers-reduced-motion:reduce){.word-reveal-inner{transition:none !important;transform:none !important;opacity:1 !important;}}
 
   /* Slow ambient zoom for the small Propósito photo collage */
@@ -116,9 +116,9 @@
   @keyframes hsk-glow-gold{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4);}50%{box-shadow:0 0 38px 9px rgba(201,168,76,.7);}}
   @keyframes hsk-glow-on-light{0%,100%{box-shadow:0 4px 18px rgba(27,29,36,.3),0 0 0 0 rgba(150,100,0,.45);}50%{box-shadow:0 10px 30px rgba(27,29,36,.5),0 0 28px 8px rgba(150,100,0,.65);}}
   .btn-pill{border-radius:999px;box-sizing:border-box;max-width:100%;text-align:center;justify-content:center;transition:transform .25s ease,box-shadow .25s ease;}
-  .btn-glow{animation:hsk-glow-amber 5.2s ease-in-out infinite;}
-  .btn-glow-gold{animation:hsk-glow-gold 5.2s ease-in-out infinite;}
-  .btn-glow-on-light{animation:hsk-glow-on-light 5.2s ease-in-out infinite;}
+  .btn-glow{animation:hsk-glow-amber 13s ease-in-out infinite;}
+  .btn-glow-gold{animation:hsk-glow-gold 13s ease-in-out infinite;}
+  .btn-glow-on-light{animation:hsk-glow-on-light 13s ease-in-out infinite;}
   .btn-pill:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused;}
 
   /* Card thumbnails — image zoom on hover/touch */
@@ -167,7 +167,7 @@
 
   <div style="position:relative;width:100%;max-width:1180px;margin:0 auto;padding:0 24px 84px;z-index:3;">
     <div>
-      <div data-word-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
+      <div id="hero-kicker" data-word-reveal style="font-size:clamp(13px,2vw,24px);letter-spacing:4px;text-transform:uppercase;color:var(--text-accent);margin-bottom:22px;line-height:1.5;font-weight:700;">El archivo de mexicanos heroicos<br>que hicieron historia</div>
       <h1 data-word-reveal class="hero-title" style="font-family:var(--font-display);font-weight:300;color:#f6f2e8;line-height:.98;letter-spacing:.5px;">Héroes <span style="font-style:italic;color:var(--text-accent);">Silenciosos</span></h1>
       <div data-reveal style="display:flex;flex-direction:column;align-items:flex-start;width:fit-content;">
         <button id="audio-btn" class="btn-pill btn-glow" aria-label="Encender música de fondo" onclick="toggleAudio()"><span id="audio-icon" style="font-size:2.8em;line-height:1;">𝄞</span> <span id="audio-label">Encender música</span></button>
@@ -658,12 +658,12 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el) {
       el.style.opacity = '0';
       el.style.transform = el.classList.contains('grow-bar') ? 'scaleX(0)' : 'translateY(20px)';
-      el.style.transition = 'opacity 1720ms cubic-bezier(.16,1,.3,1), transform 1720ms cubic-bezier(.16,1,.3,1)';
+      el.style.transition = 'opacity 4300ms cubic-bezier(.16,1,.3,1), transform 4300ms cubic-bezier(.16,1,.3,1)';
     });
     var reveal = function(el) {
       var sibs = el.parentElement ? Array.from(el.parentElement.querySelectorAll('[data-reveal]')) : [el];
       var idx = Math.max(0, sibs.indexOf(el));
-      el.style.transitionDelay = (idx % 5 * 180) + 'ms';
+      el.style.transitionDelay = (idx % 5 * 450) + 'ms';
       el.style.opacity = '1';
       el.style.transform = el.classList.contains('grow-bar') ? 'scaleX(1)' : 'translateY(0)';
     };
@@ -721,6 +721,37 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
+
+  /* Mobile only: grow "Héroes Silenciosos" so its width matches the kicker's first line */
+  (function() {
+    var heroTitleEl = document.querySelector('.hero-title');
+    var heroKickerEl = document.getElementById('hero-kicker');
+    if (!heroTitleEl || !heroKickerEl) return;
+    var KICKER_LINE1 = 'El archivo de mexicanos heroicos';
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    var matchHeroTitleWidth = function() {
+      if (!ctx || window.innerWidth > 640) { heroTitleEl.style.fontSize = ''; return; }
+      var kickerStyle = window.getComputedStyle(heroKickerEl);
+      var kickerFontSize = parseFloat(kickerStyle.fontSize) || 0;
+      var kickerLetterSpacing = parseFloat(kickerStyle.letterSpacing) || 0;
+      ctx.font = kickerStyle.fontWeight + ' ' + kickerFontSize + 'px ' + kickerStyle.fontFamily;
+      var kickerWidth = ctx.measureText(KICKER_LINE1.toUpperCase()).width + KICKER_LINE1.length * kickerLetterSpacing;
+
+      heroTitleEl.style.fontSize = '';
+      var titleFontSize = parseFloat(window.getComputedStyle(heroTitleEl).fontSize);
+      var titleWidth = heroTitleEl.getBoundingClientRect().width;
+      if (!titleWidth || !titleFontSize || !kickerWidth) return;
+      heroTitleEl.style.fontSize = (titleFontSize * (kickerWidth / titleWidth)) + 'px';
+    };
+    matchHeroTitleWidth();
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(matchHeroTitleWidth); }
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(matchHeroTitleWidth, 150);
+    });
+  })();
 
   document.querySelectorAll('[data-card]').forEach(function(card) {
     var pf = card.querySelector('[data-pf]');
