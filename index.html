@@ -728,6 +728,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var heroKickerEl = document.getElementById('hero-kicker');
     if (!heroTitleEl || !heroKickerEl) return;
     var KICKER_LINE1 = 'El archivo de mexicanos heroicos';
+    var TITLE_TEXT = 'Héroes Silenciosos';
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
     var matchHeroTitleWidth = function() {
@@ -739,10 +740,14 @@ document.addEventListener('DOMContentLoaded', function() {
       var kickerWidth = ctx.measureText(KICKER_LINE1.toUpperCase()).width + KICKER_LINE1.length * kickerLetterSpacing;
 
       heroTitleEl.style.fontSize = '';
-      var titleFontSize = parseFloat(window.getComputedStyle(heroTitleEl).fontSize);
-      var titleWidth = heroTitleEl.getBoundingClientRect().width;
-      if (!titleWidth || !titleFontSize || !kickerWidth) return;
-      heroTitleEl.style.fontSize = (titleFontSize * (kickerWidth / titleWidth)) + 'px';
+      var titleStyle = window.getComputedStyle(heroTitleEl);
+      var titleFontSize = parseFloat(titleStyle.fontSize) || 0;
+      var titleLetterSpacing = parseFloat(titleStyle.letterSpacing) || 0;
+      if (!titleFontSize || !kickerWidth) return;
+      ctx.font = titleStyle.fontWeight + ' ' + titleFontSize + 'px ' + titleStyle.fontFamily;
+      var titleTextWidth = ctx.measureText(TITLE_TEXT).width + TITLE_TEXT.length * titleLetterSpacing;
+      if (!titleTextWidth) return;
+      heroTitleEl.style.fontSize = (titleFontSize * (kickerWidth / titleTextWidth)) + 'px';
     };
     matchHeroTitleWidth();
     if (document.fonts && document.fonts.ready) { document.fonts.ready.then(matchHeroTitleWidth); }
