@@ -747,7 +747,8 @@ document.addEventListener('DOMContentLoaded', function() {
       ctx.font = titleStyle.fontWeight + ' ' + titleFontSize + 'px ' + titleStyle.fontFamily;
       var titleTextWidth = ctx.measureText(TITLE_TEXT).width + TITLE_TEXT.length * titleLetterSpacing;
       if (!titleTextWidth) return;
-      heroTitleEl.style.fontSize = (titleFontSize * (kickerWidth / titleTextWidth)) + 'px';
+      var matchedSize = titleFontSize * (kickerWidth / titleTextWidth);
+      heroTitleEl.style.fontSize = (matchedSize + 2.667) + 'px';
     };
     matchHeroTitleWidth();
     if (document.fonts && document.fonts.ready) { document.fonts.ready.then(matchHeroTitleWidth); }
