@@ -140,7 +140,7 @@
         <a target="_blank" rel="noopener noreferrer" href="indice.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Explorar los héroes</a>
         <a target="_blank" rel="noopener noreferrer" href="videoteca.html" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Videoteca</a>
         <a href="linea-tiempo.html" target="_blank" rel="noopener noreferrer" style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Línea de tiempo</a>
-        <a href="#" id="hsk-share-btn" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Compartir</a>
+        <a href="#" id="hsk-share-btn" class="hsk-share-btn-trigger" aria-haspopup="true" aria-expanded="false" style="font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,238,226,.72);padding:6px 10px;border-radius:999px;white-space:nowrap;">Compartir</a>
       </div>
     </div>
     <div aria-hidden="true" id="nav-scroll-hint" style="position:absolute;top:0;right:0;bottom:0;width:32px;background:linear-gradient(to right,rgba(27,29,36,0),#1b1d24 80%);pointer-events:none;transition:opacity .3s ease;"></div>
@@ -358,7 +358,7 @@
 <section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(8px,1.2vw,13px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:680px;margin:0 auto;text-align:center;">
     <h2 data-word-reveal style="font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Reciba un héroe cada mes<br><em style="color:var(--text-accent);">en su correo.</em></h2>
-    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;max-width:46ch;margin-left:auto;margin-right:auto;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda. No se monetiza y se respeta su privacidad.</p>
+    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;text-wrap:pretty;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda.<br>No se monetiza y se respeta su privacidad.</p>
     <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;">
       <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
       <input id="hsk-email" type="email" required placeholder="su@correo.com" autocomplete="email" style="flex:1;min-width:240px;font-size:16px;padding:15px 18px;background:#f3eee2;border:1px solid #a89880;color:#1b1d24;border-radius:2px;min-height:52px;">
@@ -792,29 +792,33 @@ document.addEventListener('DOMContentLoaded', function() {
     var cloneEl = null;
     var singleWidth = 0;
     var resumeTimer = null;
-    var RESUME_DELAY = 3000;
+    /* Margen técnico breve (no una pausa deliberada): evita que el DOM se
+       toque mientras un clic/tap todavía se está resolviendo. Quitar la
+       limpieza del DOM de stopLoop (ver abajo) ya resuelve la mayor parte
+       del problema; este margen es solo una capa extra de seguridad. */
+    var RESUME_DELAY = 1000;
     var scheduleResume = function() {
       clearTimeout(resumeTimer);
       resumeTimer = setTimeout(function() { startLoop(); }, RESUME_DELAY);
     };
+    /* IMPORTANTE: stopLoop ya NO toca el DOM (no quita el clon ni reasigna
+       scrollLeft). Antes lo hacía de forma síncrona en el propio evento
+       mousedown/touchstart — si el clic caía sobre el elemento clonado,
+       ese nodo se eliminaba a mitad del clic y el navegador lo descartaba
+       silenciosamente (por eso el primer clic "fallaba" y hacía falta un
+       segundo intento). Ahora solo se congela la posición; la limpieza del
+       clon ocurre en startLoop, nunca en medio de una interacción. */
     var stopLoop = function() {
       loopActive = false;
       if (rafId) cancelAnimationFrame(rafId);
       rafId = null;
-      if (cloneEl && cloneEl.parentNode) {
-        var normalized = singleWidth ? (navScroll.scrollLeft % singleWidth) : 0;
-        cloneEl.parentNode.removeChild(cloneEl);
-        navScroll.style.display = '';
-        navScroll.scrollLeft = normalized;
-        cloneEl = null;
-      }
       scheduleResume();
     };
     ['touchstart', 'pointerdown', 'wheel', 'mousedown'].forEach(function(evt) {
       navScroll.addEventListener(evt, stopLoop, { passive: true });
     });
     /* Mientras el usuario desliza a mano (sin volver a disparar los eventos de
-       arriba), cada scroll reinicia la cuenta de 3s de inactividad. */
+       arriba), cada scroll reinicia la cuenta antes de reanudar. */
     navScroll.addEventListener('scroll', function() {
       if (!loopActive) scheduleResume();
     }, { passive: true });
@@ -822,6 +826,7 @@ document.addEventListener('DOMContentLoaded', function() {
       clearTimeout(resumeTimer);
       if (cloneEl && cloneEl.parentNode) { cloneEl.parentNode.removeChild(cloneEl); cloneEl = null; }
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      navScroll.scrollLeft = 0;
       if (!overflows()) return;
       loopActive = true;
       var navRow = navScroll.querySelector('.nav-row');
@@ -833,7 +838,7 @@ document.addEventListener('DOMContentLoaded', function() {
       navScroll.style.display = 'flex';
       navScroll.appendChild(cloneEl);
 
-      var pxPerMs = singleWidth / 12000;
+      var pxPerMs = singleWidth / 40000;
       var lastTime = null;
       var tick = function(now) {
         if (!loopActive) return;
@@ -985,7 +990,10 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 <script>
 (function(){
-  var btn = document.getElementById('hsk-share-btn');
+  /* Delegado en vez de un id fijo: el nav bar puede duplicar temporalmente
+     este botón (carrusel continuo) y ambas copias deben funcionar. */
+  var TRIGGER_SELECTOR = '.hsk-share-btn-trigger';
+  var btn = document.querySelector(TRIGGER_SELECTOR);
   if (!btn) return;
   var panel = null;
   var ICONS = {
@@ -1088,9 +1096,13 @@ document.addEventListener('DOMContentLoaded', function() {
       document.addEventListener('keydown', onKeydown);
     }, 0);
   }
-  btn.addEventListener('click', function(e){
+  document.addEventListener('click', function(e){
+    var trigger = e.target.closest && e.target.closest(TRIGGER_SELECTOR);
+    if (!trigger) return;
     e.preventDefault();
-    if (panel) closePanel(); else openPanel();
+    if (panel) { closePanel(); return; }
+    btn = trigger;
+    openPanel();
   });
 })();
 </script>
