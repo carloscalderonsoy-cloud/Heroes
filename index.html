@@ -796,9 +796,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (overflows()) {
       setTimeout(function() {
         var maxScroll = navScroll.scrollWidth - navScroll.clientWidth;
-        slowScrollTo(maxScroll, 3500, function() {
-          setTimeout(function() { slowScrollTo(0, 3500); }, 400);
-        });
+        slowScrollTo(maxScroll, 7000);
       }, 1200);
     }
   })();
