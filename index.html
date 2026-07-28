@@ -358,7 +358,7 @@
 <section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(8px,1.2vw,13px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:680px;margin:0 auto;text-align:center;">
     <h2 data-word-reveal style="font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Reciba un héroe cada mes<br><em style="color:var(--text-accent);">en su correo.</em></h2>
-    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;max-width:46ch;margin-left:auto;margin-right:auto;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda.</p>
+    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;max-width:46ch;margin-left:auto;margin-right:auto;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda. No se monetiza y se respeta su privacidad.</p>
     <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;">
       <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
       <input id="hsk-email" type="email" required placeholder="su@correo.com" autocomplete="email" style="flex:1;min-width:240px;font-size:16px;padding:15px 18px;background:#f3eee2;border:1px solid #a89880;color:#1b1d24;border-radius:2px;min-height:52px;">
@@ -778,40 +778,65 @@ document.addEventListener('DOMContentLoaded', function() {
     updateHint();
     navScroll.addEventListener('scroll', updateHint, { passive: true });
     window.addEventListener('resize', updateHint);
-    /* Loop lento de ida y vuelta hasta que el usuario toque/mueva la barra —
-       a partir de ahí tiene control total (scroll táctil nativo). */
-    var loopActive = true;
+    /* Loop continuo de izquierda a derecha (tipo carrusel: al llegar a
+       "Compartir" reaparece "Inicio" de nuevo) hasta que el usuario toque
+       o mueva la barra — a partir de ahí tiene control total (scroll
+       táctil nativo).
+       Se reinicia solo al volver a la página (evento pageshow con
+       persisted:true) porque los navegadores restauran la página desde
+       el bfcache sin volver a ejecutar el script — sin esto, la
+       animación se quedaba congelada para siempre tras navegar y
+       regresar, y solo una recarga completa la revivía. */
+    var loopActive = false;
     var rafId = null;
+    var cloneEl = null;
+    var singleWidth = 0;
     var stopLoop = function() {
       loopActive = false;
       if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      if (cloneEl && cloneEl.parentNode) {
+        var normalized = singleWidth ? (navScroll.scrollLeft % singleWidth) : 0;
+        cloneEl.parentNode.removeChild(cloneEl);
+        navScroll.style.display = '';
+        navScroll.scrollLeft = normalized;
+        cloneEl = null;
+      }
     };
     ['touchstart', 'pointerdown', 'wheel', 'mousedown'].forEach(function(evt) {
-      navScroll.addEventListener(evt, stopLoop, { passive: true, once: true });
+      navScroll.addEventListener(evt, stopLoop, { passive: true });
     });
-    var slowScrollTo = function(target, duration, onDone) {
-      var start = navScroll.scrollLeft;
-      var distance = target - start;
-      var startTime = null;
-      var ease = function(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
-      var step = function(now) {
+    var startLoop = function() {
+      if (cloneEl && cloneEl.parentNode) { cloneEl.parentNode.removeChild(cloneEl); cloneEl = null; }
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      if (!overflows()) return;
+      loopActive = true;
+      var navRow = navScroll.querySelector('.nav-row');
+      navRow.style.justifyContent = 'flex-start';
+      singleWidth = navRow.scrollWidth;
+      cloneEl = navRow.cloneNode(true);
+      cloneEl.querySelectorAll('[id]').forEach(function(el) { el.removeAttribute('id'); });
+      cloneEl.style.justifyContent = 'flex-start';
+      navScroll.style.display = 'flex';
+      navScroll.appendChild(cloneEl);
+
+      var pxPerMs = singleWidth / 12000;
+      var lastTime = null;
+      var tick = function(now) {
         if (!loopActive) return;
-        if (!startTime) startTime = now;
-        var progress = Math.min((now - startTime) / duration, 1);
-        navScroll.scrollLeft = start + distance * ease(progress);
-        if (progress < 1) { rafId = requestAnimationFrame(step); } else if (onDone) { onDone(); }
+        if (lastTime === null) lastTime = now;
+        var next = navScroll.scrollLeft + pxPerMs * (now - lastTime);
+        lastTime = now;
+        if (next >= singleWidth) { next -= singleWidth; }
+        navScroll.scrollLeft = next;
+        rafId = requestAnimationFrame(tick);
       };
-      rafId = requestAnimationFrame(step);
+      rafId = requestAnimationFrame(tick);
     };
-    var runLoop = function() {
-      if (!loopActive || !overflows()) return;
-      var maxScroll = navScroll.scrollWidth - navScroll.clientWidth;
-      slowScrollTo(maxScroll, 12000, function() {
-        if (!loopActive) return;
-        slowScrollTo(0, 12000, runLoop);
-      });
-    };
-    if (overflows()) { setTimeout(runLoop, 1200); }
+    setTimeout(startLoop, 1200);
+    window.addEventListener('pageshow', function(e) {
+      if (e.persisted) { setTimeout(startLoop, 300); }
+    });
   })();
 
   document.querySelectorAll('[data-card]').forEach(function(card) {
