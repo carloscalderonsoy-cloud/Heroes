@@ -820,13 +820,16 @@ document.addEventListener('DOMContentLoaded', function() {
        tiempo entre cuadros), para descartar cualquier caso raro en el que
        rAF no llegara a dispararse de forma fiable en algunos navegadores. */
     var startLoop = function() {
+      /* Se conserva la posición donde el usuario dejó la barra (en vez de
+         reiniciar siempre desde "Inicio"), normalizada al nuevo ancho por
+         si el clon se reconstruye con una medida distinta. */
+      var resumeFrom = navScroll.scrollLeft;
       clearTimeout(resumeTimer);
       resumeTimer = null;
       if (stepTimer) { clearInterval(stepTimer); stepTimer = null; }
       if (cloneEl && cloneEl.parentNode) { cloneEl.parentNode.removeChild(cloneEl); cloneEl = null; }
       if (!overflows()) { navScroll.scrollLeft = 0; return; }
       loopActive = true;
-      navScroll.scrollLeft = 0;
       var navRow = navScroll.querySelector('.nav-row');
       navRow.style.justifyContent = 'flex-start';
       singleWidth = navRow.scrollWidth;
@@ -835,6 +838,7 @@ document.addEventListener('DOMContentLoaded', function() {
       cloneEl.style.justifyContent = 'flex-start';
       navScroll.style.display = 'flex';
       navScroll.appendChild(cloneEl);
+      navScroll.scrollLeft = singleWidth ? (resumeFrom % singleWidth) : 0;
 
       var pxPerStep = (singleWidth / 40000) * STEP_MS; // ~40s por vuelta completa
       stepTimer = setInterval(function() {
