@@ -778,12 +778,27 @@ document.addEventListener('DOMContentLoaded', function() {
     updateHint();
     navScroll.addEventListener('scroll', updateHint, { passive: true });
     window.addEventListener('resize', updateHint);
-    /* Un solo "asomo" de deslizamiento al cargar, solo para mostrar que existe —
+    /* Un solo recorrido lento de principio a fin al cargar, para mostrar que existe —
        después el usuario tiene control total (scroll táctil nativo). */
+    var slowScrollTo = function(target, duration, onDone) {
+      var start = navScroll.scrollLeft;
+      var distance = target - start;
+      var startTime = null;
+      var ease = function(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+      var step = function(now) {
+        if (!startTime) startTime = now;
+        var progress = Math.min((now - startTime) / duration, 1);
+        navScroll.scrollLeft = start + distance * ease(progress);
+        if (progress < 1) { requestAnimationFrame(step); } else if (onDone) { onDone(); }
+      };
+      requestAnimationFrame(step);
+    };
     if (overflows()) {
       setTimeout(function() {
-        navScroll.scrollTo({ left: 46, behavior: 'smooth' });
-        setTimeout(function() { navScroll.scrollTo({ left: 0, behavior: 'smooth' }); }, 650);
+        var maxScroll = navScroll.scrollWidth - navScroll.clientWidth;
+        slowScrollTo(maxScroll, 3500, function() {
+          setTimeout(function() { slowScrollTo(0, 3500); }, 400);
+        });
       }, 1200);
     }
   })();
