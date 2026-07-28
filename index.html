@@ -788,14 +788,13 @@ document.addEventListener('DOMContentLoaded', function() {
        animación se quedaba congelada para siempre tras navegar y
        regresar, y solo una recarga completa la revivía. */
     var loopActive = false;
-    var rafId = null;
+    var stepTimer = null;
     var cloneEl = null;
     var singleWidth = 0;
     var resumeTimer = null;
-    /* Margen técnico breve (no una pausa deliberada): evita que el DOM se
-       toque mientras un clic/tap todavía se está resolviendo. Quitar la
-       limpieza del DOM de stopLoop (ver abajo) ya resuelve la mayor parte
-       del problema; este margen es solo una capa extra de seguridad. */
+    var STEP_MS = 40;
+    /* Margen técnico breve de 1s (no una pausa deliberada): evita que el
+       DOM se toque mientras un clic/tap todavía se está resolviendo. */
     var RESUME_DELAY = 1000;
     var scheduleResume = function() {
       clearTimeout(resumeTimer);
@@ -810,17 +809,21 @@ document.addEventListener('DOMContentLoaded', function() {
        clon ocurre en startLoop, nunca en medio de una interacción. */
     var stopLoop = function() {
       loopActive = false;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = null;
+      if (stepTimer) { clearInterval(stepTimer); stepTimer = null; }
       scheduleResume();
     };
     ['touchstart', 'pointerdown', 'wheel', 'mousedown'].forEach(function(evt) {
       navScroll.addEventListener(evt, stopLoop, { passive: true });
     });
+    /* setInterval en vez de requestAnimationFrame: mismo resultado visual,
+       pero con un modelo más simple y predecible (sin acumular deltas de
+       tiempo entre cuadros), para descartar cualquier caso raro en el que
+       rAF no llegara a dispararse de forma fiable en algunos navegadores. */
     var startLoop = function() {
       clearTimeout(resumeTimer);
+      resumeTimer = null;
+      if (stepTimer) { clearInterval(stepTimer); stepTimer = null; }
       if (cloneEl && cloneEl.parentNode) { cloneEl.parentNode.removeChild(cloneEl); cloneEl = null; }
-      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       if (!overflows()) { navScroll.scrollLeft = 0; return; }
       loopActive = true;
       navScroll.scrollLeft = 0;
@@ -833,23 +836,23 @@ document.addEventListener('DOMContentLoaded', function() {
       navScroll.style.display = 'flex';
       navScroll.appendChild(cloneEl);
 
-      var pxPerMs = singleWidth / 40000;
-      var lastTime = null;
-      var tick = function(now) {
-        if (!loopActive) return;
-        if (lastTime === null) lastTime = now;
-        var next = navScroll.scrollLeft + pxPerMs * (now - lastTime);
-        lastTime = now;
+      var pxPerStep = (singleWidth / 40000) * STEP_MS; // ~40s por vuelta completa
+      stepTimer = setInterval(function() {
+        var next = navScroll.scrollLeft + pxPerStep;
         if (next >= singleWidth) { next -= singleWidth; }
         navScroll.scrollLeft = next;
-        rafId = requestAnimationFrame(tick);
-      };
-      rafId = requestAnimationFrame(tick);
+      }, STEP_MS);
     };
     setTimeout(startLoop, 1200);
     window.addEventListener('pageshow', function(e) {
       if (e.persisted) { setTimeout(startLoop, 300); }
     });
+    /* Red de seguridad: si por cualquier motivo el loop debería estar
+       corriendo (hay desbordamiento y no hay ninguna interacción reciente
+       pendiente) pero no lo está, se reinicia solo. */
+    setInterval(function() {
+      if (!loopActive && !resumeTimer && overflows()) { startLoop(); }
+    }, 4000);
   })();
 
   document.querySelectorAll('[data-card]').forEach(function(card) {
