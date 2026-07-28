@@ -817,18 +817,13 @@ document.addEventListener('DOMContentLoaded', function() {
     ['touchstart', 'pointerdown', 'wheel', 'mousedown'].forEach(function(evt) {
       navScroll.addEventListener(evt, stopLoop, { passive: true });
     });
-    /* Mientras el usuario desliza a mano (sin volver a disparar los eventos de
-       arriba), cada scroll reinicia la cuenta antes de reanudar. */
-    navScroll.addEventListener('scroll', function() {
-      if (!loopActive) scheduleResume();
-    }, { passive: true });
     var startLoop = function() {
       clearTimeout(resumeTimer);
       if (cloneEl && cloneEl.parentNode) { cloneEl.parentNode.removeChild(cloneEl); cloneEl = null; }
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-      navScroll.scrollLeft = 0;
-      if (!overflows()) return;
+      if (!overflows()) { navScroll.scrollLeft = 0; return; }
       loopActive = true;
+      navScroll.scrollLeft = 0;
       var navRow = navScroll.querySelector('.nav-row');
       navRow.style.justifyContent = 'flex-start';
       singleWidth = navRow.scrollWidth;
