@@ -50,6 +50,10 @@
   /* Hero title — always a single line, web and mobile */
   .hero-title{white-space:nowrap;font-size:clamp(3.9rem,calc(11vw + .5rem),8.5rem);}
   @media(max-width:640px){.hero-title{font-size:clamp(1.3rem,8vw,2.2rem);}}
+  /* Newsletter (§06): en web, la primera frase va en un solo renglón (2
+     renglones en total); en móvil se deja envolver de forma natural
+     (queda en 3), por no haber ancho suficiente para una sola línea. */
+  @media(min-width:641px){.newsletter-line1{white-space:nowrap;}}
 
   /* Word-by-word text reveal for key headings */
   .word-reveal{display:inline-block;overflow:hidden;vertical-align:top;}
@@ -358,7 +362,7 @@
 <section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(8px,1.2vw,13px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:680px;margin:0 auto;text-align:center;">
     <h2 data-word-reveal style="font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Reciba un héroe cada mes<br><em style="color:var(--text-accent);">en su correo.</em></h2>
-    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;text-wrap:pretty;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda.<br>No se monetiza y se respeta su privacidad.</p>
+    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;text-wrap:pretty;"><span class="newsletter-line1">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias que México guarda.</span><br>No se monetiza y se respeta su privacidad.</p>
     <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;">
       <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
       <input id="hsk-email" type="email" required placeholder="su@correo.com" autocomplete="email" style="flex:1;min-width:240px;font-size:16px;padding:15px 18px;background:#f3eee2;border:1px solid #a89880;color:#1b1d24;border-radius:2px;min-height:52px;">
