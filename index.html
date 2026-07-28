@@ -778,27 +778,40 @@ document.addEventListener('DOMContentLoaded', function() {
     updateHint();
     navScroll.addEventListener('scroll', updateHint, { passive: true });
     window.addEventListener('resize', updateHint);
-    /* Un solo recorrido lento de principio a fin al cargar, para mostrar que existe —
-       después el usuario tiene control total (scroll táctil nativo). */
+    /* Loop lento de ida y vuelta hasta que el usuario toque/mueva la barra —
+       a partir de ahí tiene control total (scroll táctil nativo). */
+    var loopActive = true;
+    var rafId = null;
+    var stopLoop = function() {
+      loopActive = false;
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+    ['touchstart', 'pointerdown', 'wheel', 'mousedown'].forEach(function(evt) {
+      navScroll.addEventListener(evt, stopLoop, { passive: true, once: true });
+    });
     var slowScrollTo = function(target, duration, onDone) {
       var start = navScroll.scrollLeft;
       var distance = target - start;
       var startTime = null;
       var ease = function(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
       var step = function(now) {
+        if (!loopActive) return;
         if (!startTime) startTime = now;
         var progress = Math.min((now - startTime) / duration, 1);
         navScroll.scrollLeft = start + distance * ease(progress);
-        if (progress < 1) { requestAnimationFrame(step); } else if (onDone) { onDone(); }
+        if (progress < 1) { rafId = requestAnimationFrame(step); } else if (onDone) { onDone(); }
       };
-      requestAnimationFrame(step);
+      rafId = requestAnimationFrame(step);
     };
-    if (overflows()) {
-      setTimeout(function() {
-        var maxScroll = navScroll.scrollWidth - navScroll.clientWidth;
-        slowScrollTo(maxScroll, 10000);
-      }, 1200);
-    }
+    var runLoop = function() {
+      if (!loopActive || !overflows()) return;
+      var maxScroll = navScroll.scrollWidth - navScroll.clientWidth;
+      slowScrollTo(maxScroll, 12000, function() {
+        if (!loopActive) return;
+        slowScrollTo(0, 12000, runLoop);
+      });
+    };
+    if (overflows()) { setTimeout(runLoop, 1200); }
   })();
 
   document.querySelectorAll('[data-card]').forEach(function(card) {
