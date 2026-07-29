@@ -58,9 +58,9 @@
 
   /* Word-by-word text reveal for key headings */
   .word-reveal{display:inline-block;overflow:hidden;vertical-align:top;}
-  .word-reveal-inner{display:inline-block;transform:translateY(115%);opacity:0;transition:transform 3900ms cubic-bezier(.16,1,.3,1),opacity 3450ms ease-out;transition-delay:calc(var(--i,0) * 360ms);}
+  .word-reveal-inner{display:inline-block;transform:translateY(115%);opacity:0;transition:transform 2340ms cubic-bezier(.16,1,.3,1),opacity 2070ms ease-out;transition-delay:calc(var(--i,0) * 220ms);}
   .word-reveal.is-visible .word-reveal-inner{transform:translateY(0);opacity:1;}
-  .hero-title .word-reveal-inner{transition-duration:7800ms, 6900ms;transition-delay:calc(var(--i,0) * 720ms);}
+  .hero-title .word-reveal-inner{transition-duration:4680ms, 4140ms;transition-delay:calc(var(--i,0) * 430ms);}
 
   /* Slow ambient zoom for the small Propósito photo collage */
   .kb-photo{animation:hsk-kenburns-strong 12s ease-in-out infinite alternate;transform-origin:center;}
@@ -243,7 +243,7 @@
       </div>
     </div>
 
-    <blockquote data-word-reveal style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.5rem,3.2vw,2.3rem);color:var(--text-accent);max-width:680px;margin:clamp(48px,7vw,72px) auto 0;line-height:1.5;text-align:center;">El silencio y el olvido también tienen responsables</blockquote>
+    <blockquote data-word-reveal style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.95rem,4.2vw,3rem);color:var(--text-accent);max-width:680px;margin:clamp(48px,7vw,72px) auto 0;line-height:1.5;text-align:center;">El silencio y el olvido también tienen responsables</blockquote>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:clamp(24px,3vw,40px);margin-top:clamp(48px,7vw,80px);border-top:1px solid rgba(232,201,106,.32);padding-top:clamp(32px,4vw,44px);">
       <div>
@@ -363,7 +363,7 @@
 <section id="newsletter" style="background:var(--bg-newsletter,#c8bba6);padding:clamp(8px,1.2vw,13px) 24px;border-top:2px solid var(--sep-gold);border-bottom:2px solid var(--sep-gold);position:relative;">
   <div style="max-width:680px;margin:0 auto;text-align:center;">
     <h2 data-word-reveal style="font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:600;line-height:1.14;color:#1b1d24;">Reciba un héroe cada mes<br><em style="color:var(--text-accent);">en su correo.</em></h2>
-    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;text-wrap:pretty;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias<br class="nl-br-desktop"> que México guarda.<br class="nl-br-mobile"> No se monetiza y se respeta su privacidad.</p>
+    <p data-word-reveal style="font-size:1.1rem;color:#5a4830;margin-top:8px;line-height:1.6;text-wrap:pretty;">Un expediente nuevo cada mes. Sin ruido, sin prisa — sólo las historias<br class="nl-br-desktop"><br class="nl-br-mobile"> que México guarda.<br class="nl-br-mobile"> No se monetiza y se respeta su privacidad.</p>
     <form data-reveal onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px;">
       <label for="hsk-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Correo electrónico</label>
       <input id="hsk-email" type="email" required placeholder="su@correo.com" autocomplete="email" style="flex:1;min-width:240px;font-size:16px;padding:15px 18px;background:#f3eee2;border:1px solid #a89880;color:#1b1d24;border-radius:2px;min-height:52px;">
@@ -669,12 +669,12 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el) {
       el.style.opacity = '0';
       el.style.transform = el.classList.contains('grow-bar') ? 'scaleX(0)' : 'translateY(20px)';
-      el.style.transition = 'opacity 4800ms cubic-bezier(.16,1,.3,1), transform 4800ms cubic-bezier(.16,1,.3,1)';
+      el.style.transition = 'opacity 2880ms cubic-bezier(.16,1,.3,1), transform 2880ms cubic-bezier(.16,1,.3,1)';
     });
     var reveal = function(el) {
       var sibs = el.parentElement ? Array.from(el.parentElement.querySelectorAll('[data-reveal]')) : [el];
       var idx = Math.max(0, sibs.indexOf(el));
-      el.style.transitionDelay = (idx % 5 * 500) + 'ms';
+      el.style.transitionDelay = (idx % 5 * 300) + 'ms';
       el.style.opacity = '1';
       el.style.transform = el.classList.contains('grow-bar') ? 'scaleX(1)' : 'translateY(0)';
     };
