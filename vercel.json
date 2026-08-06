@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/conmemoracion-especial", "destination": "https://cristeros.vercel.app" },
+    { "source": "/conmemoracion-especial/:path*", "destination": "https://cristeros.vercel.app/:path*" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
